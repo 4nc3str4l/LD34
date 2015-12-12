@@ -10,6 +10,8 @@ public class MobMovement : MonoBehaviour
     private bool _isGrounded = false;
     private RaycastHit2D _hittedGround;
     private RaycastHit2D _savedHit = new RaycastHit2D();
+    private GameObject _monster;
+    private MonsterFX _monsterFx;
 
     private const int GROUND_MASK = 1 << 8;
     private const float POSITIVE_X_ACCELERATION = 100.0f;
@@ -23,12 +25,14 @@ public class MobMovement : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _monster = GameObject.Find("Monster");
+        _monsterFx = _monster.GetComponent<MonsterFX>();
 	}
 	
 	// Update is called once per frame
 	void Update()
     {
-        _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, GROUND_MASK);
+        _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, 1f, GROUND_MASK);
         _isGrounded = _hittedGround.collider != null;
 
         if (_hittedGround.collider != _savedHit.collider && _savedHit.collider != null &&  _hittedGround.collider != null)
@@ -57,12 +61,14 @@ public class MobMovement : MonoBehaviour
                 _forces += new Vector2(POSITIVE_X_ACCELERATION, 0);
                 _shouldStop = false;
                 _isStopping = false;
+                _monster.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
             else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 _forces += new Vector2(-POSITIVE_X_ACCELERATION, 0);
                 _shouldStop = false;
                 _isStopping = false;
+                _monster.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
             else if (!_shouldStop && !_isStopping)
             {
@@ -119,5 +125,15 @@ public class MobMovement : MonoBehaviour
         }
 
         _rigidBody.AddForce(_forces * Time.deltaTime);
+
+
+        if(_rigidBody.velocity.x != 0f)
+        {
+            _monsterFx.setState(MonsterFX.States.WALKING);
+        }
+        else
+        {
+            _monsterFx.setState(MonsterFX.States.IDLE);
+        }
     }
 }
