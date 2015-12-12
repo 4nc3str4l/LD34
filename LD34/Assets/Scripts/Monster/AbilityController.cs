@@ -25,6 +25,7 @@ public class AbilityController : MonoBehaviour
         LoadAbilities();
 
         BoundAtLeft = _abilities[0];
+        BoundAtRight = _abilities[1];
     }
 
     private void LoadPrefabs()
@@ -78,6 +79,11 @@ public class AbilityController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             BoundAtLeft.TryFire();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            BoundAtRight.TryFire();
         }
     }
 }

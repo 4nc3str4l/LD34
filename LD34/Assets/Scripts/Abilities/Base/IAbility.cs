@@ -7,7 +7,8 @@ using UnityEngine;
 public enum AbilityType
 {
     SOUL_FIRE,
-    SOUL_FILE_TARGETED
+    SOUL_FILE_TARGETED,
+    DEATH_STARE
 }
 
 public interface IAbility
