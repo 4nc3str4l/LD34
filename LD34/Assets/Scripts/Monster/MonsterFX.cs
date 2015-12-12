@@ -23,7 +23,7 @@ public class MonsterFX : MonoBehaviour {
 	void Update ()
     { 
         eyeLight.intensity = BASE_INTENSITY + Random.Range(0f, 1f);
-        eyeLight.transform.localPosition = eyelightBasePosition + new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), 0f);
+        //eyeLight.transform.localPosition = eyelightBasePosition + new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), 0f);
     }
 
     public void setState(States state)
