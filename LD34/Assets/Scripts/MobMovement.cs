@@ -113,8 +113,11 @@ public class MobMovement : MonoBehaviour
 
         if (_isGrounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
         {
-            _hittedGround.collider.enabled = false;
-            _savedHit = _hittedGround;
+            if (_hittedGround.collider.gameObject.tag != "BaseGround")
+            {
+                _hittedGround.collider.enabled = false;
+                _savedHit = _hittedGround;
+            }
         }
 
         if (_isStopping && Mathf.Abs(_rigidBody.velocity.x) <= STOP_VELOCITY)
