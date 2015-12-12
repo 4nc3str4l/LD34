@@ -19,7 +19,9 @@ public interface IAbility
     bool CanBeUsed { get; }
     float CooldownTime { get; }
     float RemainingCooldown { get; }
+    float DestroyTime { get; }
 
+    bool TryFire();
     void OnStart();
     void Update();
     void OnEnd();

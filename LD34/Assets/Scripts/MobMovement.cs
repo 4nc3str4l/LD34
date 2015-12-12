@@ -17,14 +17,13 @@ public class MobMovement : MonoBehaviour
     private MonsterFX _monsterFx;
     private Collider2D _monsterCollider;
 
-    private const float RAYCAST_DOWN_DISTANCE = 0.6f;
-    private const int GROUND_MASK = 1 << 8;
-    private const float POSITIVE_X_ACCELERATION = 100.0f;
-    private const float NEGATIVE_X_ACCELERATION = -20.0f;
-    private const float POSITIVE_Y_ACCELERATION = 1500f;
-    private const float GRAVITY_FORCE = 50f;
-    private const float MAX_X_FORCE = 400.0f;
-    private const float STOP_VELOCITY = 1.0f;
+    public static readonly float RAYCAST_DOWN_DISTANCE = 0.6f;
+    public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
+    public static readonly float NEGATIVE_X_ACCELERATION = -20.0f;
+    public static readonly float POSITIVE_Y_ACCELERATION = 1500f;
+    public static readonly float GRAVITY_FORCE = 50f;
+    public static readonly float MAX_X_FORCE = 400.0f;
+    public static readonly float STOP_VELOCITY = 1.0f;
 
     // Use this for initialization
     void Start()
@@ -38,20 +37,20 @@ public class MobMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE, GROUND_MASK);
+        _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
 
         if (!_hittedGround.collider)
         {
             Vector2 position = transform.position;
             position.x += _monsterCollider.bounds.size.x / 2.0f;
 
-            _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, GROUND_MASK);
+            _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
 
             if (!_hittedGround.collider)
             {
                 position.x -= _monsterCollider.bounds.size.x;
 
-                _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, GROUND_MASK);
+                _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
             }
         }
 
@@ -82,7 +81,7 @@ public class MobMovement : MonoBehaviour
             if (_savedUpperHit.collider == null)
             {
                 RaycastHit2D upperHit;
-                bool hit = tryHitInDirection(02f, GROUND_MASK, out upperHit);
+                bool hit = tryHitInDirection(02f, Constants.Layers.GROUND_MASK, out upperHit);
                 if (hit && upperHit.collider != null)
                 {
                     _monsterCollider.enabled = false;
