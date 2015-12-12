@@ -65,6 +65,7 @@ GameObject:
   - 92: {fileID: 9265692}
   - 124: {fileID: 12402162}
   - 81: {fileID: 8181208}
+  - 114: {fileID: 11495480}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -79,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .210000038, y: .0599999987, z: -.100000001}
+  m_LocalPosition: {x: .210000038, y: .340000033, z: .400000006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 473646}
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -10}
+  m_LocalPosition: {x: 0, y: 3.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 487326}
@@ -116,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.21000004, y: 0, z: 0}
+  m_LocalPosition: {x: -3.21000004, y: -1.44799995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 465640}
@@ -227,8 +228,8 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: .141000003, g: 1, b: .328000009, a: .890999973}
-  m_Intensity: 2.56999993
-  m_Range: 16.5900002
+  m_Intensity: 4.4000001
+  m_Range: 18.1299992
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -283,6 +284,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+--- !u!114 &11495480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190098}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e318a6043c1cb4a8ce1c8805bab930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: 1
+  screenBlendMode: 0
+  sunTransform: {fileID: 0}
+  radialBlurIterations: 2
+  sunColor: {r: 1, g: 1, b: 1, a: 1}
+  sunThreshold: {r: .870000005, g: .74000001, b: .649999976, a: 1}
+  sunShaftBlurRadius: 2.5
+  sunShaftIntensity: 1.14999998
+  maxRadius: .75
+  useDepthTexture: 1
+  sunShaftsShader: {fileID: 0}
+  simpleClearShader: {fileID: 0}
 --- !u!124 &12402162
 Behaviour:
   m_ObjectHideFlags: 1
@@ -308,9 +332,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
