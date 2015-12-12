@@ -1,0 +1,720 @@
+fileFormatVersion: 2
+guid: 18947cc0b5f7c214a9e81e63d5739a58
+timeCreated: 1449952677
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fireExplosion_0
+    21300002: fireExplosion_1
+    21300004: fireExplosion_2
+    21300006: fireExplosion_3
+    21300008: fireExplosion_4
+    21300010: fireExplosion_5
+    21300012: fireExplosion_6
+    21300014: fireExplosion_7
+    21300016: fireExplosion_8
+    21300018: fireExplosion_9
+    21300020: fireExplosion_10
+    21300022: fireExplosion_11
+    21300024: fireExplosion_12
+    21300026: fireExplosion_13
+    21300028: fireExplosion_14
+    21300030: fireExplosion_15
+    21300032: fireExplosion_16
+    21300034: fireExplosion_17
+    21300036: fireExplosion_18
+    21300038: fireExplosion_19
+    21300040: fireExplosion_20
+    21300042: fireExplosion_21
+    21300044: fireExplosion_22
+    21300046: fireExplosion_23
+    21300048: fireExplosion_24
+    21300050: fireExplosion_25
+    21300052: fireExplosion_26
+    21300054: fireExplosion_27
+    21300056: fireExplosion_28
+    21300058: fireExplosion_29
+    21300060: fireExplosion_30
+    21300062: fireExplosion_31
+    21300064: fireExplosion_32
+    21300066: fireExplosion_33
+    21300068: fireExplosion_34
+    21300070: fireExplosion_35
+    21300072: fireExplosion_36
+    21300074: fireExplosion_37
+    21300076: fireExplosion_38
+    21300078: fireExplosion_39
+    21300080: fireExplosion_40
+    21300082: fireExplosion_41
+    21300084: fireExplosion_42
+    21300086: fireExplosion_43
+    21300088: fireExplosion_44
+    21300090: fireExplosion_45
+    21300092: fireExplosion_46
+    21300094: fireExplosion_47
+    21300096: fireExplosion_48
+    21300098: fireExplosion_49
+    21300100: fireExplosion_50
+    21300102: fireExplosion_51
+    21300104: fireExplosion_52
+    21300106: fireExplosion_53
+    21300108: fireExplosion_54
+    21300110: fireExplosion_55
+    21300112: fireExplosion_56
+    21300114: fireExplosion_57
+    21300116: fireExplosion_58
+    21300118: fireExplosion_59
+    21300120: fireExplosion_60
+    21300122: fireExplosion_61
+    21300124: fireExplosion_62
+    21300126: fireExplosion_63
+    21300128: fireExplosion_64
+    21300130: fireExplosion_65
+    21300132: fireExplosion_66
+    21300134: fireExplosion_67
+    21300136: fireExplosion_68
+    21300138: fireExplosion_69
+    21300140: fireExplosion_70
+    21300142: fireExplosion_71
+    21300144: fireExplosion_72
+    21300146: fireExplosion_73
+    21300148: fireExplosion_74
+    21300150: fireExplosion_75
+    21300152: fireExplosion_76
+    21300154: fireExplosion_77
+    21300156: fireExplosion_78
+    21300158: fireExplosion_79
+    21300160: fireExplosion_80
+    21300162: fireExplosion_81
+    21300164: fireExplosion_82
+    21300166: fireExplosion_83
+    21300168: fireExplosion_84
+    21300170: fireExplosion_85
+    21300172: fireExplosion_86
+    21300174: fireExplosion_87
+    21300176: fireExplosion_88
+    21300178: fireExplosion_89
+    21300180: fireExplosion_90
+    21300182: fireExplosion_91
+    21300184: fireExplosion_92
+    21300186: fireExplosion_93
+    21300188: fireExplosion_94
+    21300190: fireExplosion_95
+    21300192: fireExplosion_96
+    21300194: fireExplosion_97
+    21300196: fireExplosion_98
+    21300198: fireExplosion_99
+    21300200: fireExplosion_100
+    21300202: fireExplosion_101
+    21300204: fireExplosion_102
+    21300206: fireExplosion_103
+    21300208: fireExplosion_104
+    21300210: fireExplosion_105
+    21300212: fireExplosion_106
+    21300214: fireExplosion_107
+    21300216: fireExplosion_108
+    21300218: fireExplosion_109
+    21300220: fireExplosion_110
+    21300222: fireExplosion_111
+    21300224: fireExplosion_112
+    21300226: fireExplosion_113
+    21300228: fireExplosion_114
+    21300230: fireExplosion_115
+    21300232: fireExplosion_116
+    21300234: fireExplosion_117
+    21300236: fireExplosion_118
+    21300238: fireExplosion_119
+    21300240: fireExplosion_120
+    21300242: fireExplosion_121
+    21300244: fireExplosion_122
+    21300246: fireExplosion_123
+    21300248: fireExplosion_124
+    21300250: fireExplosion_125
+    21300252: fireExplosion_126
+    21300254: fireExplosion_127
+    21300256: fireExplosion_128
+    21300258: fireExplosion_129
+    21300260: fireExplosion_130
+    21300262: fireExplosion_131
+    21300264: fireExplosion_132
+    21300266: fireExplosion_133
+    21300268: fireExplosion_134
+    21300270: fireExplosion_135
+    21300272: fireExplosion_136
+    21300274: fireExplosion_137
+    21300276: fireExplosion_138
+    21300278: fireExplosion_139
+    21300280: fireExplosion_140
+    21300282: fireExplosion_141
+    21300284: fireExplosion_142
+    21300286: fireExplosion_143
+    21300288: fireExplosion_144
+    21300290: fireExplosion_145
+    21300292: fireExplosion_146
+    21300294: fireExplosion_147
+    21300296: fireExplosion_148
+    21300298: fireExplosion_149
+    21300300: fireExplosion_150
+    21300302: fireExplosion_151
+    21300304: fireExplosion_152
+    21300306: fireExplosion_153
+    21300308: fireExplosion_154
+    21300310: fireExplosion_155
+    21300312: fireExplosion_156
+    21300314: fireExplosion_157
+    21300316: fireExplosion_158
+    21300318: fireExplosion_159
+    21300320: fireExplosion_160
+    21300322: fireExplosion_161
+    21300324: fireExplosion_162
+    21300326: fireExplosion_163
+    21300328: fireExplosion_164
+    21300330: fireExplosion_165
+    21300332: fireExplosion_166
+    21300334: fireExplosion_167
+    21300336: fireExplosion_168
+    21300338: fireExplosion_169
+    21300340: fireExplosion_170
+    21300342: fireExplosion_171
+    21300344: fireExplosion_172
+    21300346: fireExplosion_173
+    21300348: fireExplosion_174
+    21300350: fireExplosion_175
+    21300352: fireExplosion_176
+    21300354: fireExplosion_177
+    21300356: fireExplosion_178
+    21300358: fireExplosion_179
+    21300360: fireExplosion_180
+    21300362: fireExplosion_181
+    21300364: fireExplosion_182
+    21300366: fireExplosion_183
+    21300368: fireExplosion_184
+    21300370: fireExplosion_185
+    21300372: fireExplosion_186
+    21300374: fireExplosion_187
+    21300376: fireExplosion_188
+    21300378: fireExplosion_189
+    21300380: fireExplosion_190
+    21300382: fireExplosion_191
+    21300384: fireExplosion_192
+    21300386: fireExplosion_193
+    21300388: fireExplosion_194
+    21300390: fireExplosion_195
+    21300392: fireExplosion_196
+    21300394: fireExplosion_197
+    21300396: fireExplosion_198
+    21300398: fireExplosion_199
+    21300400: fireExplosion_200
+    21300402: fireExplosion_201
+    21300404: fireExplosion_202
+    21300406: fireExplosion_203
+    21300408: fireExplosion_204
+    21300410: fireExplosion_205
+    21300412: fireExplosion_206
+    21300414: fireExplosion_207
+    21300416: fireExplosion_208
+    21300418: fireExplosion_209
+    21300420: fireExplosion_210
+    21300422: fireExplosion_211
+    21300424: fireExplosion_212
+    21300426: fireExplosion_213
+    21300428: fireExplosion_214
+    21300430: fireExplosion_215
+    21300432: fireExplosion_216
+    21300434: fireExplosion_217
+    21300436: fireExplosion_218
+    21300438: fireExplosion_219
+    21300440: fireExplosion_220
+    21300442: fireExplosion_221
+    21300444: fireExplosion_222
+    21300446: fireExplosion_223
+    21300448: fireExplosion_224
+    21300450: fireExplosion_225
+    21300452: fireExplosion_226
+    21300454: fireExplosion_227
+    21300456: fireExplosion_228
+    21300458: fireExplosion_229
+    21300460: fireExplosion_230
+    21300462: fireExplosion_231
+    21300464: fireExplosion_232
+    21300466: fireExplosion_233
+    21300468: fireExplosion_234
+    21300470: fireExplosion_235
+    21300472: fireExplosion_236
+    21300474: fireExplosion_237
+    21300476: fireExplosion_238
+    21300478: fireExplosion_239
+    21300480: fireExplosion_240
+    21300482: fireExplosion_241
+    21300484: fireExplosion_242
+    21300486: fireExplosion_243
+    21300488: fireExplosion_244
+    21300490: fireExplosion_245
+    21300492: fireExplosion_246
+    21300494: fireExplosion_247
+    21300496: fireExplosion_248
+    21300498: fireExplosion_249
+    21300500: fireExplosion_250
+    21300502: fireExplosion_251
+    21300504: fireExplosion_252
+    21300506: fireExplosion_253
+    21300508: fireExplosion_254
+    21300510: fireExplosion_255
+    21300512: fireExplosion_256
+    21300514: fireExplosion_257
+    21300516: fireExplosion_258
+    21300518: fireExplosion_259
+    21300520: fireExplosion_260
+    21300522: fireExplosion_261
+    21300524: fireExplosion_262
+    21300526: fireExplosion_263
+    21300528: fireExplosion_264
+    21300530: fireExplosion_265
+    21300532: fireExplosion_266
+    21300534: fireExplosion_267
+    21300536: fireExplosion_268
+    21300538: fireExplosion_269
+    21300540: fireExplosion_270
+    21300542: fireExplosion_271
+    21300544: fireExplosion_272
+    21300546: fireExplosion_273
+    21300548: fireExplosion_274
+    21300550: fireExplosion_275
+    21300552: fireExplosion_276
+    21300554: fireExplosion_277
+    21300556: fireExplosion_278
+    21300558: fireExplosion_279
+    21300560: fireExplosion_280
+    21300562: fireExplosion_281
+    21300564: fireExplosion_282
+    21300566: fireExplosion_283
+    21300568: fireExplosion_284
+    21300570: fireExplosion_285
+    21300572: fireExplosion_286
+    21300574: fireExplosion_287
+    21300576: fireExplosion_288
+    21300578: fireExplosion_289
+    21300580: fireExplosion_290
+    21300582: fireExplosion_291
+    21300584: fireExplosion_292
+    21300586: fireExplosion_293
+    21300588: fireExplosion_294
+    21300590: fireExplosion_295
+    21300592: fireExplosion_296
+    21300594: fireExplosion_297
+    21300596: fireExplosion_298
+    21300598: fireExplosion_299
+    21300600: fireExplosion_300
+    21300602: fireExplosion_301
+    21300604: fireExplosion_302
+    21300606: fireExplosion_303
+    21300608: fireExplosion_304
+    21300610: fireExplosion_305
+    21300612: fireExplosion_306
+    21300614: fireExplosion_307
+    21300616: fireExplosion_308
+    21300618: fireExplosion_309
+    21300620: fireExplosion_310
+    21300622: fireExplosion_311
+    21300624: fireExplosion_312
+    21300626: fireExplosion_313
+    21300628: fireExplosion_314
+    21300630: fireExplosion_315
+    21300632: fireExplosion_316
+    21300634: fireExplosion_317
+    21300636: fireExplosion_318
+    21300638: fireExplosion_319
+    21300640: fireExplosion_320
+    21300642: fireExplosion_321
+    21300644: fireExplosion_322
+    21300646: fireExplosion_323
+    21300648: fireExplosion_324
+    21300650: fireExplosion_325
+    21300652: fireExplosion_326
+    21300654: fireExplosion_327
+    21300656: fireExplosion_328
+    21300658: fireExplosion_329
+    21300660: fireExplosion_330
+    21300662: fireExplosion_331
+    21300664: fireExplosion_332
+    21300666: fireExplosion_333
+    21300668: fireExplosion_334
+    21300670: fireExplosion_335
+    21300672: fireExplosion_336
+    21300674: fireExplosion_337
+    21300676: fireExplosion_338
+    21300678: fireExplosion_339
+    21300680: fireExplosion_340
+    21300682: fireExplosion_341
+    21300684: fireExplosion_342
+    21300686: fireExplosion_343
+    21300688: fireExplosion_344
+    21300690: fireExplosion_345
+    21300692: fireExplosion_346
+    21300694: fireExplosion_347
+    21300696: fireExplosion_348
+    21300698: fireExplosion_349
+    21300700: fireExplosion_350
+    21300702: fireExplosion_351
+    21300704: fireExplosion_352
+    21300706: fireExplosion_353
+    21300708: fireExplosion_354
+    21300710: fireExplosion_355
+    21300712: fireExplosion_356
+    21300714: fireExplosion_357
+    21300716: fireExplosion_358
+    21300718: fireExplosion_359
+    21300720: fireExplosion_360
+    21300722: fireExplosion_361
+    21300724: fireExplosion_362
+    21300726: fireExplosion_363
+    21300728: fireExplosion_364
+    21300730: fireExplosion_365
+    21300732: fireExplosion_366
+    21300734: fireExplosion_367
+    21300736: fireExplosion_368
+    21300738: fireExplosion_369
+    21300740: fireExplosion_370
+    21300742: fireExplosion_371
+    21300744: fireExplosion_372
+    21300746: fireExplosion_373
+    21300748: fireExplosion_374
+    21300750: fireExplosion_375
+    21300752: fireExplosion_376
+    21300754: fireExplosion_377
+    21300756: fireExplosion_378
+    21300758: fireExplosion_379
+    21300760: fireExplosion_380
+    21300762: fireExplosion_381
+    21300764: fireExplosion_382
+    21300766: fireExplosion_383
+    21300768: fireExplosion_384
+    21300770: fireExplosion_385
+    21300772: fireExplosion_386
+    21300774: fireExplosion_387
+    21300776: fireExplosion_388
+    21300778: fireExplosion_389
+    21300780: fireExplosion_390
+    21300782: fireExplosion_391
+    21300784: fireExplosion_392
+    21300786: fireExplosion_393
+    21300788: fireExplosion_394
+    21300790: fireExplosion_395
+    21300792: fireExplosion_396
+    21300794: fireExplosion_397
+    21300796: fireExplosion_398
+    21300798: fireExplosion_399
+    21300800: fireExplosion_400
+    21300802: fireExplosion_401
+    21300804: fireExplosion_402
+    21300806: fireExplosion_403
+    21300808: fireExplosion_404
+    21300810: fireExplosion_405
+    21300812: fireExplosion_406
+    21300814: fireExplosion_407
+    21300816: fireExplosion_408
+    21300818: fireExplosion_409
+    21300820: fireExplosion_410
+    21300822: fireExplosion_411
+    21300824: fireExplosion_412
+    21300826: fireExplosion_413
+    21300828: fireExplosion_414
+    21300830: fireExplosion_415
+    21300832: fireExplosion_416
+    21300834: fireExplosion_417
+    21300836: fireExplosion_418
+    21300838: fireExplosion_419
+    21300840: fireExplosion_420
+    21300842: fireExplosion_421
+    21300844: fireExplosion_422
+    21300846: fireExplosion_423
+    21300848: fireExplosion_424
+    21300850: fireExplosion_425
+    21300852: fireExplosion_426
+    21300854: fireExplosion_427
+    21300856: fireExplosion_428
+    21300858: fireExplosion_429
+    21300860: fireExplosion_430
+    21300862: fireExplosion_431
+    21300864: fireExplosion_432
+    21300866: fireExplosion_433
+    21300868: fireExplosion_434
+    21300870: fireExplosion_435
+    21300872: fireExplosion_436
+    21300874: fireExplosion_437
+    21300876: fireExplosion_438
+    21300878: fireExplosion_439
+    21300880: fireExplosion_440
+    21300882: fireExplosion_441
+    21300884: fireExplosion_442
+    21300886: fireExplosion_443
+    21300888: fireExplosion_444
+    21300890: fireExplosion_445
+    21300892: fireExplosion_446
+    21300894: fireExplosion_447
+    21300896: fireExplosion_448
+    21300898: fireExplosion_449
+    21300900: fireExplosion_450
+    21300902: fireExplosion_451
+    21300904: fireExplosion_452
+    21300906: fireExplosion_453
+    21300908: fireExplosion_454
+    21300910: fireExplosion_455
+    21300912: fireExplosion_456
+    21300914: fireExplosion_457
+    21300916: fireExplosion_458
+    21300918: fireExplosion_459
+    21300920: fireExplosion_460
+    21300922: fireExplosion_461
+    21300924: fireExplosion_462
+    21300926: fireExplosion_463
+    21300928: fireExplosion_464
+    21300930: fireExplosion_465
+    21300932: fireExplosion_466
+    21300934: fireExplosion_467
+    21300936: fireExplosion_468
+    21300938: fireExplosion_469
+    21300940: fireExplosion_470
+    21300942: fireExplosion_471
+    21300944: fireExplosion_472
+    21300946: fireExplosion_473
+    21300948: fireExplosion_474
+    21300950: fireExplosion_475
+    21300952: fireExplosion_476
+    21300954: fireExplosion_477
+    21300956: fireExplosion_478
+    21300958: fireExplosion_479
+    21300960: fireExplosion_480
+    21300962: fireExplosion_481
+    21300964: fireExplosion_482
+    21300966: fireExplosion_483
+    21300968: fireExplosion_484
+    21300970: fireExplosion_485
+    21300972: fireExplosion_486
+    21300974: fireExplosion_487
+    21300976: fireExplosion_488
+    21300978: fireExplosion_489
+    21300980: fireExplosion_490
+    21300982: fireExplosion_491
+    21300984: fireExplosion_492
+    21300986: fireExplosion_493
+    21300988: fireExplosion_494
+    21300990: fireExplosion_495
+    21300992: fireExplosion_496
+    21300994: fireExplosion_497
+    21300996: fireExplosion_498
+    21300998: fireExplosion_499
+    21301000: fireExplosion_500
+    21301002: fireExplosion_501
+    21301004: fireExplosion_502
+    21301006: fireExplosion_503
+    21301008: fireExplosion_504
+    21301010: fireExplosion_505
+    21301012: fireExplosion_506
+    21301014: fireExplosion_507
+    21301016: fireExplosion_508
+    21301018: fireExplosion_509
+    21301020: fireExplosion_510
+    21301022: fireExplosion_511
+    21301024: fireExplosion_512
+    21301026: fireExplosion_513
+    21301028: fireExplosion_514
+    21301030: fireExplosion_515
+    21301032: fireExplosion_516
+    21301034: fireExplosion_517
+    21301036: fireExplosion_518
+    21301038: fireExplosion_519
+    21301040: fireExplosion_520
+    21301042: fireExplosion_521
+    21301044: fireExplosion_522
+    21301046: fireExplosion_523
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: fireExplosion_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_4
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_6
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_8
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_9
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_10
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_11
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_12
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fireExplosion_13
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
