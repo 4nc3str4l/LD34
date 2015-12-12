@@ -5,25 +5,34 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-abstract class Ability : IAbility
+public abstract class Ability : IAbility
 {
     public abstract string Name { get; }
+    public abstract AbilityType Type { get; }
     public abstract float CooldownTime { get; }
 
+    public GameObject Owner { get { return _owner; } }
     public virtual bool CanBeUsed { get { return RemainingCooldown == 0; } }
-
-    private float _remainingCooldown;
     public float RemainingCooldown { get { return _remainingCooldown; } }
 
-    public virtual void OnEnded()
+    private float _remainingCooldown;
+    private GameObject _owner;
+
+    public Ability(GameObject owner)
     {
+        _owner = owner;
     }
 
-    public virtual void OnEnable()
+    public virtual void OnEnd() { }
+
+    public virtual void OnStart()
     {
         Assert.IsTrue(CanBeUsed);
 
-        _remainingCooldown = CooldownTime;
+        if (_remainingCooldown > 0)
+        {
+            _remainingCooldown = CooldownTime;
+        }
     }
 
     public virtual void Update()

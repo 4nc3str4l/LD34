@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
-interface IAbility
+public enum AbilityType
+{
+    SOUL_FIRE,
+    SOUL_FILE_TARGETED
+}
+
+public interface IAbility
 {
     string Name { get; }
+    AbilityType Type { get; }
+    GameObject Owner { get; }
 
     bool CanBeUsed { get; }
     float CooldownTime { get; }
     float RemainingCooldown { get; }
 
-    void OnEnable();
+    void OnStart();
     void Update();
-    void OnEnded();
+    void OnEnd();
 }
