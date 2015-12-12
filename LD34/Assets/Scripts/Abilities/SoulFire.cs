@@ -10,7 +10,15 @@ public class SoulFire : Ability
     {
         get
         {
-            return 5.0f;
+            return 4.0f;
+        }
+    }
+
+    public override float DestroyTime
+    {
+        get
+        {
+            return 4.0f;
         }
     }
 
@@ -30,29 +38,39 @@ public class SoulFire : Ability
         }
     }
 
-    private List<GameObject> _flames;
+    private const int NUMBER_OF_FLAMES = 10;
+    private const float ACCELERATION_FACTOR = 3f;
+    private List<GameObject> _flames = new List<GameObject>();
 
     public SoulFire(AbilityController controller, GameObject owner) : base(controller, owner)
-    {
-        foreach (GameObject prefab in _prefabs)
-        {
-            GameObject flame = GameObject.Instantiate(prefab);
-            flame.SetActive(false);
-            _flames.Add(flame);
-        }
-    }
+    { }
 
     public override void OnStart()
     {
         base.OnStart();
+        
+        for (int i = 0; i < NUMBER_OF_FLAMES; ++i)
+        {
+            GameObject flame = GameObject.Instantiate(_prefabs[0]);
+            flame.transform.position = Owner.transform.position;
 
-        _flames.ForEach(f => f.SetActive(true));
+            float acceleration = MobMovement.POSITIVE_X_ACCELERATION * ACCELERATION_FACTOR;
+            acceleration = UnityEngine.Random.Range(-acceleration, acceleration);
+
+            Vector2 force = new Vector2(acceleration, 0);
+            flame.GetComponent<Rigidbody2D>().AddForce(force);
+
+            _flames.Add(flame);
+        }
     }
 
     public override void OnEnd()
     {
         base.OnEnd();
 
-        _flames.ForEach(f => f.SetActive(false));
+        _flames.ForEach(flame => GameObject.Destroy(flame));
     }
 }
+
+
+

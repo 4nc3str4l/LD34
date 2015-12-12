@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21253660}
   - 95: {fileID: 9566846}
   - 114: {fileID: 11477496}
+  - 114: {fileID: 11412988}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -45,7 +46,7 @@ GameObject:
   - 114: {fileID: 11461130}
   - 61: {fileID: 6194006}
   - 50: {fileID: 5091624}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MonsterContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,6 +249,17 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11412988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cda26230ecf40047b5ab5b6bfee50ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11461130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,7 +308,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
