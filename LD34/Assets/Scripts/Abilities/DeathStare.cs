@@ -119,7 +119,14 @@ public class DeathStare : Ability
             }
             else
             {
+                if (laser.BeingCast)
+                {
+                    laser.Start.x = _startRef.transform.position.x;
+                    laser.Start.y = _startRef.transform.position.y;
+                }
+
                 Vector3 pos = new Vector3(laser.Start.x, laser.Start.y, 0.1f);
+
                 laser.Laser.transform.position = pos;
                 laser.Laser.transform.localScale = new Vector3(laser.Distance / 3.5f, 1, 1);
             }
