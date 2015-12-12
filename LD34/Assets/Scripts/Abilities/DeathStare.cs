@@ -112,7 +112,7 @@ public class DeathStare : Ability
         {
             UpdateRay(laser);
 
-            if (!laser.BeingCast && (laser.End - laser.End).normalized != laser.Direction)
+            if (!laser.BeingCast && (laser.End - laser.Start).normalized != laser.Direction)
             {
                 GameObject.Destroy(laser.Laser);
                 _lasers.Remove(laser);
