@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: a9332d5c84bb1834383a8e5236f95ef5
-timeCreated: 1449944385
+guid: 91ae3fc556ad1174d82d44badff46f53
+timeCreated: 1449946295
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Skills_0
-    21300002: Skills_1
-    21300004: Skills_2
-    21300006: Skills_3
+    21300000: SkillGFX_0
+    21300002: SkillGFX_1
+    21300004: SkillGFX_2
+    21300006: SkillGFX_3
+    21300008: SkillGFX_4
+    21300010: SkillGFX_5
+    21300012: SkillGFX_6
+    21300014: SkillGFX_7
+    21300016: SkillGFX_8
+    21300018: SkillGFX_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,41 +60,101 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Skills_0
+    - name: SkillGFX_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
+        y: 360
         width: 120
         height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Skills_1
+    - name: SkillGFX_1
       rect:
         serializedVersion: 2
         x: 120
-        y: 120
+        y: 360
         width: 120
         height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Skills_2
+    - name: SkillGFX_2
       rect:
         serializedVersion: 2
         x: 240
-        y: 120
+        y: 360
         width: 120
         height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Skills_3
+    - name: SkillGFX_3
       rect:
         serializedVersion: 2
         x: 360
-        y: 120
+        y: 360
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SkillGFX_4
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 360
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SkillGFX_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 360
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SkillGFX_6
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 360
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SkillGFX_7
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 360
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SkillGFX_8
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 360
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SkillGFX_9
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 360
         width: 120
         height: 120
       alignment: 0

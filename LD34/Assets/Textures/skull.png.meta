@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-guid: a9332d5c84bb1834383a8e5236f95ef5
-timeCreated: 1449944385
+guid: d7052e178ff425145b075c99c7536c58
+timeCreated: 1449946246
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Skills_0
-    21300002: Skills_1
-    21300004: Skills_2
-    21300006: Skills_3
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -42,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,47 +49,7 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: Skills_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 120
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Skills_1
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 120
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Skills_2
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 120
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Skills_3
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 120
-        width: 120
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

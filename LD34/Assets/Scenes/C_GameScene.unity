@@ -453,9 +453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc82203aad6e1a48a5dc65377bd6034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Soul Fire
-  description: 'Burn them out untill they disappear!!! '
-  image: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  title: Death Stare
+  description: We have a monster with LASEEERS!
+  image: {fileID: 21300004, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
 --- !u!114 &352144317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +505,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  m_Sprite: {fileID: 21300004, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1145,9 +1145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc82203aad6e1a48a5dc65377bd6034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Soul Fire
-  description: 'Burn them out untill they disappear!!! '
-  image: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  title: Death Stare
+  description: We have a monster with LASEEERS!
+  image: {fileID: 21300004, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
 --- !u!114 &830017749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1197,7 +1197,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  m_Sprite: {fileID: 21300004, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1356,9 +1356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc82203aad6e1a48a5dc65377bd6034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Soul Fire
-  description: 'Burn them out untill they disappear!!! '
-  image: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  title: Ranged Soul Fire
+  description: Point with your mouse and let them DIEEEEE
+  image: {fileID: 21300002, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
 --- !u!114 &868412750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,7 +1408,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  m_Sprite: {fileID: 21300002, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: Soul Fire
-  description: 'Burn them out untill they disappear!!! '
+  description: Yes come closer! And BURRRRN!
   image: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
 --- !u!114 &1333030253
 MonoBehaviour:
@@ -1770,6 +1770,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1333030249}
+--- !u!1001 &1561744116
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.67999995
+      objectReference: {fileID: 0}
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 437870, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d28774f7d71c52d4ca62c79ca06fe72e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1696298391
 Prefab:
   m_ObjectHideFlags: 0
@@ -1894,7 +1936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: Soul Fire
-  description: 'Burn them out untill they disappear!!! '
+  description: Yes come closer! And BURRRRN!
   image: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
 --- !u!114 &1751555821
 MonoBehaviour:
