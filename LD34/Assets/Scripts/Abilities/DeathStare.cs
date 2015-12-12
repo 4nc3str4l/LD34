@@ -18,7 +18,7 @@ public class DeathStare : Ability
     {
         get
         {
-            return 10.0f;
+            return 0.8f;
         }
     }
 
@@ -48,7 +48,8 @@ public class DeathStare : Ability
         public GameObject Laser;
     }
 
-    private const float MOVE_AMOUNT = 1f;
+    private const float ENLARGE_AMOUNT = 20f;
+    private const float SHORTEN_AMOUNT = 40f;
 
     private bool _active = false;
     private GameObject _startRef;
@@ -73,8 +74,7 @@ public class DeathStare : Ability
 
         _active = false;
 
-        _lasers.ForEach(laser => GameObject.Destroy(laser.Laser));
-        _lasers.Clear();
+        _lasers.ForEach(laser => laser.BeingCast = false);
         _lastDirection = Vector2.zero;
     }
 
@@ -82,40 +82,47 @@ public class DeathStare : Ability
     {
         base.Update();
 
-        if (!_active)
+        if (_active)
         {
-            return;
-        }
-
-        Vector2 direction = Owner.transform.rotation.y == 0 ? Vector2.right : Vector2.left;
-        if (_lastDirection != direction)
-        {
-            _lastDirection = direction;
-
-            if (_lasers.Count > 0)
+            Vector2 direction = Owner.transform.rotation.y == 0 ? Vector2.right : Vector2.left;
+            if (_lastDirection != direction)
             {
-                _lasers.Last().BeingCast = false;
+                _lastDirection = direction;
+
+                if (_lasers.Count > 0)
+                {
+                    _lasers.Last().BeingCast = false;
+                }
+
+                GameObject laserHolder = GameObject.Instantiate(_prefabs[1]);
+                laserHolder.transform.rotation = Quaternion.Euler(0, direction == Vector2.left ? 0 : 180f, 0);
+
+                _lasers.Add(new Ray()
+                {
+                    Start = _startRef.transform.position,
+                    End = _startRef.transform.position,
+                    Direction = direction,
+                    BeingCast = true,
+                    Laser = laserHolder,
+                });
             }
-
-            GameObject laserHolder = GameObject.Instantiate(_prefabs[1]);
-            laserHolder.transform.rotation = Quaternion.Euler(0, direction == Vector2.left ? 0 : 180f, 0);
-
-            _lasers.Add(new Ray()
-            {
-                Start = _startRef.transform.position,
-                End = _startRef.transform.position,
-                Direction = direction,
-                BeingCast = true,
-                Laser = laserHolder,
-            });
         }
 
-        _lasers.ForEach(laser =>
+        _lasers.ToList().ForEach(laser =>
         {
             UpdateRay(laser);
 
-            laser.Laser.transform.position = laser.Start;
-            laser.Laser.transform.localScale = new Vector3(laser.Distance * 3.5f, 1);
+            if (!laser.BeingCast && (laser.End - laser.End).normalized != laser.Direction)
+            {
+                GameObject.Destroy(laser.Laser);
+                _lasers.Remove(laser);
+            }
+            else
+            {
+                Vector3 pos = new Vector3(laser.Start.x, laser.Start.y, 0.1f);
+                laser.Laser.transform.position = pos;
+                laser.Laser.transform.localScale = new Vector3(laser.Distance / 3.5f, 1, 1);
+            }
         });
     }
 
@@ -123,11 +130,11 @@ public class DeathStare : Ability
     {
         if (!laser.BeingCast)
         {
-            laser.Start += laser.Direction * MOVE_AMOUNT * Time.deltaTime;
+            laser.Start += laser.Direction * SHORTEN_AMOUNT * Time.deltaTime;
         }
         else
         {
-            laser.End += laser.Direction * MOVE_AMOUNT * Time.deltaTime;
+            laser.End += laser.Direction * ENLARGE_AMOUNT * Time.deltaTime;
             laser.Distance = Vector2.Distance(laser.Start, laser.End);
 
             int mask = ~Constants.Layers.UNIT_MASK & ~Constants.Layers.ABILITIES_MASK;
@@ -135,9 +142,10 @@ public class DeathStare : Ability
             if (hit.collider != null)
             {
                 laser.End = hit.transform.position;
-                laser.Distance = Vector2.Distance(laser.Start, laser.End);
             }
         }
+
+        laser.Distance = Vector2.Distance(laser.Start, laser.End);
     }
 }
 
