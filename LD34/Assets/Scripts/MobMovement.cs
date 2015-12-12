@@ -8,15 +8,20 @@ public class MobMovement : MonoBehaviour
     private bool _shouldStop = false;
     private bool _isStopping = false;
     private bool _isGrounded = false;
+    private bool _isJumping = false;
+    private bool _isDownJumping = false;
     private RaycastHit2D _hittedGround;
     private RaycastHit2D _savedHit = new RaycastHit2D();
+    private RaycastHit2D _savedUpperHit = new RaycastHit2D();
     private GameObject _monster;
     private MonsterFX _monsterFx;
+    private Collider2D _monsterCollider;
 
+    private const float RAYCAST_DOWN_DISTANCE = 0.6f;
     private const int GROUND_MASK = 1 << 8;
     private const float POSITIVE_X_ACCELERATION = 100.0f;
-    private const float NEGATIVE_X_ACCELERATION = -10.0f;
-    private const float POSITIVE_Y_ACCELERATION = 1300f;
+    private const float NEGATIVE_X_ACCELERATION = -20.0f;
+    private const float POSITIVE_Y_ACCELERATION = 1500f;
     private const float GRAVITY_FORCE = 50f;
     private const float MAX_X_FORCE = 400.0f;
     private const float STOP_VELOCITY = 1.0f;
@@ -27,28 +32,69 @@ public class MobMovement : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _monster = GameObject.Find("Monster");
         _monsterFx = _monster.GetComponent<MonsterFX>();
-	}
+        _monsterCollider = GetComponent<Collider2D>();
+    }
 	
 	// Update is called once per frame
 	void Update()
     {
-        _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, 1f, GROUND_MASK);
-        _isGrounded = _hittedGround.collider != null;
+        _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE, GROUND_MASK);
 
-        if (_hittedGround.collider != _savedHit.collider && _savedHit.collider != null &&  _hittedGround.collider != null)
+        if (!_hittedGround.collider)
         {
-            _savedHit.collider.enabled = true;
-            _savedHit = _hittedGround;
+            Vector2 position = transform.position;
+            position.x += _monsterCollider.bounds.size.x / 2.0f;
+
+            _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, GROUND_MASK);
+
+            if (!_hittedGround.collider)
+            {
+                position.x -= _monsterCollider.bounds.size.x;
+
+                _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, GROUND_MASK);
+            }
         }
 
-        RaycastHit2D upperHit = Physics2D.Raycast(transform.position, Vector2.up, 1f, GROUND_MASK);
-        if (upperHit.collider != null)
+        bool hasHit = _hittedGround.collider != null;
+        _isGrounded = !_isDownJumping && hasHit;
+
+        if (_isJumping && hasHit)
         {
-            upperHit.collider.enabled = false;
-            _savedHit = _hittedGround;
+            if (_rigidBody.velocity.y <= 0)
+            {
+                _monsterCollider.enabled = true;
+                _isJumping = false;
+                _savedUpperHit = new RaycastHit2D();
+            }
         }
 
+        // Handle input now, before reactivating colliders
         HandlePlayerInput();
+
+        if (_isDownJumping && hasHit && _savedHit.collider != _hittedGround.collider)
+        {
+            _monsterCollider.enabled = true;
+            _isDownJumping = false;
+        }
+
+        if (_isJumping)
+        {
+            if (_savedUpperHit.collider == null)
+            {
+                RaycastHit2D upperHit;
+                bool hit = tryHitInDirection(02f, GROUND_MASK, out upperHit);
+                if (hit && upperHit.collider != null)
+                {
+                    _monsterCollider.enabled = false;
+                    _savedUpperHit = upperHit;
+                }
+            }
+            else if (transform.position.y > _savedUpperHit.transform.position.y + _savedUpperHit.collider.bounds.size.y)
+            {
+                _monsterCollider.enabled = true;
+                _savedUpperHit = new RaycastHit2D();
+            }
+        }
     }
 
     void HandlePlayerInput()
@@ -99,7 +145,8 @@ public class MobMovement : MonoBehaviour
         
         if (_isGrounded && _forces.y == 0 &&(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
-            _forces += new Vector2(0, POSITIVE_Y_ACCELERATION);
+            _forces += new Vector2(-_forces.x, POSITIVE_Y_ACCELERATION);
+            _isJumping = true;
         }
         else if (!_isGrounded)
         {
@@ -115,8 +162,9 @@ public class MobMovement : MonoBehaviour
         {
             if (_hittedGround.collider.gameObject.tag != "BaseGround")
             {
-                _hittedGround.collider.enabled = false;
+                _monsterCollider.enabled = false;
                 _savedHit = _hittedGround;
+                _isDownJumping = true;
             }
         }
 
@@ -138,5 +186,59 @@ public class MobMovement : MonoBehaviour
         {
             _monsterFx.setState(MonsterFX.States.IDLE);
         }
+    }
+
+    bool tryHitInDirection(float distance, int mask, out RaycastHit2D hit, int depth = 0)
+    {
+        Vector2 origin = Vector2.zero;
+        Vector2 direction = Vector2.zero;
+
+        switch (depth)
+        {
+            case 0:
+            case 1:
+            case 2:
+                origin = transform.position;
+                origin.y += _monsterCollider.bounds.size.y;
+                direction = Vector2.up;
+
+                if (depth == 1)
+                {
+                    origin.x -= _monsterCollider.bounds.size.x / 2;
+                }
+                else if (depth == 2)
+                {
+                    origin.x += _monsterCollider.bounds.size.x / 2;
+                }
+                break;
+            case 3:
+            case 4:
+            case 5:
+                origin = transform.position;
+                origin.x += _monsterCollider.bounds.size.x * Mathf.Sign(_forces.x);
+                direction = Mathf.Sign(_forces.x) > 0 ? Vector2.right : Vector2.left;
+
+                if (depth == 4)
+                {
+                    origin.y += _monsterCollider.bounds.size.y / 2;
+                }
+                else if (depth == 5)
+                {
+                    origin.y += _monsterCollider.bounds.size.y;
+                }
+
+                break;
+            default:
+                hit = new RaycastHit2D();
+                return false;
+        }
+
+        hit = Physics2D.Raycast(origin, direction, distance, mask);
+        if (hit.collider)
+        {
+            return true;
+        }
+
+        return tryHitInDirection(distance, mask, out hit, depth + 1);
     }
 }
