@@ -15,12 +15,14 @@ public abstract class Ability : IAbility
     public virtual bool CanBeUsed { get { return RemainingCooldown == 0; } }
     public float RemainingCooldown { get { return _remainingCooldown; } }
 
-    private float _remainingCooldown;
-    private GameObject _owner;
+    protected float _remainingCooldown;
+    protected GameObject _owner;
+    protected List<GameObject> _prefabs;
 
-    public Ability(GameObject owner)
+    public Ability(AbilityController controller, GameObject owner)
     {
         _owner = owner;
+        _prefabs = controller.Prefabs(Type);
     }
 
     public virtual void OnEnd() { }
