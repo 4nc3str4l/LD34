@@ -66,11 +66,15 @@ public class RadioactiveSpark : Ability
         GameObject spark = GameObject.Instantiate(_prefabs[0]);
         spark.transform.position = Owner.transform.position;
 
-        float acceleration = MobMovement.POSITIVE_X_ACCELERATION * ACCELERATION_FACTOR;
-        acceleration = UnityEngine.Random.Range(-acceleration, acceleration);
+        Vector3 dest = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (dest - spark.transform.position).x > 0 ? Vector2.left : Vector2.right;
 
-        Vector2 force = new Vector2(acceleration, 0);
-        spark.GetComponent<Rigidbody2D>().AddForce(force);   
+        MobMovement movement = spark.GetComponent<MobMovement>();
+        if (direction == Vector2.right)
+        {
+            movement.InitialForce = -movement.InitialForce;
+        }
+        movement.ForceJump();
     }
 }
 

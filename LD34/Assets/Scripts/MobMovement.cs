@@ -181,6 +181,12 @@ public class MobMovement : MonoBehaviour
         }
     }
 
+    public void ForceJump()
+    {
+        _forces += new Vector2(_forces.x, POSITIVE_Y_ACCELERATION / 2);
+        _isJumping = true;
+    }
+
     public void MoveRight()
     {
         if (_forces.x < 0)
