@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a9332d5c84bb1834383a8e5236f95ef5
-timeCreated: 1449944385
+timeCreated: 1450020214
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,10 @@ TextureImporter:
     21300002: Skills_1
     21300004: Skills_2
     21300006: Skills_3
+    21300008: Skills_4
+    21300010: Skills_5
+    21300012: Skills_6
+    21300014: Skills_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -89,6 +93,46 @@ TextureImporter:
         serializedVersion: 2
         x: 360
         y: 120
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skills_4
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 120
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skills_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skills_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skills_7
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
         width: 120
         height: 120
       alignment: 0
