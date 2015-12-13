@@ -18,7 +18,7 @@ public class MobMovement : MonoBehaviour
     private MonsterFX _monsterFx;
     private Collider2D _monsterCollider;
 
-    public static readonly float RAYCAST_DOWN_DISTANCE = 0.6f;
+    public static readonly float RAYCAST_DOWN_DISTANCE = 01f;
     public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
     public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
     public static readonly float POSITIVE_Y_ACCELERATION = 2000f;
@@ -30,9 +30,9 @@ public class MobMovement : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
-        _monster = GameObject.Find("Agent");
-        _monsterFx = _monster.GetComponent<MonsterFX>();
+        _monster = transform.Find("Agent").gameObject;
         _monsterCollider = GetComponent<Collider2D>();
+        _monsterFx = _monster.GetComponent<MonsterFX>();
     }
 	
 	// Update is called once per frame
@@ -68,6 +68,17 @@ public class MobMovement : MonoBehaviour
             }
         }
 
+        // Handle gravity
+        if (!_isGrounded)
+        {
+            _forces += new Vector2(0, -GRAVITY_FORCE);
+        }
+        else if (_forces.y <= 0 && _isGrounded)
+        {
+            _forces.y = 0;
+            _rigidBody.velocity.Set(_rigidBody.velocity.x, 0);
+        }
+
         // Handle input now, before reactivating colliders
         if (HandleInput)
         {
@@ -85,6 +96,17 @@ public class MobMovement : MonoBehaviour
         {
             _forces.x = MAX_X_FORCE * Mathf.Sign(_forces.x);
         }
+
+        // Stop if we are at stop velocity
+        if (_isStopping && Mathf.Abs(_rigidBody.velocity.x) <= STOP_VELOCITY)
+        {
+            _rigidBody.velocity.Set(0, _rigidBody.velocity.y);
+            _forces.x = 0;
+            _isStopping = false;
+        }
+
+        // Apply forces
+        _rigidBody.AddForce(_forces * Time.deltaTime);
 
         if (_isDownJumping && hasHit && _savedHit.collider != _hittedGround.collider)
         {
@@ -118,6 +140,29 @@ public class MobMovement : MonoBehaviour
         _isStopping = true;
     }
 
+    public void Jump()
+    {
+        if (_isGrounded && _forces.y == 0)
+        {
+            _forces += new Vector2(-_forces.x, POSITIVE_Y_ACCELERATION);
+            _isJumping = true;
+        }
+    }
+
+    public void MoveRight()
+    {
+        _forces += new Vector2(POSITIVE_X_ACCELERATION, 0);
+        _isStopping = false;
+        _monster.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+
+    public void MoveLeft()
+    {
+        _forces += new Vector2(-POSITIVE_X_ACCELERATION, 0);
+        _isStopping = false;
+        _monster.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+    }
+
     void HandlePlayerInput()
     {
         #region X Forces Region
@@ -125,15 +170,11 @@ public class MobMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                _forces += new Vector2(POSITIVE_X_ACCELERATION, 0);
-                _isStopping = false;
-                _monster.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                MoveRight();
             }
             else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                _forces += new Vector2(-POSITIVE_X_ACCELERATION, 0);
-                _isStopping = false;
-                _monster.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                MoveLeft();
             }
             else if (!_isStopping)
             {
@@ -142,19 +183,9 @@ public class MobMovement : MonoBehaviour
         }
         #endregion 
         
-        if (_isGrounded && _forces.y == 0 && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            _forces += new Vector2(-_forces.x, POSITIVE_Y_ACCELERATION);
-            _isJumping = true;
-        }
-        else if (!_isGrounded)
-        {
-            _forces += new Vector2(0, -GRAVITY_FORCE);
-        }
-        else if (_forces.y <= 0 && _isGrounded)
-        {
-            _forces.y = 0;
-            _rigidBody.velocity.Set(_rigidBody.velocity.x, 0);
+            Jump();
         }
 
         if (_isGrounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
@@ -167,23 +198,16 @@ public class MobMovement : MonoBehaviour
             }
         }
 
-        if (_isStopping && Mathf.Abs(_rigidBody.velocity.x) <= STOP_VELOCITY)
+        if (_monsterFx != null)
         {
-            _rigidBody.velocity.Set(0, _rigidBody.velocity.y);
-            _forces.x = 0;
-            _isStopping = false;
-        }
-
-        _rigidBody.AddForce(_forces * Time.deltaTime);
-
-
-        if(_rigidBody.velocity.x != 0f)
-        {
-            _monsterFx.setState(MonsterFX.States.WALKING);
-        }
-        else
-        {
-            _monsterFx.setState(MonsterFX.States.IDLE);
+            if (_rigidBody.velocity.x != 0f)
+            {
+                _monsterFx.setState(MonsterFX.States.WALKING);
+            }
+            else
+            {
+                _monsterFx.setState(MonsterFX.States.IDLE);
+            }
         }
     }
 
