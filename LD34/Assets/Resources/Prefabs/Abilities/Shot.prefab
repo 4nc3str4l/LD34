@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandleInput: 0
-  MaxForce_X: 10000
-  MaxVelocity_X: 20
-  InitialForce: {x: 1000, y: 0}
+  MaxForce_X: 100000
+  MaxVelocity_X: 50
+  InitialForce: {x: 10000, y: 0}
 --- !u!212 &21279730
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -154,11 +154,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: MaxForce_X
-      value: 10000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: InitialForce.x
-      value: 1000
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MaxVelocity_X
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

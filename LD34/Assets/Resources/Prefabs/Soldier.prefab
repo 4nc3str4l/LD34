@@ -28,6 +28,7 @@ GameObject:
   - 212: {fileID: 21276036}
   - 61: {fileID: 6106982}
   - 50: {fileID: 5017590}
+  - 114: {fileID: 11467082}
   m_Layer: 0
   m_Name: Deads_18
   m_TagString: Untagged
@@ -46,6 +47,7 @@ GameObject:
   - 212: {fileID: 21210784}
   - 61: {fileID: 6163520}
   - 50: {fileID: 5099796}
+  - 114: {fileID: 11423634}
   m_Layer: 0
   m_Name: Deads_31
   m_TagString: Untagged
@@ -63,6 +65,21 @@ GameObject:
   - 4: {fileID: 424942}
   m_Layer: 0
   m_Name: Plane Transform 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &126228
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 416432}
+  m_Layer: 10
+  m_Name: BulletRef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,6 +115,7 @@ GameObject:
   - 212: {fileID: 21237916}
   - 61: {fileID: 6101544}
   - 50: {fileID: 5050658}
+  - 114: {fileID: 11464900}
   m_Layer: 0
   m_Name: Deads_40
   m_TagString: Untagged
@@ -131,6 +149,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 431336}
   - 212: {fileID: 21228952}
+  - 50: {fileID: 5096480}
+  - 61: {fileID: 6154010}
+  - 114: {fileID: 11465010}
   m_Layer: 0
   m_Name: Deads_21
   m_TagString: Untagged
@@ -164,6 +185,7 @@ GameObject:
   - 212: {fileID: 21218886}
   - 61: {fileID: 6106522}
   - 50: {fileID: 5015692}
+  - 114: {fileID: 11495034}
   m_Layer: 0
   m_Name: Deads_8
   m_TagString: Untagged
@@ -202,6 +224,7 @@ GameObject:
   - 212: {fileID: 21219722}
   - 61: {fileID: 6166312}
   - 50: {fileID: 5087304}
+  - 114: {fileID: 11462918}
   m_Layer: 0
   m_Name: Deads_20
   m_TagString: Untagged
@@ -238,6 +261,7 @@ GameObject:
   - 212: {fileID: 21289334}
   - 61: {fileID: 6176556}
   - 50: {fileID: 5046968}
+  - 114: {fileID: 11449576}
   m_Layer: 0
   m_Name: Deads_32
   m_TagString: Untagged
@@ -256,6 +280,7 @@ GameObject:
   - 212: {fileID: 21230752}
   - 61: {fileID: 6179070}
   - 50: {fileID: 5080258}
+  - 114: {fileID: 11451652}
   m_Layer: 0
   m_Name: Deads_19
   m_TagString: Untagged
@@ -336,6 +361,7 @@ GameObject:
   - 212: {fileID: 21256962}
   - 61: {fileID: 6123158}
   - 50: {fileID: 5023154}
+  - 114: {fileID: 11435304}
   m_Layer: 0
   m_Name: Deads_9
   m_TagString: Untagged
@@ -354,6 +380,18 @@ Transform:
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 432998}
+  m_RootOrder: 0
+--- !u!4 &416432
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .254999995, y: .0799999982, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 495558}
   m_RootOrder: 0
 --- !u!4 &424942
 Transform:
@@ -575,7 +613,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 416432}
   m_Father: {fileID: 433464}
   m_RootOrder: 0
 --- !u!4 &495750
@@ -746,6 +785,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!50 &5096480
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137854}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!50 &5099796
 Rigidbody2D:
   serializedVersion: 2
@@ -840,6 +895,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .300000012, y: .300000012}
+--- !u!61 &6154010
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137854}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 2.38418579e-07}
+  serializedVersion: 2
+  m_Size: {x: .300000012, y: .299999982}
 --- !u!61 &6163520
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -922,6 +990,28 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11423634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11435304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11449216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -940,8 +1030,30 @@ MonoBehaviour:
   PanicDistance: 4
   HealthThreshold: 10
   AttackDistance: 8
-  AttackRate: .5
+  AttackRate: 1.75
   StrikeDirection: {x: 1, y: 0}
+--- !u!114 &11449576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11451652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11462696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -951,6 +1063,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19e3b6c69ff06d54bac7b715a53cc0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11462918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11464900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11465010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11467082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11474192
@@ -979,6 +1135,18 @@ MonoBehaviour:
   HandleInput: 0
   MaxForce_X: 400
   MaxVelocity_X: 6
+  InitialForce: {x: 0, y: 0}
+--- !u!114 &11495034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19828936
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4141,7 +4309,9 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4177,7 +4347,9 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4213,7 +4385,9 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4249,7 +4423,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4275,7 +4451,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4301,7 +4479,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4327,7 +4507,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4353,7 +4535,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4379,7 +4563,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4405,7 +4591,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4431,7 +4619,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4457,7 +4647,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4483,7 +4675,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4509,7 +4703,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

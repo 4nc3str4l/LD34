@@ -128,9 +128,15 @@ public class Mob : Entity
                 {
                     _lastAttack = Time.time;
 
-                    Vector2 bulletPosition = transform.parent.Find("BulletRef").position;
+                    Vector2 bulletPosition = transform.Find("BulletRef").position;
                     GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), bulletPosition, Quaternion.identity);
                     ThrownDamager.Setup(shot, 0.1f, monsterDirection);
+
+                    if (monsterDirection == Vector2.left)
+                    {
+                        MobMovement movement = shot.GetComponent<MobMovement>();
+                        movement.InitialForce = -movement.InitialForce;
+                    }
                 }
             }
             else
