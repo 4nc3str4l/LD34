@@ -91,6 +91,7 @@ public class GUIController : MonoBehaviour {
                 _actualChooseAnimationState = ChooseAnimationState.SHOWING;
                 setPositionsToChoose();
                 _chooserText.text = PREPARE;
+                _animator.SetInteger("STATE", 2);
                 break;
             case ChooseAnimationState.SHOWING:
                 if (_nextSpawn < Time.time)
@@ -169,7 +170,7 @@ public class GUIController : MonoBehaviour {
                 {
                     choosePosition[x].transform.localPosition.Set(_avaliablePositions[x].x, _avaliablePositions[x].y, _avaliablePositions[x].z);
                 }
-                skillChosser.SetActive(false);
+                _animator.SetInteger("STATE", 0);
                 break;
             default:
                 break;
