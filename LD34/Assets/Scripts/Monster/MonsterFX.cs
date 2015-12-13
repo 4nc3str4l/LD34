@@ -12,7 +12,7 @@ public class MonsterFX : MonoBehaviour {
     GameObject eyeLightObject;
     Animator animator;
 
-    public enum States { IDLE, WALKING}
+    public enum States { IDLE, WALKING, ATTACKING }
     public int state = 0;
     float _stopAura;
 
@@ -25,7 +25,7 @@ public class MonsterFX : MonoBehaviour {
     {
         eyeLightObject = GameObject.Find("EyeLight");
         eyeLight = eyeLightObject.GetComponent<Light>();
-        animator = GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         aura = GameObject.Find("Aura").GetComponent<Light>();
         aura.enabled = false;
     }	
@@ -47,16 +47,7 @@ public class MonsterFX : MonoBehaviour {
 
     public void setState(States state)
     {
-        switch (state)
-        {
-
-            case States.IDLE:
-                animator.SetInteger("STATE", 0);
-                break;
-            case States.WALKING:
-                animator.SetInteger("STATE", 1);
-                break;
-        } 
+        animator.SetInteger("STATE", (int)state);
     }
 
     public void blinkAura()
