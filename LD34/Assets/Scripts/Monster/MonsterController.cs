@@ -26,7 +26,7 @@ public class MonsterController : Entity
         {
             if (Time.time - _lerpingStart < LERPING_TIME)
             {
-                _healthOverlay.color = Color.Lerp(_lerpFrom, _lerpTo, LERPING_TIME);
+                //_healthOverlay.color = Color.Lerp(_lerpFrom, _lerpTo, LERPING_TIME);
             }
             else
             {

@@ -127,7 +127,12 @@ public class Mob : Entity
         Transform onDestroy = transform.parent.Find("OnDestroy");
         if (onDestroy)
         {
-            onDestroy.GetComponents<MonoBehaviour>().ToList().ForEach(c => c.enabled = true);
+            onDestroy.gameObject.SetActive(true);
+            onDestroy.GetComponents<MonoBehaviour>().ToList().ForEach(c => {
+                c.enabled = true;
+            });
+            onDestroy.transform.parent = null;
+            Destroy(onDestroy.gameObject, 10f);
         }
     }
 
