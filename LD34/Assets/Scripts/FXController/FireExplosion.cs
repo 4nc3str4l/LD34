@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class FireExplosion : MonoBehaviour
 {
-    private List<GameObject> _toDestroy = new List<GameObject>();
+    private List<Entity> _toDestroy = new List<Entity>();
 
 	void Start()
     {
@@ -13,25 +13,15 @@ public class FireExplosion : MonoBehaviour
 
     void OnDestroy()
     {
-        _toDestroy.ForEach(gob => Destroy(gob));
+        _toDestroy.ForEach(entity => entity.DoDamage(100));
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Mob mob = other.GetComponent<Mob>();
-        if (mob)
+        Entity entity = other.gameObject.GetComponentInChildren<Entity>();
+        if (entity)
         {
-            _toDestroy.Add(mob.transform.parent.gameObject);
-        }
-        else
-        {
-            // TODO: Replace for real controller
-            AbilityController controller = other.gameObject.GetComponentInChildren<AbilityController>();
-            if (controller)
-            {
-                // TODO: Apply damage to monster
-                _toDestroy.Add(controller.transform.parent.gameObject);
-            }
+            _toDestroy.Add(entity);
         }
     }
 }

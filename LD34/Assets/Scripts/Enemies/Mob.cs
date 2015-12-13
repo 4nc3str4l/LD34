@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 [Flags]
-enum MobFlags
+public enum MobFlags
 {
     CAN_JUMP            = 1,
     PROXIMITY_PANIC     = 2,
@@ -14,16 +14,14 @@ enum MobFlags
     ATTACK              = 16
 }
 
-class Mob : MonoBehaviour
+public class Mob : Entity
 {
     [SerializeField] [EnumFlagsAttribute]
     public MobFlags Flags = MobFlags.CAN_JUMP | MobFlags.PROXIMITY_PANIC | MobFlags.LOW_HEALTH_PANIC;
     public float PanicDistance = 5f;
     public float HealthThreshold = 10f;
-
-    public float Health { get { return _health; } }
-    private float _health = 100;
-
+    public Vector2 StrikeDirection = Vector2.right;
+    
     private const float JUMP_INTERVAL = 5f;
 
     private GameObject _monster;
@@ -36,17 +34,7 @@ class Mob : MonoBehaviour
     private bool _canProximityPanicRun;
     private bool _canLowHealthRun;
     private bool _canStrike;
-
-    public void DoDamage(float damage)
-    {
-        _health -= damage;
-
-        if (_health <= 0)
-        {
-            Destroy(gameObject.transform.parent.gameObject);
-        }
-    }
-
+    
     public void Start()
     {
         _monster = GameObject.Find("MonsterContainer");
@@ -100,7 +88,14 @@ class Mob : MonoBehaviour
         }
         else if (_canStrike)
         {
-            _movement.MoveRight();
+            if (StrikeDirection == Vector2.right)
+            {
+                _movement.MoveRight();
+            }
+            else
+            {
+                _movement.MoveLeft();
+            }
         }
         else
         {
@@ -121,20 +116,10 @@ class Mob : MonoBehaviour
     {
         if (_canStrike)
         {
-            Mob mob = other.gameObject.GetComponentInChildren<Mob>();
-            if (mob)
+            Entity entity = other.gameObject.GetComponentInChildren<Entity>();
+            if (entity)
             {
-                HandleStrikeTo(mob.gameObject);
-            }
-            else
-            {
-                // TODO: Replace for real controller
-                AbilityController controller = other.gameObject.GetComponentInChildren<AbilityController>();
-                if (controller)
-                {
-                    // TODO: Apply damage to monster
-                    HandleStrikeTo(controller.gameObject);
-                }
+                HandleStrikeTo(entity.gameObject);
             }
         }
     }
