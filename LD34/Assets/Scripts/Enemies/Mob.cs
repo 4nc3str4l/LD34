@@ -133,6 +133,7 @@ public class Mob : Entity
             });
             onDestroy.transform.parent = null;
             Destroy(onDestroy.gameObject, 10f);
+            
         }
     }
 
