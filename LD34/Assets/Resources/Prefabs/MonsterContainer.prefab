@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11477496}
   - 114: {fileID: 11412988}
   - 61: {fileID: 6118172}
+  - 114: {fileID: 11453450}
   m_Layer: 10
   m_Name: Agent
   m_TagString: Untagged
@@ -30,6 +31,23 @@ GameObject:
   - 4: {fileID: 460276}
   m_Layer: 0
   m_Name: LaserRef
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &144944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 487490}
+  - 108: {fileID: 10810158}
+  - 58: {fileID: 5852192}
+  m_Layer: 11
+  m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +82,7 @@ GameObject:
   - 50: {fileID: 5091624}
   m_Layer: 11
   m_Name: MonsterContainer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,8 +169,21 @@ Transform:
   m_Children:
   - {fileID: 465640}
   - {fileID: 473646}
+  - {fileID: 487490}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &487490
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.160000086, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 487326}
+  m_RootOrder: 2
 --- !u!20 &2015050
 Camera:
   m_ObjectHideFlags: 1
@@ -203,6 +234,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &5852192
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144944}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.3900001
 --- !u!61 &6118172
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -260,6 +304,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &10810158
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144944}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 0, g: 1, b: .420689583, a: 1}
+  m_Intensity: 1
+  m_Range: 2.3900001
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 12100000, guid: 09ebe82dbd1113c3d000dc0b8d76c639, type: 2}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!108 &10863344
 Light:
   m_ObjectHideFlags: 1
@@ -303,6 +379,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cda26230ecf40047b5ab5b6bfee50ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11453450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09c6a0c024690641aa54ba66b992133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanRecoverHealth: 0
+  RecoverInterval: 1
+  RecoverAmount: 2
 --- !u!114 &11461130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,6 +407,7 @@ MonoBehaviour:
   HandleInput: 1
   MaxForce_X: 400
   MaxVelocity_X: 6
+  InitialForce: {x: 0, y: 0}
 --- !u!114 &11477496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,7 +468,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
