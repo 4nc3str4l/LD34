@@ -8,7 +8,8 @@ public enum AbilityType
 {
     SOUL_FIRE,
     SOUL_FILE_TARGETED,
-    DEATH_STARE
+    DEATH_STARE,
+    RADIOACTIVE_SPARK
 }
 
 public interface IAbility
