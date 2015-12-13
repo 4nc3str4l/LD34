@@ -93,22 +93,33 @@ public class AbilityDamager : MonoBehaviour
 {
     public IAbility Owner;
     private float _lastHit;
+    private Collider2D _ownCollider;
+
+    void Start()
+    {
+        _ownCollider = GetComponent<Collider2D>();
+    }
 
     public void OnTriggerEnter2D(Collider2D other)
+    {
+        handleTrigger(other);
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        handleTrigger(other);
+    }
+
+    private void handleTrigger(Collider2D other)
     {
         Mob mob = other.gameObject.GetComponentInChildren<Mob>();
         if (mob)
         {
             DoDamage(mob);
         }
-    }
-
-    public void OnTriggerStay2D(Collider2D other)
-    {
-        Mob mob = other.gameObject.GetComponentInChildren<Mob>();
-        if (mob)
+        else
         {
-            DoDamage(mob);
+            Physics2D.IgnoreCollision(_ownCollider, other);
         }
     }
 

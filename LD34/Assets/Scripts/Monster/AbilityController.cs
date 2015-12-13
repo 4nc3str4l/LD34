@@ -28,7 +28,7 @@ public class AbilityController : MonoBehaviour
         LoadPrefabs();
         LoadAbilities();
 
-        BoundAtLeft = _abilities[AbilityType.HUMAN_GRINDER];
+        BoundAtLeft = _abilities[AbilityType.RADIOACTIVE_PARTY];
         BoundAtRight = _abilities[AbilityType.MADNESS];
     }
 

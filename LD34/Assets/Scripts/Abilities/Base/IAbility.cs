@@ -12,7 +12,8 @@ public enum AbilityType
     RADIOACTIVE_SPARK,
     PROTECTION_FIELD,
     MADNESS,
-    HUMAN_GRINDER
+    HUMAN_GRINDER,
+    RADIOACTIVE_PARTY
 }
 
 public interface IAbility

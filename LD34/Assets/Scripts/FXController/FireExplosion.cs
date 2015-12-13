@@ -5,15 +5,21 @@ using System.Collections.Generic;
 public class FireExplosion : MonoBehaviour
 {
     private List<Entity> _toDestroy = new List<Entity>();
+    private Collider2D _ownCollider;
 
-	void Start()
+    void Start()
     {
-	    Destroy(gameObject, 0.52f);
+        _ownCollider = GetComponent<Collider2D>();
+        Destroy(gameObject, 0.52f);
 	}
 
     void OnDestroy()
     {
-        _toDestroy.ForEach(entity => entity.DoDamage(100));
+        _toDestroy.ForEach(entity =>
+        {
+            entity.DoDamage(100);
+            entity.DestroyCallback.Remove(NotifyDeath);
+        });
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,6 +28,16 @@ public class FireExplosion : MonoBehaviour
         if (entity)
         {
             _toDestroy.Add(entity);
+            entity.DestroyCallback.Add(NotifyDeath);
         }
+        else
+        {
+            Physics2D.IgnoreCollision(_ownCollider, other);
+        }
+    }
+
+    void NotifyDeath(Entity entity)
+    {
+        _toDestroy.Remove(entity);
     }
 }
