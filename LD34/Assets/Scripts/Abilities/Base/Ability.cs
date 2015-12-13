@@ -106,3 +106,74 @@ class AbilityDamager : MonoBehaviour
         }
     }
 }
+
+class ThrownDamager : MonoBehaviour
+{
+    public float Damage;
+    public Vector2 MoveDirection = Vector2.zero;
+    private float _lastHit;
+    private MobMovement Movement;
+
+    public static void Setup(GameObject gameObject, float damage, Vector2 moveDirection)
+    {
+        gameObject.AddComponent<ThrownDamager>();
+        ThrownDamager damager = gameObject.GetComponent<ThrownDamager>();
+        damager.Damage = damage;
+        damager.MoveDirection = moveDirection;
+        damager.Movement = gameObject.GetComponent<MobMovement>();
+    }
+
+    public static void Setup(GameObject gameObject, float damage)
+    {
+        gameObject.AddComponent<ThrownDamager>();
+        ThrownDamager damager = gameObject.GetComponent<ThrownDamager>();
+        damager.Damage = damage;
+        damager.MoveDirection = Vector2.zero;
+        damager.Movement = gameObject.GetComponent<MobMovement>();
+    }
+
+    void Update()
+    {
+        if (MoveDirection == Vector2.right)
+        {
+            Movement.MoveRight();
+        }
+        else if (MoveDirection == Vector2.left)
+        {
+            Movement.MoveLeft();
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        testTrigger(other);
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        testTrigger(other);
+    }
+
+    private void testTrigger(Collider2D other)
+    {
+        Mob mob = other.gameObject.GetComponentInChildren<Mob>();
+        if (mob)
+        {
+            return;
+        }
+
+        MonsterController monster = other.gameObject.GetComponentInChildren<MonsterController>();
+        if (monster)
+        {
+            DoDamage(monster);
+        }
+
+        Destroy(gameObject);
+    }
+
+    private void DoDamage(MonsterController monster)
+    {
+        monster.DoDamage(Damage);
+    }
+}
+

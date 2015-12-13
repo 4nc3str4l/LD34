@@ -28,6 +28,7 @@ public class Mob : Entity
 
     private Entity _monster;
     private MobMovement _movement;
+    private MonsterFX _monsterFx;
     private Vector2 _panicDirection;
     private float _lastJump;
     private float _lastProximityPanic;
@@ -42,6 +43,7 @@ public class Mob : Entity
     public void Start()
     {
         _monster = GameObject.Find("MonsterContainer").GetComponentInChildren<Entity>();
+        _monsterFx = transform.GetComponent<MonsterFX>();
         _movement = transform.parent.GetComponent<MobMovement>();
 
         _canJump = (Flags & MobFlags.CAN_JUMP) == MobFlags.CAN_JUMP;
@@ -54,6 +56,8 @@ public class Mob : Entity
     public void Update()
     {
         float distance = Vector2.Distance(_monster.transform.position, transform.position);
+        Vector2 monsterDirection = _monster.transform.position - transform.position;
+        monsterDirection = monsterDirection.x > 0 ? Vector2.right : Vector2.left;
 
         bool lowHealthPanic = _canLowHealthRun && Health <= HealthThreshold;
         bool proximityPanic = _canProximityPanicRun && distance < PanicDistance;
@@ -70,10 +74,10 @@ public class Mob : Entity
             }
             else if (proximityPanic)
             {
-                _panicDirection = _monster.transform.position - transform.position;
+                _panicDirection = monsterDirection;
             }
 
-            if (_panicDirection.x > 0)
+            if (_panicDirection == Vector2.right)
             {
                 _movement.MoveLeft();
             }
@@ -104,16 +108,40 @@ public class Mob : Entity
         }
         else if (_canAttack)
         {
+            // LOOK AT MEE!
+            if (monsterDirection == Vector2.left)
+            {
+                _movement.MoveLeft();
+            }
+            else
+            {
+                _movement.MoveRight();
+            }
+
             _movement.Stop();
 
             if (distance < AttackDistance)
             {
-                if (Time.time - _lastAttack > (1f / AttackRate))
+                _monsterFx.setState(MonsterFX.States.ATTACKING);
+
+                if (Time.time - _lastAttack >= (1f / AttackRate))
                 {
-                    Debug.Log("Doing Damage");
                     _lastAttack = Time.time;
-                    _monster.DoDamage(10);
+
+                    Vector2 bulletPosition = transform.Find("BulletRef").position;
+                    GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), bulletPosition, Quaternion.identity);
+                    ThrownDamager.Setup(shot, 0.1f, monsterDirection);
+
+                    if (monsterDirection == Vector2.left)
+                    {
+                        MobMovement movement = shot.GetComponent<MobMovement>();
+                        movement.InitialForce = -movement.InitialForce;
+                    }
                 }
+            }
+            else
+            {
+                _monsterFx.setState(MonsterFX.States.IDLE);
             }
         }
         else

@@ -13,7 +13,7 @@ public class MonsterController : Entity
     private Color _lerpFrom;
     private Color _lerpTo;
 
-    private const float LERPING_TIME = 1f;
+    private const float LERPING_TIME = 5f;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class MonsterController : Entity
         {
             if (Time.time - _lerpingStart < LERPING_TIME)
             {
-                //_healthOverlay.color = Color.Lerp(_lerpFrom, _lerpTo, LERPING_TIME);
+                _healthOverlay.color = Color.Lerp(_lerpFrom, _lerpTo, LERPING_TIME);
             }
             else
             {
@@ -39,6 +39,7 @@ public class MonsterController : Entity
     {
         _lerpFrom = _healthOverlay.color;
         _lerpTo = Color.red;
+        _lerpTo.a = 1 - Health / 100f;
         _lerping = true;
         _lerpingStart = Time.time;
     }
@@ -47,6 +48,7 @@ public class MonsterController : Entity
     {
         _lerpFrom = _healthOverlay.color;
         _lerpTo = Color.clear;
+        _lerpTo.a = 1 - Health / 100f;
         _lerping = true;
         _lerpingStart = Time.time;
     }
