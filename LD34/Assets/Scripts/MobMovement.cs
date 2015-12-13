@@ -21,7 +21,7 @@ public class MobMovement : MonoBehaviour
     public static readonly float RAYCAST_DOWN_DISTANCE = 0.7f;
     public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
     public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
-    public static readonly float POSITIVE_Y_ACCELERATION = 1500f;
+    public static readonly float POSITIVE_Y_ACCELERATION = 2000f;
     public static readonly float GRAVITY_FORCE = 50f;
     public static readonly float MAX_X_FORCE = 400.0f;
     public static readonly float MAX_X_VELOCITY = 6f;
@@ -129,7 +129,7 @@ public class MobMovement : MonoBehaviour
             if (_savedUpperHit.collider == null)
             {
                 RaycastHit2D upperHit;
-                bool hit = tryHitInDirection(02f, Constants.Layers.GROUND_MASK, out upperHit);
+                bool hit = tryHitInDirection(3f, Constants.Layers.GROUND_MASK, out upperHit);
                 if (hit && upperHit.collider != null)
                 {
                     _monsterCollider.enabled = false;
@@ -158,7 +158,11 @@ public class MobMovement : MonoBehaviour
 
     public void Stop()
     {
-        _forces.x = -_forces.x;
+        if (Mathf.Sign(_rigidBody.velocity.x) == Mathf.Sign(_forces.x))
+        {
+            _forces.x = -_forces.x;
+        }
+
         _isStopping = true;
     }
 
@@ -173,6 +177,11 @@ public class MobMovement : MonoBehaviour
 
     public void MoveRight()
     {
+        if (_forces.x < 0)
+        {
+            _forces.x = 0;
+        }
+
         _forces += new Vector2(POSITIVE_X_ACCELERATION, 0);
         _isStopping = false;
         _monster.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -180,6 +189,11 @@ public class MobMovement : MonoBehaviour
 
     public void MoveLeft()
     {
+        if (_forces.x > 0)
+        {
+            _forces.x = 0;
+        }
+
         _forces += new Vector2(-POSITIVE_X_ACCELERATION, 0);
         _isStopping = false;
         _monster.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
@@ -187,23 +201,18 @@ public class MobMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        #region X Forces Region
-        if (_isGrounded)
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                MoveRight();
-            }
-            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                MoveLeft();
-            }
-            else if (!_isStopping)
-            {
-                Stop();
-            }
+            MoveRight();
         }
-        #endregion 
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            MoveLeft();
+        }
+        else if (_isGrounded && !_isStopping)
+        {
+            Stop();
+        }
         
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {

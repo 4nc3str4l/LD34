@@ -2443,14 +2443,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11447414, guid: 3340485bb17664f4995cdad7d22ed41c, type: 2}
-      propertyPath: Flags
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11447414, guid: 3340485bb17664f4995cdad7d22ed41c, type: 2}
-      propertyPath: PanicDistance
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3340485bb17664f4995cdad7d22ed41c, type: 2}
   m_IsPrefabParent: 0

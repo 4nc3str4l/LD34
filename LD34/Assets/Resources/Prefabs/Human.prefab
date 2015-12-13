@@ -133,8 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb230f27e41a8d478cc3912fb983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Flags: 0
-  PanicDistance: 7
+  Flags: 3
+  PanicDistance: 5
+  HealthThreshold: 10
 --- !u!114 &11472400
 MonoBehaviour:
   m_ObjectHideFlags: 1

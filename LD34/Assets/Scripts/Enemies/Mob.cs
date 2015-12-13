@@ -50,7 +50,7 @@ class Mob : MonoBehaviour
     {
         float distance = Vector2.Distance(_monster.transform.position, transform.position);
 
-        bool lowHealthPanic = (Flags & MobFlags.LOW_HEALTH_PANIC) == MobFlags.LOW_HEALTH_PANIC && Health < HealthThreshold;
+        bool lowHealthPanic = (Flags & MobFlags.LOW_HEALTH_PANIC) == MobFlags.LOW_HEALTH_PANIC && Health <= HealthThreshold;
         bool proximityPanic = (Flags & MobFlags.PROXIMITY_PANIC) == MobFlags.PROXIMITY_PANIC && distance < PanicDistance;
 
         if (lowHealthPanic || proximityPanic)
