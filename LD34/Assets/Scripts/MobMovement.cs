@@ -35,9 +35,15 @@ public class MobMovement : MonoBehaviour
         _monster = transform.Find("Agent").gameObject;
         _monsterCollider = _monster.GetComponent<Collider2D>();
         _monsterFx = _monster.GetComponent<MonsterFX>();
-        _forces += InitialForce;
+
+        ApplyInitialForces();
     }
 	
+    public void ApplyInitialForces()
+    {
+        _forces += InitialForce;
+    }
+
 	// Update is called once per frame
 	void Update()
     {
@@ -183,7 +189,7 @@ public class MobMovement : MonoBehaviour
 
     public void ForceJump()
     {
-        _forces += new Vector2(_forces.x, POSITIVE_Y_ACCELERATION / 2);
+        _forces += new Vector2(_forces.x, _forces.y + POSITIVE_Y_ACCELERATION / 2);
         _isJumping = true;
     }
 

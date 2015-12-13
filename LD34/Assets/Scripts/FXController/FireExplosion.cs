@@ -5,15 +5,44 @@ using System.Collections.Generic;
 public class FireExplosion : MonoBehaviour
 {
     private List<Entity> _toDestroy = new List<Entity>();
+    private Collider2D _ownCollider;
+    private Animator _animator;
+    private int _nextState = 0;
 
-	void Start()
+    private bool _shouldExplode = false;
+    private float _startTime = 0;
+
+    void Start()
     {
-	    Destroy(gameObject, 0.52f);
+        _ownCollider = GetComponent<Collider2D>();
+        _animator = GetComponent<Animator>();
 	}
 
-    void OnDestroy()
+    public void ToggleAnimation()
     {
-        _toDestroy.ForEach(entity => entity.DoDamage(100));
+        _animator.SetInteger("STATE", _nextState);
+        _nextState ^= 1;
+    }
+
+    void OnEnable()
+    {
+        _shouldExplode = true;
+        _startTime = Time.time;
+    }
+
+    void Update()
+    {
+        if (Time.time - _startTime >= 0.3f)
+        {
+            _toDestroy.ForEach(entity =>
+            {
+                entity.DoDamage(100);
+                entity.DestroyCallback.Remove(NotifyDeath);
+            });
+
+            _shouldExplode = false;
+            ExplosionsPool.Instance.Push(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,6 +51,16 @@ public class FireExplosion : MonoBehaviour
         if (entity)
         {
             _toDestroy.Add(entity);
+            entity.DestroyCallback.Add(NotifyDeath);
         }
+        else
+        {
+            Physics2D.IgnoreCollision(_ownCollider, other);
+        }
+    }
+
+    void NotifyDeath(Entity entity)
+    {
+        _toDestroy.Remove(entity);
     }
 }

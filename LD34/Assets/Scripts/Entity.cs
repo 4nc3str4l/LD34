@@ -14,12 +14,15 @@ public class Entity : MonoBehaviour
     private float _health = 100;
     private float _lastRecover = 0;
 
+    public List<Action<Entity>> DestroyCallback = new List<Action<Entity>>();
+
     public void DoDamage(float damage)
     {
         _health = OnDamaged(Mathf.Max(0, _health - damage));
 
         if (_health <= 0)
         {
+            DestroyCallback.ToList().ForEach(f => f(this));
             Destroy(gameObject.transform.parent.gameObject);
         }
     }
