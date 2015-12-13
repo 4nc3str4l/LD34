@@ -166,6 +166,7 @@ MonoBehaviour:
   title: Human Grinder
   description: Point with your mouse and... FREE BLOOD!!
   image: {fileID: 21300008, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 6
 --- !u!114 &14440878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +925,7 @@ MonoBehaviour:
   title: Death Stare
   description: We have a monster with LASEEERS!
   image: {fileID: 21300004, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 2
 --- !u!114 &352144317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,6 +1070,7 @@ MonoBehaviour:
   title: MADNEESSS!
   description: WTF is happening here!!!
   image: {fileID: 21300012, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 5
 --- !u!114 &376291286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1944,6 +1947,7 @@ MonoBehaviour:
   title: Radiactive Spark
   description: Dont F***k with nuclear energy
   image: {fileID: 21300006, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 3
 --- !u!114 &573409939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2699,6 +2703,7 @@ MonoBehaviour:
   title: Death Stare
   description: We have a monster with LASEEERS!
   image: {fileID: 21300004, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 0
 --- !u!114 &830017749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2910,6 +2915,7 @@ MonoBehaviour:
   title: Ranged Soul Fire
   description: Point with your mouse and let them DIEEEEE
   image: {fileID: 21300002, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 1
 --- !u!114 &868412750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3185,6 +3191,7 @@ MonoBehaviour:
   title: Shield
   description: Can't touch this!
   image: {fileID: 21300010, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 4
 --- !u!114 &1094283964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3504,6 +3511,7 @@ MonoBehaviour:
   title: DON'T USE THIS
   description: Who the hell used this skill!!??
   image: {fileID: 21300014, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 3
 --- !u!114 &1138837358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3951,6 +3959,7 @@ MonoBehaviour:
   title: Soul Fire
   description: Yes come closer! And BURRRRN!
   image: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 0
 --- !u!114 &1333030253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4602,6 +4611,7 @@ MonoBehaviour:
   title: Soul Fire
   description: Yes come closer! And BURRRRN!
   image: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
+  ability: 0
 --- !u!114 &1751555821
 MonoBehaviour:
   m_ObjectHideFlags: 0

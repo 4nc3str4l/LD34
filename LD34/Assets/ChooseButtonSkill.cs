@@ -3,6 +3,7 @@
 public class ChooseButtonSkill : MonoBehaviour {
 
     Vector3 targetPostion = Vector3.zero;
+    Ability ability;
 
     void Update () {
         if (targetPostion != Vector3.zero)
@@ -21,5 +22,10 @@ public class ChooseButtonSkill : MonoBehaviour {
     public void moveToPosition(Vector3 position)
     {
         targetPostion = position;
+    }
+
+    public void AssociateAbility(Ability ab)
+    {
+        ability = ab;
     }
 }

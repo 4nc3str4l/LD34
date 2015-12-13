@@ -217,6 +217,7 @@ public class GUIController : MonoBehaviour {
         if(_actualChooseAnimationState == ChooseAnimationState.CHOOSING)
         {
             i++;
+            AbilityController.Instance.BoundAtLeft = AbilityController.Instance.Abilities[ability];
         }
     }
 

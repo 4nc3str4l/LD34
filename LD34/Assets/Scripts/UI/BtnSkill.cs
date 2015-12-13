@@ -8,7 +8,9 @@ public class BtnSkill : MonoBehaviour {
     public Sprite image;
 
     SkillInspector skillInspector;
-    SkillInspector skillInspectorRight;  
+    SkillInspector skillInspectorRight;
+
+    public AbilityType ability;  
 
     void Start()
     {
