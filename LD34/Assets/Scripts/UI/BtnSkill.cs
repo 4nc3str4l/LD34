@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class BtnSkill : MonoBehaviour {
 
@@ -7,7 +8,7 @@ public class BtnSkill : MonoBehaviour {
     public Sprite image;
 
     SkillInspector skillInspector;
-    SkillInspector skillInspectorRight;
+    SkillInspector skillInspectorRight;  
 
     void Start()
     {
@@ -37,8 +38,4 @@ public class BtnSkill : MonoBehaviour {
         skillInspectorRight.gameObject.SetActive(false);
     }
 
-    public void moveToPosition(int position)
-    {
-
-    }
 }
