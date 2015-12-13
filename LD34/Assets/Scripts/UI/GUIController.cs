@@ -86,7 +86,9 @@ public class GUIController : MonoBehaviour {
             case ChooseAnimationState.SHOWING:
                 if (_nextSpawn < Time.time)
                 {
-                    choosePosition[i].transform.GetComponent<Image>().sprite = skills[popPosition()].GetComponent<Image>().sprite;
+                    int selected_pos = popPosition();
+                    choosePosition[i].transform.GetComponent<Image>().sprite = skills[selected_pos].GetComponent<Image>().sprite;
+                    choosePosition[i].transform.GetComponent<ChooseButtonSkill>().AssociateAbility(skills[selected_pos].GetComponent<BtnSkill>().ability);
                     _nextSpawn = Time.time + SPAWN_RATE;
                     i++;
                     if (i == skills.Count)

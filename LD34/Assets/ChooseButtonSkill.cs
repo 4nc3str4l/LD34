@@ -3,7 +3,7 @@
 public class ChooseButtonSkill : MonoBehaviour {
 
     Vector3 targetPostion = Vector3.zero;
-    Ability ability;
+    AbilityType ability;
 
     void Update () {
         if (targetPostion != Vector3.zero)
@@ -24,8 +24,13 @@ public class ChooseButtonSkill : MonoBehaviour {
         targetPostion = position;
     }
 
-    public void AssociateAbility(Ability ab)
+    public void AssociateAbility(AbilityType ab)
     {
         ability = ab;
+    }
+
+    public void MouseDown()
+    {
+        GUIController.instance.chooseSkill(ability);
     }
 }
