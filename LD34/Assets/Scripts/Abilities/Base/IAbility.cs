@@ -10,7 +10,8 @@ public enum AbilityType
     SOUL_FILE_TARGETED,
     DEATH_STARE,
     RADIOACTIVE_SPARK,
-    PROTECTION_FIELD
+    PROTECTION_FIELD,
+    MADNESS
 }
 
 public interface IAbility

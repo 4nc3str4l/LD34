@@ -15,17 +15,21 @@ public class AbilityController : MonoBehaviour
     public IAbility BoundAtLeft;
     public IAbility BoundAtRight;
 
+    public static AbilityController Instance;
+
     public void Start()
     {
         Physics2D.IgnoreLayerCollision(Constants.Layers.ABILITIES, Constants.Layers.ABILITIES);
         Physics2D.IgnoreLayerCollision(Constants.Layers.ABILITIES, Constants.Layers.UNIT);
         Physics2D.IgnoreLayerCollision(Constants.Layers.UNIT, Constants.Layers.UNIT);
 
+        Instance = this;
+
         LoadPrefabs();
         LoadAbilities();
 
         BoundAtLeft = _abilities[AbilityType.PROTECTION_FIELD];
-        BoundAtRight = _abilities[AbilityType.RADIOACTIVE_SPARK];
+        BoundAtRight = _abilities[AbilityType.MADNESS];
     }
 
     public List<GameObject> Prefabs(AbilityType type)
