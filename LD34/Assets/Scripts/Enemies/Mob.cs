@@ -14,13 +14,16 @@ enum MobFlags
 class Mob : MonoBehaviour
 {
     public MobFlags Flags = MobFlags.PANIC;
-    public float PanicDistance = 5f;
+    public float PanicDistance = 7f;
 
     public float Health { get { return _health; } }
     private float _health = 100;
 
+    private const float JUMP_INTERVAL = 5f;
+
     private GameObject _monster;
     private MobMovement _movement;
+    private float _lastJump;
 
     public void DoDamage(float damage)
     {
@@ -54,9 +57,13 @@ class Mob : MonoBehaviour
                 _movement.MoveRight();
             }
 
-            if (UnityEngine.Random.Range(0, 100) >= 80)
+            if (Time.time - _lastJump >= JUMP_INTERVAL)
             {
-                _movement.Jump();
+                if (UnityEngine.Random.Range(0, 100) >= 80)
+                {
+                    _movement.Jump();
+                    _lastJump = Time.time;
+                }
             }
         }
         else

@@ -21,9 +21,10 @@ public class MobMovement : MonoBehaviour
     public static readonly float RAYCAST_DOWN_DISTANCE = 01f;
     public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
     public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
-    public static readonly float POSITIVE_Y_ACCELERATION = 2000f;
+    public static readonly float POSITIVE_Y_ACCELERATION = 1500f;
     public static readonly float GRAVITY_FORCE = 50f;
     public static readonly float MAX_X_FORCE = 400.0f;
+    public static readonly float MAX_X_VELOCITY = 6f;
     public static readonly float STOP_VELOCITY = 1.0f;
 
     // Use this for initialization
@@ -95,6 +96,15 @@ public class MobMovement : MonoBehaviour
         if (_forces.x > MAX_X_FORCE || _forces.x < -MAX_X_FORCE)
         {
             _forces.x = MAX_X_FORCE * Mathf.Sign(_forces.x);
+        }
+
+        if (_rigidBody.velocity.x > MAX_X_VELOCITY)
+        {
+            _rigidBody.velocity = new Vector2(MAX_X_VELOCITY, _rigidBody.velocity.y);
+        }
+        else if (_rigidBody.velocity.x < -MAX_X_VELOCITY)
+        {
+            _rigidBody.velocity = new Vector2(-MAX_X_VELOCITY, _rigidBody.velocity.y);
         }
 
         // Stop if we are at stop velocity
