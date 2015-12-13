@@ -124,27 +124,27 @@ public class AbilityDamager : MonoBehaviour
 
 class ThrownDamager : MonoBehaviour
 {
+    public Mob Owner;
     public float Damage;
+    public float MadnessDamage;
     public Vector2 MoveDirection = Vector2.zero;
     private float _lastHit;
     private MobMovement Movement;
 
-    public static void Setup(GameObject gameObject, float damage, Vector2 moveDirection)
+    public static void Setup(Mob owner, GameObject gameObject, float damage, float madnessDamage, Vector2 moveDirection)
     {
         gameObject.AddComponent<ThrownDamager>();
         ThrownDamager damager = gameObject.GetComponent<ThrownDamager>();
+        damager.Owner = owner;
         damager.Damage = damage;
+        damager.MadnessDamage = madnessDamage;
         damager.MoveDirection = moveDirection;
         damager.Movement = gameObject.GetComponent<MobMovement>();
     }
 
-    public static void Setup(GameObject gameObject, float damage)
+    public static void Setup(Mob owner, GameObject gameObject, float damage, float madnessDamage)
     {
-        gameObject.AddComponent<ThrownDamager>();
-        ThrownDamager damager = gameObject.GetComponent<ThrownDamager>();
-        damager.Damage = damage;
-        damager.MoveDirection = Vector2.zero;
-        damager.Movement = gameObject.GetComponent<MobMovement>();
+        Setup(owner, gameObject, damage, madnessDamage, Vector2.zero);
     }
 
     void Update()
@@ -171,24 +171,26 @@ class ThrownDamager : MonoBehaviour
 
     private void testTrigger(Collider2D other)
     {
+        bool madnessTime = AbilityController.Instance.Abilities[AbilityType.MADNESS].IsEnabled;
         Mob mob = other.gameObject.GetComponentInChildren<Mob>();
         if (mob)
         {
-            return;
+            if (madnessTime && mob != Owner)
+            {
+                mob.DoDamage(MadnessDamage);
+                Destroy(gameObject);
+            }
         }
-
-        MonsterController monster = other.gameObject.GetComponentInChildren<MonsterController>();
-        if (monster)
+        else
         {
-            DoDamage(monster);
+            MonsterController monster = other.gameObject.GetComponentInChildren<MonsterController>();
+            if (monster)
+            {
+                monster.DoDamage(Damage);
+            }
+
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
-    }
-
-    private void DoDamage(MonsterController monster)
-    {
-        monster.DoDamage(Damage);
     }
 }
 

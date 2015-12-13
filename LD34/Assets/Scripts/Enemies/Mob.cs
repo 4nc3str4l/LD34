@@ -156,7 +156,7 @@ public class Mob : Entity
 
                     Vector2 bulletPosition = transform.Find("BulletRef").position;
                     GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), bulletPosition, Quaternion.identity);
-                    ThrownDamager.Setup(shot, 0.1f, bulletDirection);
+                    ThrownDamager.Setup(this, shot, 0.1f, UnityEngine.Random.Range(45, 70), bulletDirection);
 
                     if (bulletDirection == Vector2.left)
                     {
