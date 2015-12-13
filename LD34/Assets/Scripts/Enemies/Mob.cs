@@ -7,14 +7,17 @@ using UnityEngine;
 [Flags]
 enum MobFlags
 {
-    PANIC,
+    PROXIMITY_PANIC,
+    LOW_HEALTH_PANIC,
     ATTACK
 }
 
 class Mob : MonoBehaviour
 {
-    public MobFlags Flags = MobFlags.PANIC;
-    public float PanicDistance = 7f;
+    [SerializeField] [EnumFlagsAttribute]
+    public MobFlags Flags = MobFlags.PROXIMITY_PANIC | MobFlags.LOW_HEALTH_PANIC;
+    public float PanicDistance = 5f;
+    public float HealthThreshold = 10f;
 
     public float Health { get { return _health; } }
     private float _health = 100;
@@ -23,7 +26,9 @@ class Mob : MonoBehaviour
 
     private GameObject _monster;
     private MobMovement _movement;
+    private Vector2 _panicDirection;
     private float _lastJump;
+    private float _lastProximityPanic;
 
     public void DoDamage(float damage)
     {
@@ -44,11 +49,26 @@ class Mob : MonoBehaviour
     public void Update()
     {
         float distance = Vector2.Distance(_monster.transform.position, transform.position);
-        if (distance < PanicDistance && (Flags & MobFlags.PANIC) == MobFlags.PANIC)
-        {
-            Vector2 direction = _monster.transform.position - transform.position;
 
-            if (direction.x > 0)
+        bool lowHealthPanic = (Flags & MobFlags.LOW_HEALTH_PANIC) == MobFlags.LOW_HEALTH_PANIC && Health < HealthThreshold;
+        bool proximityPanic = (Flags & MobFlags.PROXIMITY_PANIC) == MobFlags.PROXIMITY_PANIC && distance < PanicDistance;
+
+        if (lowHealthPanic || proximityPanic)
+        {
+            if (lowHealthPanic && UnityEngine.Random.Range(0, 5) >= 3)
+            {
+                if (Time.time - _lastProximityPanic >= 5f)
+                {
+                    _lastProximityPanic = Time.time;
+                    _panicDirection = -_panicDirection;
+                }
+            }
+            else if (proximityPanic)
+            {
+                _panicDirection = _monster.transform.position - transform.position;
+            }
+
+            if (_panicDirection.x > 0)
             {
                 _movement.MoveLeft();
             }

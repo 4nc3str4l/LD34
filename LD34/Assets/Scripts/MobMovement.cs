@@ -18,7 +18,7 @@ public class MobMovement : MonoBehaviour
     private MonsterFX _monsterFx;
     private Collider2D _monsterCollider;
 
-    public static readonly float RAYCAST_DOWN_DISTANCE = 01f;
+    public static readonly float RAYCAST_DOWN_DISTANCE = 0.7f;
     public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
     public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
     public static readonly float POSITIVE_Y_ACCELERATION = 1500f;

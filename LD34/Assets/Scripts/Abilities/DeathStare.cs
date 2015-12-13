@@ -34,7 +34,7 @@ public class DeathStare : Ability
     {
         get
         {
-            return UnityEngine.Random.Range(40, 60);
+            return UnityEngine.Random.Range(45, 50);
         }
     }
 
