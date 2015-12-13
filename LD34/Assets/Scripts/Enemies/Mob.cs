@@ -108,6 +108,15 @@ class Mob : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        Transform onDestroy = transform.parent.Find("OnDestroy");
+        if (onDestroy)
+        {
+            onDestroy.GetComponents<MonoBehaviour>().ToList().ForEach(c => c.enabled = true);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (_canStrike)
