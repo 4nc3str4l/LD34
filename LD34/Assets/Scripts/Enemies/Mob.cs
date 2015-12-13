@@ -20,30 +20,35 @@ public class Mob : Entity
     public MobFlags Flags = MobFlags.CAN_JUMP | MobFlags.PROXIMITY_PANIC | MobFlags.LOW_HEALTH_PANIC;
     public float PanicDistance = 5f;
     public float HealthThreshold = 10f;
+    public float AttackDistance = 8f;
+    public float AttackRate = 0.5f;
     public Vector2 StrikeDirection = Vector2.right;
     
     private const float JUMP_INTERVAL = 5f;
 
-    private GameObject _monster;
+    private Entity _monster;
     private MobMovement _movement;
     private Vector2 _panicDirection;
     private float _lastJump;
     private float _lastProximityPanic;
+    private float _lastAttack;
 
     private bool _canJump;
     private bool _canProximityPanicRun;
     private bool _canLowHealthRun;
     private bool _canStrike;
+    private bool _canAttack;
     
     public void Start()
     {
-        _monster = GameObject.Find("MonsterContainer");
+        _monster = GameObject.Find("MonsterContainer").GetComponentInChildren<Entity>();
         _movement = transform.parent.GetComponent<MobMovement>();
 
         _canJump = (Flags & MobFlags.CAN_JUMP) == MobFlags.CAN_JUMP;
         _canLowHealthRun = (Flags & MobFlags.LOW_HEALTH_PANIC) == MobFlags.LOW_HEALTH_PANIC;
         _canProximityPanicRun = (Flags & MobFlags.PROXIMITY_PANIC) == MobFlags.PROXIMITY_PANIC;
         _canStrike = (Flags & MobFlags.STRIKE_EVERYONE) == MobFlags.STRIKE_EVERYONE;
+        _canAttack = (Flags & MobFlags.ATTACK) == MobFlags.ATTACK;
     }
 
     public void Update()
@@ -95,6 +100,20 @@ public class Mob : Entity
             else
             {
                 _movement.MoveLeft();
+            }
+        }
+        else if (_canAttack)
+        {
+            _movement.Stop();
+
+            if (distance < AttackDistance)
+            {
+                if (Time.time - _lastAttack > (1f / AttackRate))
+                {
+                    Debug.Log("Doing Damage");
+                    _lastAttack = Time.time;
+                    _monster.DoDamage(10);
+                }
             }
         }
         else
