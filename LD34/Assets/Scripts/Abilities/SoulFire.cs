@@ -22,6 +22,22 @@ public class SoulFire : Ability
         }
     }
 
+    public override float DamageInterval
+    {
+        get
+        {
+            return 1.0f;
+        }
+    }
+
+    public override float DamagePerHit
+    {
+        get
+        {
+            return UnityEngine.Random.Range(40, 60);
+        }
+    }
+
     public override string Name
     {
         get
@@ -59,6 +75,8 @@ public class SoulFire : Ability
 
             Vector2 force = new Vector2(acceleration, 0);
             flame.GetComponent<Rigidbody2D>().AddForce(force);
+
+            setupGameobject(flame);
 
             _flames.Add(flame);
         }

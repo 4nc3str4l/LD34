@@ -11,6 +11,8 @@ public abstract class Ability : IAbility
     public abstract AbilityType Type { get; }
     public abstract float CooldownTime { get; }
     public abstract float DestroyTime { get; }
+    public abstract float DamageInterval { get; }
+    public abstract float DamagePerHit { get; }
 
     public GameObject Owner { get { return _owner; } }
     public virtual bool CanBeUsed { get { return RemainingCooldown == 0; } }
@@ -62,6 +64,45 @@ public abstract class Ability : IAbility
         else if (_remainingCooldown < 0)
         {
             _remainingCooldown = 0;
+        }
+    }
+
+    protected void setupGameobject(GameObject gameObject)
+    {
+        gameObject.AddComponent<AbilityDamager>();
+        gameObject.GetComponent<AbilityDamager>().Owner = this;
+    }
+}
+
+class AbilityDamager : MonoBehaviour
+{
+    public IAbility Owner;
+    private float _lastHit;
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Mob mob = other.gameObject.GetComponentInChildren<Mob>();
+        if (mob)
+        {
+            DoDamage(mob);
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        Mob mob = other.gameObject.GetComponentInChildren<Mob>();
+        if (mob)
+        {
+            DoDamage(mob);
+        }
+    }
+
+    private void DoDamage(Mob mob)
+    {
+        if (Time.time - _lastHit >= Owner.DamageInterval)
+        {
+            _lastHit = Time.time;
+            mob.DoDamage(Owner.DamagePerHit);
         }
     }
 }

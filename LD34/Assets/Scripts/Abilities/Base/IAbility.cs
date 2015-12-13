@@ -21,6 +21,8 @@ public interface IAbility
     float CooldownTime { get; }
     float RemainingCooldown { get; }
     float DestroyTime { get; }
+    float DamageInterval { get; }
+    float DamagePerHit { get; }
 
     bool TryFire();
     void OnStart();

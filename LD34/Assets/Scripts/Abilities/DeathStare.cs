@@ -22,6 +22,22 @@ public class DeathStare : Ability
         }
     }
 
+    public override float DamageInterval
+    {
+        get
+        {
+            return 1.0f;
+        }
+    }
+
+    public override float DamagePerHit
+    {
+        get
+        {
+            return UnityEngine.Random.Range(40, 60);
+        }
+    }
+
     public override string Name
     {
         get
@@ -95,6 +111,7 @@ public class DeathStare : Ability
                 }
 
                 GameObject laserHolder = GameObject.Instantiate(_prefabs[1]);
+                setupGameobject(laserHolder.transform.Find("Laser").gameObject);
                 laserHolder.transform.rotation = Quaternion.Euler(0, direction == Vector2.left ? 0 : 180f, 0);
 
                 _lasers.Add(new Ray()
@@ -119,16 +136,10 @@ public class DeathStare : Ability
             }
             else
             {
-                if (laser.BeingCast)
-                {
-                    laser.Start.x = _startRef.transform.position.x;
-                    laser.Start.y = _startRef.transform.position.y;
-                }
-
                 Vector3 pos = new Vector3(laser.Start.x, laser.Start.y, 0.1f);
 
                 laser.Laser.transform.position = pos;
-                laser.Laser.transform.localScale = new Vector3(laser.Distance / 3.5f, 1, 1);
+                laser.Laser.transform.localScale = new Vector3(laser.Distance / 3.8f, 1, 1);
             }
         });
     }
@@ -141,11 +152,12 @@ public class DeathStare : Ability
         }
         else
         {
+            laser.Start = _startRef.transform.position;
             laser.End += laser.Direction * ENLARGE_AMOUNT * Time.deltaTime;
             laser.Distance = Vector2.Distance(laser.Start, laser.End);
 
             int mask = ~Constants.Layers.UNIT_MASK & ~Constants.Layers.ABILITIES_MASK;
-            RaycastHit2D hit = Physics2D.Raycast(Owner.transform.position, laser.Direction, laser.Distance, mask);
+            RaycastHit2D hit = Physics2D.Raycast(laser.Start, laser.Direction, laser.Distance, mask);
             if (hit.collider != null)
             {
                 laser.End = hit.transform.position;

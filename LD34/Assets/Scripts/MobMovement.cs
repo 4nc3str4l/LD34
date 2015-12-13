@@ -3,9 +3,10 @@ using System.Collections;
 
 public class MobMovement : MonoBehaviour
 {
+    public bool HandleInput = false;
+
     private Rigidbody2D _rigidBody;
     private Vector2 _forces = Vector2.zero;
-    private bool _shouldStop = false;
     private bool _isStopping = false;
     private bool _isGrounded = false;
     private bool _isJumping = false;
@@ -19,7 +20,7 @@ public class MobMovement : MonoBehaviour
 
     public static readonly float RAYCAST_DOWN_DISTANCE = 0.6f;
     public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
-    public static readonly float NEGATIVE_X_ACCELERATION = -20.0f;
+    public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
     public static readonly float POSITIVE_Y_ACCELERATION = 2000f;
     public static readonly float GRAVITY_FORCE = 50f;
     public static readonly float MAX_X_FORCE = 400.0f;
@@ -29,7 +30,7 @@ public class MobMovement : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
-        _monster = GameObject.Find("Monster");
+        _monster = GameObject.Find("Agent");
         _monsterFx = _monster.GetComponent<MonsterFX>();
         _monsterCollider = GetComponent<Collider2D>();
     }
@@ -68,7 +69,22 @@ public class MobMovement : MonoBehaviour
         }
 
         // Handle input now, before reactivating colliders
-        HandlePlayerInput();
+        if (HandleInput)
+        {
+            HandlePlayerInput();
+        }
+
+        // Add force to stop
+        if (_isStopping)
+        {
+            _forces += new Vector2(NEGATIVE_X_ACCELERATION * Mathf.Sign(_forces.x) * -1f, 0);
+        }
+
+        // Clamp max force
+        if (_forces.x > MAX_X_FORCE || _forces.x < -MAX_X_FORCE)
+        {
+            _forces.x = MAX_X_FORCE * Mathf.Sign(_forces.x);
+        }
 
         if (_isDownJumping && hasHit && _savedHit.collider != _hittedGround.collider)
         {
@@ -96,6 +112,12 @@ public class MobMovement : MonoBehaviour
         }
     }
 
+    public void Stop()
+    {
+        _forces.x = -_forces.x;
+        _isStopping = true;
+    }
+
     void HandlePlayerInput()
     {
         #region X Forces Region
@@ -104,45 +126,23 @@ public class MobMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 _forces += new Vector2(POSITIVE_X_ACCELERATION, 0);
-                _shouldStop = false;
                 _isStopping = false;
                 _monster.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
             else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 _forces += new Vector2(-POSITIVE_X_ACCELERATION, 0);
-                _shouldStop = false;
                 _isStopping = false;
                 _monster.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
-            else if (!_shouldStop && !_isStopping)
+            else if (!_isStopping)
             {
-                _shouldStop = true;
+                Stop();
             }
-        }
-
-        // Invert forces once
-        if (_shouldStop)
-        {
-            _forces.x = -_forces.x;
-            _shouldStop = false;
-            _isStopping = true;
-        }
-
-        // Add force to stop
-        if (_isStopping)
-        {
-            _forces += new Vector2(NEGATIVE_X_ACCELERATION * Mathf.Sign(_forces.x) * -1f, 0);
-        }
-
-        // Clamp max force
-        if (_forces.x > MAX_X_FORCE || _forces.x < -MAX_X_FORCE)
-        {
-            _forces.x = MAX_X_FORCE * Mathf.Sign(_forces.x);
         }
         #endregion 
         
-        if (_isGrounded && _forces.y == 0 &&(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if (_isGrounded && _forces.y == 0 && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             _forces += new Vector2(-_forces.x, POSITIVE_Y_ACCELERATION);
             _isJumping = true;
