@@ -143,10 +143,14 @@ public class GUIController : MonoBehaviour {
                     _timesMerged = 0;
                     _actualChooseAnimationState = ChooseAnimationState.CHOOSING;
                     _chooserText.text = CHOOSE;
+                    i = 0;
                 }
                 break;
             case ChooseAnimationState.CHOOSING:
-                _actualChooseAnimationState = ChooseAnimationState.FINISHING;
+                if(i == 2)
+                {
+                    _actualChooseAnimationState = ChooseAnimationState.FINISHING;
+                }
                 break;
             case ChooseAnimationState.FINISHING:
                 _actualChooseAnimationState = ChooseAnimationState.STOPPED;
@@ -206,6 +210,14 @@ public class GUIController : MonoBehaviour {
             _destinationPositions.RemoveAt(i);
         }
         return posToReturn;
+    }
+
+    public void chooseSkill(AbilityType ability)
+    {
+        if(_actualChooseAnimationState == ChooseAnimationState.CHOOSING)
+        {
+            i++;
+        }
     }
 
 }
