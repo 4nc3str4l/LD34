@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.88676333, y: -3.36121869, z: 0}
+  m_LocalPosition: {x: -2.48148823, y: -3.31741166, z: 0}
   m_LocalScale: {x: .800000012, y: .850000024, z: 1}
   m_Children:
   - {fileID: 495558}
@@ -133,8 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb230f27e41a8d478cc3912fb983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Flags: 0
-  PanicDistance: 1
+  Flags: 19
+  PanicDistance: 4
+  HealthThreshold: 10
 --- !u!114 &11474192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +178,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
