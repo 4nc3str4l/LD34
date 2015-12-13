@@ -1255,6 +1255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2608907afe5e66c4694e85ee4ad78ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftSkill: {fileID: 1333030252}
+  rightSkill: {fileID: 830017748}
   skills:
   - {fileID: 1751555816}
   - {fileID: 868412746}
@@ -1528,6 +1530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1 &463058357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +1735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1 &478226174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,6 +2280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1 &667683947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,6 +2671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1 &830017745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,6 +3491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1 &1138837354
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,6 +3769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1001 &1227683091
 Prefab:
   m_ObjectHideFlags: 0
@@ -4347,6 +4355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1 &1659228342
 GameObject:
   m_ObjectHideFlags: 0
@@ -4881,6 +4890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc1b47857983984a9fdc0765d0f0bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosed: 0
 --- !u!1001 &1826020234
 Prefab:
   m_ObjectHideFlags: 0

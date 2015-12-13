@@ -3,6 +3,7 @@
 public class ChooseButtonSkill : MonoBehaviour {
 
     Vector3 targetPostion = Vector3.zero;
+    public bool choosed = false;
     AbilityType ability;
 
     void Update () {
@@ -31,6 +32,11 @@ public class ChooseButtonSkill : MonoBehaviour {
 
     public void MouseDown()
     {
-        GUIController.instance.chooseSkill(ability);
+        if(GUIController.instance.actualChooseAnimationState == GUIController.ChooseAnimationState.CHOOSING)
+        {
+            GUIController.instance.chooseSkill(ability);
+            this.gameObject.SetActive(false);
+        }
+
     }
 }

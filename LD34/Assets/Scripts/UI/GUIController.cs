@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GUIController : MonoBehaviour {
 
-    enum ChooseAnimationState {PREPARING, STOPPED, SHOWING, HIDDING, MERGING, CHOOSING, FINISHING };
+    public  enum ChooseAnimationState {PREPARING, STOPPED, SHOWING, HIDDING, MERGING, CHOOSING, FINISHING };
     const float SPAWN_RATE = 0.4f;
     const float TIME_BETWEEN_MERGES = 0.5f;
     const float MERGE_TIMES = 6;
@@ -19,6 +19,8 @@ public class GUIController : MonoBehaviour {
     public static GUIController instance;
     private Text _numDeadsText, _chooserText;
 
+
+    public BtnSkill leftSkill, rightSkill;
     public List<GameObject> skills;
     public List<GameObject> choosePosition;
     public List<Vector3> _avaliablePositions;
@@ -28,6 +30,8 @@ public class GUIController : MonoBehaviour {
     List<int> _positions, _destinationPositions;
 
     ChooseAnimationState _actualChooseAnimationState;
+
+    public ChooseAnimationState actualChooseAnimationState { get { return _actualChooseAnimationState; } }
 
     int i = 0;
     int _timesMerged = 0;
@@ -77,6 +81,7 @@ public class GUIController : MonoBehaviour {
                 _nextSpawn = 0;
                 foreach (GameObject pos in choosePosition)
                 {
+                    pos.SetActive(true);
                     _avaliablePositions.Add(pos.transform.localPosition);
                 }
                 _actualChooseAnimationState = ChooseAnimationState.SHOWING;
@@ -161,7 +166,6 @@ public class GUIController : MonoBehaviour {
                 {
                     choosePosition[x].transform.localPosition.Set(_avaliablePositions[x].x, _avaliablePositions[x].y, _avaliablePositions[x].z);
                 }
-
                 break;
             default:
                 break;
@@ -218,8 +222,27 @@ public class GUIController : MonoBehaviour {
     {
         if(_actualChooseAnimationState == ChooseAnimationState.CHOOSING)
         {
+            BtnSkill skillInfo = null;
+            foreach(GameObject skill in skills)
+            {
+                if(skill.GetComponent<BtnSkill>().ability == ability)
+                {
+                    skillInfo = skill.transform.GetComponent<BtnSkill>();
+                    break;
+                }
+            }
+
+            if(i == 0)
+            {
+                AbilityController.Instance.BoundAtLeft = AbilityController.Instance.Abilities[ability];
+                leftSkill.GetComponent<BtnSkill>().setNewInfo(skillInfo);
+            }
+            else
+            {
+                AbilityController.Instance.BoundAtRight = AbilityController.Instance.Abilities[ability];
+                rightSkill.GetComponent<BtnSkill>().setNewInfo(skillInfo);
+            }
             i++;
-            AbilityController.Instance.BoundAtLeft = AbilityController.Instance.Abilities[ability];
         }
     }
 
