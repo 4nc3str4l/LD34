@@ -156,7 +156,7 @@ public class DeathStare : Ability
             laser.End += laser.Direction * ENLARGE_AMOUNT * Time.deltaTime;
             laser.Distance = Vector2.Distance(laser.Start, laser.End);
 
-            int mask = ~Constants.Layers.UNIT_MASK & ~Constants.Layers.ABILITIES_MASK;
+            int mask = ~Constants.Layers.UNIT_MASK & ~Constants.Layers.ABILITIES_MASK & ~Constants.Layers.MONSTER_MASK;
             RaycastHit2D hit = Physics2D.Raycast(laser.Start, laser.Direction, laser.Distance, mask);
             if (hit.collider != null)
             {
