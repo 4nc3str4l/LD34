@@ -15,5 +15,8 @@ public static class Constants
 
         public static readonly int UNIT = 10;
         public static readonly int UNIT_MASK = 1 << UNIT;
+
+        public static readonly int MONSTER = 11;
+        public static readonly int MONSTER_MASK = 1 << MONSTER;
     }
 }
