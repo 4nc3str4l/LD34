@@ -16,8 +16,7 @@ public class Entity : MonoBehaviour
 
     public void DoDamage(float damage)
     {
-        _health = Mathf.Max(0, _health - damage);
-        OnDamaged();
+        _health = OnDamaged(Mathf.Max(0, _health - damage));
 
         if (_health <= 0)
         {
@@ -35,6 +34,10 @@ public class Entity : MonoBehaviour
         }
     }
 
-    protected virtual void OnDamaged() { }
+    protected virtual float OnDamaged(float newHealth)
+    {
+        return newHealth;
+    }
+
     protected virtual void OnRestored() { }
 }

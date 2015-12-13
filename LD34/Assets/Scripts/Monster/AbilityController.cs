@@ -8,10 +8,9 @@ using UnityEngine;
 public class AbilityController : MonoBehaviour
 {
     private Dictionary<AbilityType, List<GameObject>> _prefabs = new Dictionary<AbilityType, List<GameObject>>();
-    private List<IAbility> _abilities = new List<IAbility>();
+    private Dictionary<AbilityType, IAbility> _abilities = new Dictionary<AbilityType, IAbility>();
 
-    public List<IAbility> Abilities { get { return _abilities; } }
-    public List<GameObject> Prefabs(AbilityType type) { return _prefabs[type]; }
+    public Dictionary<AbilityType, IAbility> Abilities { get { return _abilities; } }
 
     public IAbility BoundAtLeft;
     public IAbility BoundAtRight;
@@ -25,8 +24,18 @@ public class AbilityController : MonoBehaviour
         LoadPrefabs();
         LoadAbilities();
 
-        BoundAtLeft = _abilities[0];
-        BoundAtRight = _abilities[1];
+        BoundAtLeft = _abilities[AbilityType.PROTECTION_FIELD];
+        BoundAtRight = _abilities[AbilityType.RADIOACTIVE_SPARK];
+    }
+
+    public List<GameObject> Prefabs(AbilityType type)
+    {
+        if (_prefabs.ContainsKey(type))
+        {
+            return _prefabs[type];
+        }
+
+        return new List<GameObject>();
     }
 
     private void LoadPrefabs()
@@ -60,14 +69,14 @@ public class AbilityController : MonoBehaviour
             if (!abilityType.IsInterface && !abilityType.IsAbstract)
             {
                 IAbility ability = (IAbility)Activator.CreateInstance(abilityType, new object[] { this, gameObject });
-                _abilities.Add(ability);
+                _abilities.Add(ability.Type, ability);
             }
         }
     }
 
     public void Update()
     {
-        foreach (IAbility ability in _abilities)
+        foreach (IAbility ability in _abilities.Values)
         {
             ability.Update();
         }

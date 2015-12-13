@@ -28,11 +28,14 @@ public class MonsterFX : MonoBehaviour {
         eyeLight = eyeLightObject.GetComponent<Light>();
         animator = transform.GetComponent<Animator>();
 
-        Transform auraTransform = transform.parent.Find("Aura");
-        if (auraTransform)
+        if (transform.parent)
         {
-            aura = auraTransform.gameObject;
-            aura.SetActive(false);
+            Transform auraTransform = transform.parent.Find("Aura");
+            if (auraTransform)
+            {
+                aura = auraTransform.gameObject;
+                aura.SetActive(false);
+            }
         }
     }
 

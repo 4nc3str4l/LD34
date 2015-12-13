@@ -14,6 +14,7 @@ public abstract class Ability : IAbility
     public abstract float DamageInterval { get; }
     public abstract float DamagePerHit { get; }
 
+    public bool IsEnabled { get { return _enabled; } }
     public GameObject Owner { get { return _owner; } }
     public virtual bool CanBeUsed { get { return RemainingCooldown == 0; } }
     public float RemainingCooldown { get { return _remainingCooldown; } }

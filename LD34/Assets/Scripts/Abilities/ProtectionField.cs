@@ -50,7 +50,7 @@ public class ProtectionField : Ability
     {
         get
         {
-            return AbilityType.SOUL_FIRE;
+            return AbilityType.PROTECTION_FIELD;
         }
     }
 

@@ -174,6 +174,15 @@ public class Mob : Entity
             {
                 HandleStrikeTo(entity.gameObject);
             }
+            else
+            {
+                // Protective shield
+                entity = other.transform.parent.gameObject.GetComponentInChildren<Entity>();
+                if (entity)
+                {
+                    HandleStrikeTo(entity.gameObject);
+                }
+            }
         }
     }
 

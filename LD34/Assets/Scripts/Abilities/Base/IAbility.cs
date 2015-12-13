@@ -9,7 +9,8 @@ public enum AbilityType
     SOUL_FIRE,
     SOUL_FILE_TARGETED,
     DEATH_STARE,
-    RADIOACTIVE_SPARK
+    RADIOACTIVE_SPARK,
+    PROTECTION_FIELD
 }
 
 public interface IAbility
@@ -17,6 +18,7 @@ public interface IAbility
     string Name { get; }
     AbilityType Type { get; }
     GameObject Owner { get; }
+    bool IsEnabled { get; }
 
     bool CanBeUsed { get; }
     float CooldownTime { get; }
