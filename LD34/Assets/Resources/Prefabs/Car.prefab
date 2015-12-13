@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 172628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 444778}
   m_RootOrder: 1
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6157168
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -128,11 +128,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 141864}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: .0185127258, y: -.0962657928}
   serializedVersion: 2
-  m_Size: {x: 3.09563994, y: 1.13329101}
+  m_Size: {x: 3.17000008, y: 1.29999995}
 --- !u!95 &9568262
 Animator:
   serializedVersion: 3
@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandleInput: 0
+  MaxForce_X: 600
+  MaxVelocity_X: 9
 --- !u!114 &11473646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,9 +208,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

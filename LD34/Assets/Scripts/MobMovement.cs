@@ -32,7 +32,7 @@ public class MobMovement : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _monster = transform.Find("Agent").gameObject;
-        _monsterCollider = GetComponent<Collider2D>();
+        _monsterCollider = _monster.GetComponent<Collider2D>();
         _monsterFx = _monster.GetComponent<MonsterFX>();
     }
 	
