@@ -18,6 +18,7 @@ public abstract class Ability : IAbility
     public virtual bool CanBeUsed { get { return RemainingCooldown == 0; } }
     public float RemainingCooldown { get { return _remainingCooldown; } }
 
+    protected bool _enabled = false;
     protected float _remainingCooldown = 0;
     protected float _elapsedTime = 0;
     protected GameObject _owner;
@@ -40,21 +41,29 @@ public abstract class Ability : IAbility
         return false;
     }
 
-    public virtual void OnEnd() { }
+    public virtual void OnEnd()
+    {
+        _enabled = false;
+    }
 
     public virtual void OnStart()
     {
         Assert.IsTrue(CanBeUsed);
+
         _remainingCooldown = CooldownTime;
         _elapsedTime = 0;
+        _enabled = true;
     }
 
     public virtual void Update()
     {
-        _elapsedTime += Time.deltaTime;
-        if (_elapsedTime >= DestroyTime)
+        if (_enabled)
         {
-            OnEnd();
+            _elapsedTime += Time.deltaTime;
+            if (_elapsedTime >= DestroyTime)
+            {
+                OnEnd();
+            }
         }
 
         if (_remainingCooldown > 0)

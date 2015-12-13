@@ -88,6 +88,3 @@ public class SparkDamager : AbilityDamager
         Destroy(gameObject);
     }
 }
-
-
-
