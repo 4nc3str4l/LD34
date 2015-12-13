@@ -125,6 +125,8 @@ public class Mob : Entity
         }
         else if (shouldAttack)
         {
+            Vector2 bulletDirection = monsterDirection;
+
             // LOOK AT MEE!
             if (!madnessTime)
             {
@@ -136,6 +138,10 @@ public class Mob : Entity
                 {
                     _movement.MoveRight();
                 }
+            }
+            else
+            {
+                bulletDirection = -_panicDirection;
             }
 
             _movement.Stop();
@@ -150,9 +156,9 @@ public class Mob : Entity
 
                     Vector2 bulletPosition = transform.Find("BulletRef").position;
                     GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), bulletPosition, Quaternion.identity);
-                    ThrownDamager.Setup(shot, 0.1f, monsterDirection);
+                    ThrownDamager.Setup(shot, 0.1f, bulletDirection);
 
-                    if (monsterDirection == Vector2.left)
+                    if (bulletDirection == Vector2.left)
                     {
                         MobMovement movement = shot.GetComponent<MobMovement>();
                         movement.InitialForce = -movement.InitialForce;

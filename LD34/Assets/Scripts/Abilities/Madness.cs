@@ -10,7 +10,7 @@ public class Madness : Ability
     {
         get
         {
-            return 4.0f;
+            return 8.0f;
         }
     }
 
@@ -18,7 +18,7 @@ public class Madness : Ability
     {
         get
         {
-            return 4.0f;
+            return 8.0f;
         }
     }
 
