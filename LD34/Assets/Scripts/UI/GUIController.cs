@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GUIController : MonoBehaviour {
 
-    public  enum ChooseAnimationState {PREPARING, STOPPED, SHOWING, HIDDING, MERGING, CHOOSING, FINISHING };
+    public enum ChooseAnimationState {PREPARING, STOPPED, SHOWING, HIDDING, MERGING, CHOOSING, FINISHING };
     const float SPAWN_RATE = 0.4f;
     const float TIME_BETWEEN_MERGES = 0.5f;
     const float MERGE_TIMES = 6;
@@ -26,6 +26,8 @@ public class GUIController : MonoBehaviour {
     public List<Vector3> _avaliablePositions;
     public GameObject skillChosser;
 
+    Animator _animator;
+
     public Sprite defaultSprite;
 
     List<int> _positions, _destinationPositions;
@@ -46,6 +48,7 @@ public class GUIController : MonoBehaviour {
         _destinationPositions = new List<int>();
         _avaliablePositions = new List<Vector3>();
         _actualChooseAnimationState = ChooseAnimationState.STOPPED;
+        _animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -58,8 +61,7 @@ public class GUIController : MonoBehaviour {
     }
 
 	void Update () {
-
-	    if(Input.GetKeyDown(KeyCode.Y) && _actualChooseAnimationState == ChooseAnimationState.STOPPED)
+        if (Input.GetKeyDown(KeyCode.Y) && _actualChooseAnimationState == ChooseAnimationState.STOPPED)
         {
             i = 0;
             _actualChooseAnimationState = ChooseAnimationState.PREPARING;
@@ -68,8 +70,8 @@ public class GUIController : MonoBehaviour {
         if(_actualChooseAnimationState != ChooseAnimationState.STOPPED)
         {
             updateSkillChooser();
-        }          
-	}
+        }
+    }
 
     private void updateSkillChooser()
     {
@@ -177,6 +179,8 @@ public class GUIController : MonoBehaviour {
     public void updateDeadCounter()
     {
         _numDeadsText.text = GameController.instance.numDeads.ToString();
+        _animator.SetInteger("STATE", 1);
+        Invoke("returnToNormalState", 0.35f);
     }
 
     private void setPositionsToChoose()
@@ -246,6 +250,11 @@ public class GUIController : MonoBehaviour {
             }
             i++;
         }
+    }
+
+    void returnToNormalState()
+    {
+        _animator.SetInteger("STATE", 0);
     }
 
 }
