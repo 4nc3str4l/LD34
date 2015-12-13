@@ -7,15 +7,17 @@ using UnityEngine;
 [Flags]
 enum MobFlags
 {
-    PROXIMITY_PANIC,
-    LOW_HEALTH_PANIC,
-    ATTACK
+    CAN_JUMP            = 1,
+    PROXIMITY_PANIC     = 2,
+    LOW_HEALTH_PANIC    = 4,
+    STRIKE_EVERYONE     = 8,
+    ATTACK              = 16
 }
 
 class Mob : MonoBehaviour
 {
     [SerializeField] [EnumFlagsAttribute]
-    public MobFlags Flags = MobFlags.PROXIMITY_PANIC | MobFlags.LOW_HEALTH_PANIC;
+    public MobFlags Flags = MobFlags.CAN_JUMP | MobFlags.PROXIMITY_PANIC | MobFlags.LOW_HEALTH_PANIC;
     public float PanicDistance = 5f;
     public float HealthThreshold = 10f;
 
@@ -29,6 +31,11 @@ class Mob : MonoBehaviour
     private Vector2 _panicDirection;
     private float _lastJump;
     private float _lastProximityPanic;
+
+    private bool _canJump;
+    private bool _canProximityPanicRun;
+    private bool _canLowHealthRun;
+    private bool _canStrike;
 
     public void DoDamage(float damage)
     {
@@ -44,14 +51,19 @@ class Mob : MonoBehaviour
     {
         _monster = GameObject.Find("MonsterContainer");
         _movement = transform.parent.GetComponent<MobMovement>();
+
+        _canJump = (Flags & MobFlags.CAN_JUMP) == MobFlags.CAN_JUMP;
+        _canLowHealthRun = (Flags & MobFlags.LOW_HEALTH_PANIC) == MobFlags.LOW_HEALTH_PANIC;
+        _canProximityPanicRun = (Flags & MobFlags.PROXIMITY_PANIC) == MobFlags.PROXIMITY_PANIC;
+        _canStrike = (Flags & MobFlags.STRIKE_EVERYONE) == MobFlags.STRIKE_EVERYONE;
     }
 
     public void Update()
     {
         float distance = Vector2.Distance(_monster.transform.position, transform.position);
 
-        bool lowHealthPanic = (Flags & MobFlags.LOW_HEALTH_PANIC) == MobFlags.LOW_HEALTH_PANIC && Health <= HealthThreshold;
-        bool proximityPanic = (Flags & MobFlags.PROXIMITY_PANIC) == MobFlags.PROXIMITY_PANIC && distance < PanicDistance;
+        bool lowHealthPanic = _canLowHealthRun && Health <= HealthThreshold;
+        bool proximityPanic = _canProximityPanicRun && distance < PanicDistance;
 
         if (lowHealthPanic || proximityPanic)
         {
@@ -77,7 +89,7 @@ class Mob : MonoBehaviour
                 _movement.MoveRight();
             }
 
-            if (Time.time - _lastJump >= JUMP_INTERVAL)
+            if (_canJump && Time.time - _lastJump >= JUMP_INTERVAL)
             {
                 if (UnityEngine.Random.Range(0, 100) >= 80)
                 {
@@ -85,6 +97,10 @@ class Mob : MonoBehaviour
                     _lastJump = Time.time;
                 }
             }
+        }
+        else if (_canStrike)
+        {
+            _movement.MoveRight();
         }
         else
         {
