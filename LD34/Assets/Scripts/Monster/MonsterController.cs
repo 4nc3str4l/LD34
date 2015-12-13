@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MonsterController : Entity
 {
     private Image _healthOverlay;
+    private AbilityController _abilityController;
     private bool _lerping = false;
     private float _lerpingStart = 0;
     private Color _lerpFrom;
@@ -18,6 +19,7 @@ public class MonsterController : Entity
     void Start()
     {
         _healthOverlay = GameObject.Find("GUI/HealthOverlay").GetComponent<Image>();
+        _abilityController = GetComponent<AbilityController>();
     }
 
     void Update()
@@ -35,13 +37,20 @@ public class MonsterController : Entity
         }
     }
 
-    protected override void OnDamaged()
+    protected override float OnDamaged(float newHealth)
     {
-        _lerpFrom = _healthOverlay.color;
-        _lerpTo = Color.red;
-        _lerpTo.a = 1 - Health / 100f;
-        _lerping = true;
-        _lerpingStart = Time.time;
+        if (!_abilityController.Abilities[AbilityType.PROTECTION_FIELD].IsEnabled)
+        {
+            _lerpFrom = _healthOverlay.color;
+            _lerpTo = Color.red;
+            _lerpTo.a = 1 - Health / 100f;
+            _lerping = true;
+            _lerpingStart = Time.time;
+
+            return newHealth;
+        }
+
+        return Health;
     }
 
     protected override void OnRestored()

@@ -14,10 +14,12 @@ public abstract class Ability : IAbility
     public abstract float DamageInterval { get; }
     public abstract float DamagePerHit { get; }
 
+    public bool IsEnabled { get { return _enabled; } }
     public GameObject Owner { get { return _owner; } }
     public virtual bool CanBeUsed { get { return RemainingCooldown == 0; } }
     public float RemainingCooldown { get { return _remainingCooldown; } }
 
+    protected bool _enabled = false;
     protected float _remainingCooldown = 0;
     protected float _elapsedTime = 0;
     protected GameObject _owner;
@@ -40,21 +42,29 @@ public abstract class Ability : IAbility
         return false;
     }
 
-    public virtual void OnEnd() { }
+    public virtual void OnEnd()
+    {
+        _enabled = false;
+    }
 
     public virtual void OnStart()
     {
         Assert.IsTrue(CanBeUsed);
+
         _remainingCooldown = CooldownTime;
         _elapsedTime = 0;
+        _enabled = true;
     }
 
     public virtual void Update()
     {
-        _elapsedTime += Time.deltaTime;
-        if (_elapsedTime >= DestroyTime)
+        if (_enabled)
         {
-            OnEnd();
+            _elapsedTime += Time.deltaTime;
+            if (_elapsedTime >= DestroyTime)
+            {
+                OnEnd();
+            }
         }
 
         if (_remainingCooldown > 0)
@@ -67,14 +77,19 @@ public abstract class Ability : IAbility
         }
     }
 
+    protected void setupGameobject<T>(GameObject gameObject) where T : AbilityDamager
+    {
+        gameObject.AddComponent<T>();
+        gameObject.GetComponent<T>().Owner = this;
+    }
+
     protected void setupGameobject(GameObject gameObject)
     {
-        gameObject.AddComponent<AbilityDamager>();
-        gameObject.GetComponent<AbilityDamager>().Owner = this;
+        setupGameobject<AbilityDamager>(gameObject);
     }
 }
 
-class AbilityDamager : MonoBehaviour
+public class AbilityDamager : MonoBehaviour
 {
     public IAbility Owner;
     private float _lastHit;
@@ -97,7 +112,7 @@ class AbilityDamager : MonoBehaviour
         }
     }
 
-    private void DoDamage(Mob mob)
+    protected virtual void DoDamage(Mob mob)
     {
         if (Time.time - _lastHit >= Owner.DamageInterval)
         {
@@ -109,27 +124,27 @@ class AbilityDamager : MonoBehaviour
 
 class ThrownDamager : MonoBehaviour
 {
+    public Mob Owner;
     public float Damage;
+    public float MadnessDamage;
     public Vector2 MoveDirection = Vector2.zero;
     private float _lastHit;
     private MobMovement Movement;
 
-    public static void Setup(GameObject gameObject, float damage, Vector2 moveDirection)
+    public static void Setup(Mob owner, GameObject gameObject, float damage, float madnessDamage, Vector2 moveDirection)
     {
         gameObject.AddComponent<ThrownDamager>();
         ThrownDamager damager = gameObject.GetComponent<ThrownDamager>();
+        damager.Owner = owner;
         damager.Damage = damage;
+        damager.MadnessDamage = madnessDamage;
         damager.MoveDirection = moveDirection;
         damager.Movement = gameObject.GetComponent<MobMovement>();
     }
 
-    public static void Setup(GameObject gameObject, float damage)
+    public static void Setup(Mob owner, GameObject gameObject, float damage, float madnessDamage)
     {
-        gameObject.AddComponent<ThrownDamager>();
-        ThrownDamager damager = gameObject.GetComponent<ThrownDamager>();
-        damager.Damage = damage;
-        damager.MoveDirection = Vector2.zero;
-        damager.Movement = gameObject.GetComponent<MobMovement>();
+        Setup(owner, gameObject, damage, madnessDamage, Vector2.zero);
     }
 
     void Update()
@@ -156,24 +171,26 @@ class ThrownDamager : MonoBehaviour
 
     private void testTrigger(Collider2D other)
     {
+        bool madnessTime = AbilityController.Instance.Abilities[AbilityType.MADNESS].IsEnabled;
         Mob mob = other.gameObject.GetComponentInChildren<Mob>();
         if (mob)
         {
-            return;
+            if (madnessTime && mob != Owner)
+            {
+                mob.DoDamage(MadnessDamage);
+                Destroy(gameObject);
+            }
         }
-
-        MonsterController monster = other.gameObject.GetComponentInChildren<MonsterController>();
-        if (monster)
+        else
         {
-            DoDamage(monster);
+            MonsterController monster = other.gameObject.GetComponentInChildren<MonsterController>();
+            if (monster)
+            {
+                monster.DoDamage(Damage);
+            }
+
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
-    }
-
-    private void DoDamage(MonsterController monster)
-    {
-        monster.DoDamage(Damage);
     }
 }
 

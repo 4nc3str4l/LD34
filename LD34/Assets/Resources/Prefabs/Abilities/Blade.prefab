@@ -2,31 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &104828
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 450046}
   - 212: {fileID: 21216218}
-  m_Layer: 0
+  - 61: {fileID: 6107256}
+  m_Layer: 9
   m_Name: blade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &130680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 485222}
-  - 114: {fileID: 11483090}
-  m_Layer: 0
-  m_Name: RotatingBlade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +26,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 411486}
   - 61: {fileID: 6114112}
+  - 114: {fileID: 11481750}
+  - 114: {fileID: 11455266}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -55,10 +42,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.56999993, y: -3.01966763, z: 0}
+  m_LocalPosition: {x: -15.5224018, y: -3.01127052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 485222}
+  - {fileID: 450046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &450046
@@ -71,21 +58,21 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 485222}
+  m_Father: {fileID: 411486}
   m_RootOrder: 0
---- !u!4 &485222
-Transform:
+--- !u!61 &6107256
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 450046}
-  m_Father: {fileID: 411486}
-  m_RootOrder: 0
+  m_GameObject: {fileID: 104828}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: .790000021, y: .180000007}
 --- !u!61 &6114112
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -94,17 +81,29 @@ BoxCollider2D:
   m_GameObject: {fileID: 157404}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: .00491857529, y: .00737857819}
   serializedVersion: 2
   m_Size: {x: .813086748, y: .188406467}
---- !u!114 &11483090
+--- !u!114 &11455266
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130680}
+  m_GameObject: {fileID: 157404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f92142089f77524dba4b914ea54c043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 6
+--- !u!114 &11481750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157404}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a43da41ed40b40847be46b45b28adac4, type: 3}

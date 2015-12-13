@@ -29,7 +29,7 @@ public class Mob : Entity
     private Entity _monster;
     private MobMovement _movement;
     private MonsterFX _monsterFx;
-    private Vector2 _panicDirection;
+    private Vector2 _panicDirection = Vector2.left;
     private float _lastJump;
     private float _lastProximityPanic;
     private float _lastAttack;
@@ -59,24 +59,38 @@ public class Mob : Entity
         Vector2 monsterDirection = _monster.transform.position - transform.position;
         monsterDirection = monsterDirection.x > 0 ? Vector2.right : Vector2.left;
 
+        bool madnessTime = AbilityController.Instance.Abilities[AbilityType.MADNESS].IsEnabled;
         bool lowHealthPanic = _canLowHealthRun && Health <= HealthThreshold;
         bool proximityPanic = _canProximityPanicRun && distance < PanicDistance;
+        bool shouldAttack = _canAttack;
+        float rescheduleTime = 5f;
 
-        if (lowHealthPanic || proximityPanic)
+        if (madnessTime)
         {
-            if (lowHealthPanic && UnityEngine.Random.Range(0, 5) >= 3)
-            {
-                if (Time.time - _lastProximityPanic >= 5f)
-                {
-                    _lastProximityPanic = Time.time;
-                    _panicDirection = -_panicDirection;
-                }
-            }
-            else if (proximityPanic)
-            {
-                _panicDirection = monsterDirection;
-            }
+            lowHealthPanic = lowHealthPanic || !_canAttack;
+            proximityPanic = false;
+            shouldAttack = !lowHealthPanic;
+            rescheduleTime /= 2.0f;
+        }
 
+        bool changedDirection = false;
+        if ((madnessTime || lowHealthPanic) && UnityEngine.Random.Range(0, 5) >= 3)
+        {
+            if (Time.time - _lastProximityPanic >= rescheduleTime)
+            {
+                _lastProximityPanic = Time.time;
+                _panicDirection = -_panicDirection;
+                changedDirection = true;
+            }
+        }
+
+        if (!changedDirection && proximityPanic)
+        {
+            _panicDirection = monsterDirection;
+        }
+
+        if (lowHealthPanic || proximityPanic || madnessTime)
+        {
             if (_panicDirection == Vector2.right)
             {
                 _movement.MoveLeft();
@@ -85,7 +99,10 @@ public class Mob : Entity
             {
                 _movement.MoveRight();
             }
+        }
 
+        if (lowHealthPanic || proximityPanic)
+        {
             if (_canJump && Time.time - _lastJump >= JUMP_INTERVAL)
             {
                 if (UnityEngine.Random.Range(0, 100) >= 80)
@@ -106,21 +123,30 @@ public class Mob : Entity
                 _movement.MoveLeft();
             }
         }
-        else if (_canAttack)
+        else if (shouldAttack)
         {
+            Vector2 bulletDirection = monsterDirection;
+
             // LOOK AT MEE!
-            if (monsterDirection == Vector2.left)
+            if (!madnessTime)
             {
-                _movement.MoveLeft();
+                if (monsterDirection == Vector2.left)
+                {
+                    _movement.MoveLeft();
+                }
+                else
+                {
+                    _movement.MoveRight();
+                }
             }
             else
             {
-                _movement.MoveRight();
+                bulletDirection = -_panicDirection;
             }
 
             _movement.Stop();
 
-            if (distance < AttackDistance)
+            if (distance < AttackDistance || madnessTime)
             {
                 _monsterFx.setState(MonsterFX.States.ATTACKING);
 
@@ -130,9 +156,9 @@ public class Mob : Entity
 
                     Vector2 bulletPosition = transform.Find("BulletRef").position;
                     GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), bulletPosition, Quaternion.identity);
-                    ThrownDamager.Setup(shot, 0.1f, monsterDirection);
+                    ThrownDamager.Setup(this, shot, 0.1f, UnityEngine.Random.Range(45, 70), bulletDirection);
 
-                    if (monsterDirection == Vector2.left)
+                    if (bulletDirection == Vector2.left)
                     {
                         MobMovement movement = shot.GetComponent<MobMovement>();
                         movement.InitialForce = -movement.InitialForce;
@@ -173,6 +199,15 @@ public class Mob : Entity
             if (entity)
             {
                 HandleStrikeTo(entity.gameObject);
+            }
+            else
+            {
+                // Protective shield
+                entity = other.transform.parent.gameObject.GetComponentInChildren<Entity>();
+                if (entity)
+                {
+                    HandleStrikeTo(entity.gameObject);
+                }
             }
         }
     }

@@ -8,9 +8,10 @@ public class MonsterFX : MonoBehaviour {
     public static MonsterFX instance;
     static Vector3 eyelightBasePosition = new Vector3(0, 0.35f, 2.49f);
 
-    Light eyeLight, aura;
-    GameObject eyeLightObject;
-    Animator animator;
+    private GameObject aura;
+    private Light eyeLight;
+    private GameObject eyeLightObject;
+    private Animator animator;
 
     public enum States { IDLE, WALKING, ATTACKING }
     public int state = 0;
@@ -26,9 +27,17 @@ public class MonsterFX : MonoBehaviour {
         eyeLightObject = GameObject.Find("EyeLight");
         eyeLight = eyeLightObject.GetComponent<Light>();
         animator = transform.GetComponent<Animator>();
-        aura = GameObject.Find("Aura").GetComponent<Light>();
-        aura.enabled = false;
-    }	
+
+        if (transform.parent)
+        {
+            Transform auraTransform = transform.parent.Find("Aura");
+            if (auraTransform)
+            {
+                aura = auraTransform.gameObject;
+                aura.SetActive(false);
+            }
+        }
+    }
 
 
 	void Update ()
@@ -37,11 +46,6 @@ public class MonsterFX : MonoBehaviour {
         {
             eyeLight.intensity = BASE_INTENSITY + Random.Range(0f, 1f);
             //eyeLight.transform.localPosition = eyelightBasePosition + new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), 0f);
-
-            if (aura.enabled && _stopAura < Time.time)
-            {
-                aura.enabled = false;
-            }
         }
     }
 
@@ -50,9 +54,8 @@ public class MonsterFX : MonoBehaviour {
         animator.SetInteger("STATE", (int)state);
     }
 
-    public void blinkAura()
+    public void toggleAura()
     {
-        _stopAura = Time.time + AURA_BLINK_TIME;
-        aura.enabled  = true;
+        aura.SetActive(!aura.activeSelf);
     }
 }

@@ -17,6 +17,5 @@ public class GameController : MonoBehaviour {
     {
         _numDeads++;
         GUIController.instance.updateDeadCounter();
-        MonsterFX.instance.blinkAura();
     }
 }
