@@ -4,7 +4,7 @@ public class ChooseButtonSkill : MonoBehaviour {
 
     Vector3 targetPostion = Vector3.zero;
     public bool choosed = false;
-    AbilityType ability;
+    public AbilityType ability;
 
     void Update () {
         if (targetPostion != Vector3.zero)

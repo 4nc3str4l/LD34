@@ -24,6 +24,7 @@ public class GUIController : MonoBehaviour {
     public List<GameObject> skills;
     public List<GameObject> choosePosition;
     public List<Vector3> _avaliablePositions;
+    public GameObject skillChosser;
 
     public Sprite defaultSprite;
 
@@ -75,6 +76,7 @@ public class GUIController : MonoBehaviour {
         switch (_actualChooseAnimationState)
         {
             case ChooseAnimationState.PREPARING:
+                skillChosser.SetActive(true);
                 _positions = new List<int>();
                 _destinationPositions = new List<int>();
                 _avaliablePositions = new List<Vector3>();
@@ -161,11 +163,11 @@ public class GUIController : MonoBehaviour {
                 break;
             case ChooseAnimationState.FINISHING:
                 _actualChooseAnimationState = ChooseAnimationState.STOPPED;
-
                 for(int x = 0; x  < skills.Count; x++)
                 {
                     choosePosition[x].transform.localPosition.Set(_avaliablePositions[x].x, _avaliablePositions[x].y, _avaliablePositions[x].z);
                 }
+                skillChosser.SetActive(false);
                 break;
             default:
                 break;
