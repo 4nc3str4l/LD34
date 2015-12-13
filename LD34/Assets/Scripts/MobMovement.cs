@@ -77,7 +77,7 @@ public class MobMovement : MonoBehaviour
         else if (_forces.y <= 0 && _isGrounded)
         {
             _forces.y = 0;
-            _rigidBody.velocity.Set(_rigidBody.velocity.x, 0);
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
         }
 
         // Handle input now, before reactivating colliders
@@ -110,7 +110,7 @@ public class MobMovement : MonoBehaviour
         // Stop if we are at stop velocity
         if (_isStopping && Mathf.Abs(_rigidBody.velocity.x) <= STOP_VELOCITY)
         {
-            _rigidBody.velocity.Set(0, _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
             _forces.x = 0;
             _isStopping = false;
         }
@@ -140,6 +140,18 @@ public class MobMovement : MonoBehaviour
             {
                 _monsterCollider.enabled = true;
                 _savedUpperHit = new RaycastHit2D();
+            }
+        }
+
+        if (_monsterFx != null)
+        {
+            if (_rigidBody.velocity.x != 0f)
+            {
+                _monsterFx.setState(MonsterFX.States.WALKING);
+            }
+            else
+            {
+                _monsterFx.setState(MonsterFX.States.IDLE);
             }
         }
     }
@@ -205,18 +217,6 @@ public class MobMovement : MonoBehaviour
                 _monsterCollider.enabled = false;
                 _savedHit = _hittedGround;
                 _isDownJumping = true;
-            }
-        }
-
-        if (_monsterFx != null)
-        {
-            if (_rigidBody.velocity.x != 0f)
-            {
-                _monsterFx.setState(MonsterFX.States.WALKING);
-            }
-            else
-            {
-                _monsterFx.setState(MonsterFX.States.IDLE);
             }
         }
     }

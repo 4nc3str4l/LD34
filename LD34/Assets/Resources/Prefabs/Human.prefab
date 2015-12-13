@@ -11,6 +11,8 @@ GameObject:
   - 212: {fileID: 21297810}
   - 95: {fileID: 9524962}
   - 61: {fileID: 6124800}
+  - 114: {fileID: 11447414}
+  - 114: {fileID: 11490232}
   m_Layer: 10
   m_Name: Agent
   m_TagString: Untagged
@@ -28,6 +30,7 @@ GameObject:
   - 4: {fileID: 498494}
   - 61: {fileID: 6136680}
   - 50: {fileID: 5038888}
+  - 114: {fileID: 11472400}
   m_Layer: 0
   m_Name: Human
   m_TagString: Untagged
@@ -54,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.33066988, y: -3.45000005, z: 0}
+  m_LocalPosition: {x: -4.64911461, y: -3.384166, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 438236}
@@ -119,6 +122,43 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11447414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb230f27e41a8d478cc3912fb983a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Flags: 0
+  PanicDistance: 7
+--- !u!114 &11472400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1932b8d133ffe0c43b8ce23b44647aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandleInput: 0
+--- !u!114 &11490232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c269525f950bdc49beab36354d36342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
 --- !u!212 &21297810
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -137,7 +177,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
