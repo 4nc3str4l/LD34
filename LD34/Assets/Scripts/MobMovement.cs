@@ -4,6 +4,8 @@ using System.Collections;
 public class MobMovement : MonoBehaviour
 {
     public bool HandleInput = false;
+    public float MaxForce_X = 400.0f;
+    public float MaxVelocity_X = 6f;
 
     private Rigidbody2D _rigidBody;
     private Vector2 _forces = Vector2.zero;
@@ -23,8 +25,6 @@ public class MobMovement : MonoBehaviour
     public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
     public static readonly float POSITIVE_Y_ACCELERATION = 2000f;
     public static readonly float GRAVITY_FORCE = 50f;
-    public static readonly float MAX_X_FORCE = 400.0f;
-    public static readonly float MAX_X_VELOCITY = 6f;
     public static readonly float STOP_VELOCITY = 1.0f;
 
     // Use this for initialization
@@ -93,18 +93,18 @@ public class MobMovement : MonoBehaviour
         }
 
         // Clamp max force
-        if (_forces.x > MAX_X_FORCE || _forces.x < -MAX_X_FORCE)
+        if (_forces.x > MaxForce_X || _forces.x < -MaxForce_X)
         {
-            _forces.x = MAX_X_FORCE * Mathf.Sign(_forces.x);
+            _forces.x = MaxForce_X * Mathf.Sign(_forces.x);
         }
 
-        if (_rigidBody.velocity.x > MAX_X_VELOCITY)
+        if (_rigidBody.velocity.x > MaxVelocity_X)
         {
-            _rigidBody.velocity = new Vector2(MAX_X_VELOCITY, _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(MaxVelocity_X, _rigidBody.velocity.y);
         }
-        else if (_rigidBody.velocity.x < -MAX_X_VELOCITY)
+        else if (_rigidBody.velocity.x < -MaxVelocity_X)
         {
-            _rigidBody.velocity = new Vector2(-MAX_X_VELOCITY, _rigidBody.velocity.y);
+            _rigidBody.velocity = new Vector2(-MaxVelocity_X, _rigidBody.velocity.y);
         }
 
         // Stop if we are at stop velocity
