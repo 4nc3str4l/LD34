@@ -227,9 +227,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 2
-  m_Color: {r: .141000003, g: 1, b: .328000009, a: .890999973}
+  m_Color: {r: 0, g: 1, b: .093556881, a: .890999973}
   m_Intensity: 4.4000001
-  m_Range: 18.1299992
+  m_Range: .560000002
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -239,7 +239,7 @@ Light:
     m_Bias: .0500000007
     m_NormalBias: .400000006
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
+  m_DrawHalo: 1
   m_Flare: {fileID: 0}
   m_RenderMode: 1
   m_CullingMask:
