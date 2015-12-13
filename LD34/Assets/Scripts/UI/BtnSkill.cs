@@ -36,4 +36,9 @@ public class BtnSkill : MonoBehaviour {
     {
         skillInspectorRight.gameObject.SetActive(false);
     }
+
+    public void moveToPosition(int position)
+    {
+
+    }
 }
