@@ -49,5 +49,4 @@ public class BtnSkill : MonoBehaviour {
         ability = skill.ability;
         GetComponent<Image>().sprite = image;
     }
-
 }

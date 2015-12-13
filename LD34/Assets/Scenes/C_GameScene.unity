@@ -1292,6 +1292,7 @@ MonoBehaviour:
   uiElements:
   - {fileID: 320760481}
   - {fileID: 1299104666}
+  - {fileID: 934106122}
 --- !u!131 &390860363
 GUITexture:
   m_ObjectHideFlags: 0
@@ -1532,6 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1 &463058357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,6 +1739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1 &478226174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,6 +2285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1 &667683947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,6 +2677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1 &830017745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3493,6 +3498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1 &1138837354
 GameObject:
   m_ObjectHideFlags: 0
@@ -3771,6 +3777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1001 &1227683091
 Prefab:
   m_ObjectHideFlags: 0
@@ -4085,7 +4092,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4357,6 +4364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1 &1659228342
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,6 +4900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choosed: 0
+  ability: 0
 --- !u!1001 &1826020234
 Prefab:
   m_ObjectHideFlags: 0
