@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class BtnSkill : MonoBehaviour {
 
@@ -8,6 +10,8 @@ public class BtnSkill : MonoBehaviour {
 
     SkillInspector skillInspector;
     SkillInspector skillInspectorRight;
+
+    public AbilityType ability;  
 
     void Start()
     {
@@ -36,4 +40,14 @@ public class BtnSkill : MonoBehaviour {
     {
         skillInspectorRight.gameObject.SetActive(false);
     }
+
+    public void setNewInfo(BtnSkill skill)
+    {
+        image = skill.image;
+        description = skill.description;
+        title = skill.title;
+        ability = skill.ability;
+        GetComponent<Image>().sprite = image;
+    }
+
 }
