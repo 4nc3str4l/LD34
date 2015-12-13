@@ -67,14 +67,19 @@ public abstract class Ability : IAbility
         }
     }
 
+    protected void setupGameobject<T>(GameObject gameObject) where T : AbilityDamager
+    {
+        gameObject.AddComponent<T>();
+        gameObject.GetComponent<T>().Owner = this;
+    }
+
     protected void setupGameobject(GameObject gameObject)
     {
-        gameObject.AddComponent<AbilityDamager>();
-        gameObject.GetComponent<AbilityDamager>().Owner = this;
+        setupGameobject<AbilityDamager>(gameObject);
     }
 }
 
-class AbilityDamager : MonoBehaviour
+public class AbilityDamager : MonoBehaviour
 {
     public IAbility Owner;
     private float _lastHit;
@@ -97,7 +102,7 @@ class AbilityDamager : MonoBehaviour
         }
     }
 
-    private void DoDamage(Mob mob)
+    protected virtual void DoDamage(Mob mob)
     {
         if (Time.time - _lastHit >= Owner.DamageInterval)
         {

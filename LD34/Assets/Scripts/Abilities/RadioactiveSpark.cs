@@ -10,7 +10,7 @@ public class RadioactiveSpark : Ability
     {
         get
         {
-            return 4.0f;
+            return 2.0f;
         }
     }
 
@@ -75,6 +75,17 @@ public class RadioactiveSpark : Ability
             movement.InitialForce = -movement.InitialForce;
         }
         movement.ForceJump();
+
+        setupGameobject<SparkDamager>(spark);
+    }
+}
+
+public class SparkDamager : AbilityDamager
+{
+    protected override void DoDamage(Mob mob)
+    {
+        Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/FireExplosion"), transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
 
