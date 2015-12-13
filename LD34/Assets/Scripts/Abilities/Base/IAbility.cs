@@ -11,7 +11,8 @@ public enum AbilityType
     DEATH_STARE,
     RADIOACTIVE_SPARK,
     PROTECTION_FIELD,
-    MADNESS
+    MADNESS,
+    HUMAN_GRINDER
 }
 
 public interface IAbility

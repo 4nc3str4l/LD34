@@ -28,7 +28,7 @@ public class AbilityController : MonoBehaviour
         LoadPrefabs();
         LoadAbilities();
 
-        BoundAtLeft = _abilities[AbilityType.PROTECTION_FIELD];
+        BoundAtLeft = _abilities[AbilityType.HUMAN_GRINDER];
         BoundAtRight = _abilities[AbilityType.MADNESS];
     }
 

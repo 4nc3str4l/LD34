@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &104828
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -11,22 +11,6 @@ GameObject:
   - 212: {fileID: 21216218}
   m_Layer: 0
   m_Name: blade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &130680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 485222}
-  - 114: {fileID: 11483090}
-  m_Layer: 0
-  m_Name: RotatingBlade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +25,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 411486}
   - 61: {fileID: 6114112}
+  - 114: {fileID: 11481750}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -55,10 +40,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.56999993, y: -3.01966763, z: 0}
+  m_LocalPosition: {x: -15.5224018, y: -3.01127052, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 485222}
+  - {fileID: 450046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &450046
@@ -71,19 +56,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 485222}
-  m_RootOrder: 0
---- !u!4 &485222
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 450046}
   m_Father: {fileID: 411486}
   m_RootOrder: 0
 --- !u!61 &6114112
@@ -99,12 +71,12 @@ BoxCollider2D:
   m_Offset: {x: .00491857529, y: .00737857819}
   serializedVersion: 2
   m_Size: {x: .813086748, y: .188406467}
---- !u!114 &11483090
+--- !u!114 &11481750
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 130680}
+  m_GameObject: {fileID: 157404}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a43da41ed40b40847be46b45b28adac4, type: 3}
@@ -128,7 +100,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
