@@ -35,7 +35,6 @@ public class BulletsPool
             GameObject.Destroy(gameObject);
         }
 
-        GameObject.Destroy(_original);
         _instance = null;
     }
 

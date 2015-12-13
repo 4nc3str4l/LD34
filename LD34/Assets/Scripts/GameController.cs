@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour {
         GUIController.instance.updateDeadCounter();
     }
 
-    public void OnDestroy()
+    public void OnDisable()
     {
         BulletsPool.Instance.Destroy();
         ExplosionsPool.Instance.Destroy();

@@ -34,7 +34,6 @@ public class ExplosionsPool
         {
             GameObject.Destroy(gameObject);
         }
-        GameObject.Destroy(_original);
 
         _instance = null;
     }
