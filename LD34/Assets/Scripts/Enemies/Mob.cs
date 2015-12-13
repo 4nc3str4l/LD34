@@ -110,6 +110,40 @@ class Mob : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name);
+        if (_canStrike)
+        {
+            Mob mob = other.gameObject.GetComponentInChildren<Mob>();
+            if (mob)
+            {
+                HandleStrikeTo(mob.gameObject);
+            }
+            else
+            {
+                // TODO: Replace for real controller
+                AbilityController controller = other.gameObject.GetComponentInChildren<AbilityController>();
+                if (controller)
+                {
+                    // TODO: Apply damage to monster
+                    HandleStrikeTo(controller.gameObject);
+                }
+            }
+        }
+    }
+
+    void HandleStrikeTo(GameObject gameObject)
+    {
+        Transform onDestroy = transform.parent.Find("OnDestroy");
+        if (onDestroy)
+        {
+            GameObject explosion = Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/FireExplosion"));
+            explosion.transform.parent = onDestroy.transform;
+            explosion.transform.localPosition = new Vector3(0, 0, -0.1f);
+            explosion.transform.localScale = onDestroy.localScale;
+
+            _movement.Stop();
+            _canStrike = false;
+        }
+
+        Destroy(transform.parent.gameObject, 0.5f);
     }
 }

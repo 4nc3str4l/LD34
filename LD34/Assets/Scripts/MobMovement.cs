@@ -44,13 +44,13 @@ public class MobMovement : MonoBehaviour
         if (!_hittedGround.collider)
         {
             Vector2 position = transform.position;
-            position.x += _monsterCollider.bounds.size.x / 2.0f;
+            position.x += _monsterCollider.bounds.size.x / 2.0f + 0.2f;
 
             _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
 
             if (!_hittedGround.collider)
             {
-                position.x -= _monsterCollider.bounds.size.x;
+                position.x -= _monsterCollider.bounds.size.x + 0.2f;
 
                 _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
             }
