@@ -134,8 +134,34 @@ public class RadioactiveParty : Ability
 
 public class SparkPartyDamager : AbilityDamager
 {
+    private bool _explosionGenerated = false;
+
+    void OnEnable()
+    {
+        _explosionGenerated = false;
+    }
+
+    void OnDisable()
+    {
+        if (!_explosionGenerated)
+        {
+            explode();
+        }
+    }
+
     protected override void DoDamage(Mob mob)
     {
-        Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/FireExplosion"), transform.position, Quaternion.identity);
+        if (!_explosionGenerated)
+        {
+            explode();
+        }
+    }
+
+    private void explode()
+    {
+        GameObject explosion = ExplosionsPool.Instance.Pop();
+        explosion.transform.position = transform.position;
+
+        _explosionGenerated = true;
     }
 }

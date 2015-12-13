@@ -6,20 +6,43 @@ public class FireExplosion : MonoBehaviour
 {
     private List<Entity> _toDestroy = new List<Entity>();
     private Collider2D _ownCollider;
+    private Animator _animator;
+    private int _nextState = 0;
+
+    private bool _shouldExplode = false;
+    private float _startTime = 0;
 
     void Start()
     {
         _ownCollider = GetComponent<Collider2D>();
-        Destroy(gameObject, 0.52f);
+        _animator = GetComponent<Animator>();
 	}
 
-    void OnDestroy()
+    public void ToggleAnimation()
     {
-        _toDestroy.ForEach(entity =>
+        _animator.SetInteger("STATE", _nextState);
+        _nextState ^= 1;
+    }
+
+    void OnEnable()
+    {
+        _shouldExplode = true;
+        _startTime = Time.time;
+    }
+
+    void Update()
+    {
+        if (Time.time - _startTime >= 0.3f)
         {
-            entity.DoDamage(100);
-            entity.DestroyCallback.Remove(NotifyDeath);
-        });
+            _toDestroy.ForEach(entity =>
+            {
+                entity.DoDamage(100);
+                entity.DestroyCallback.Remove(NotifyDeath);
+            });
+
+            _shouldExplode = false;
+            ExplosionsPool.Instance.Push(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

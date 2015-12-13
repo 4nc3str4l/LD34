@@ -84,7 +84,8 @@ public class SparkDamager : AbilityDamager
 {
     protected override void DoDamage(Mob mob)
     {
-        Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/FireExplosion"), transform.position, Quaternion.identity);
+        GameObject explosion = ExplosionsPool.Instance.Pop();
+        explosion.transform.position = transform.position;
         Destroy(gameObject);
     }
 }

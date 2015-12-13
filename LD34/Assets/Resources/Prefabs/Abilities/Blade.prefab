@@ -9,7 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 450046}
   - 212: {fileID: 21216218}
-  m_Layer: 0
+  - 61: {fileID: 6116164}
+  m_Layer: 9
   m_Name: blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +27,7 @@ GameObject:
   - 4: {fileID: 411486}
   - 61: {fileID: 6114112}
   - 114: {fileID: 11481750}
+  - 114: {fileID: 11450114}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -66,11 +68,36 @@ BoxCollider2D:
   m_GameObject: {fileID: 157404}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: .00491857529, y: .00737857819}
   serializedVersion: 2
   m_Size: {x: .813086748, y: .188406467}
+--- !u!61 &6116164
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104828}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: .790000021, y: .180000007}
+--- !u!114 &11450114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f92142089f77524dba4b914ea54c043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 6
 --- !u!114 &11481750
 MonoBehaviour:
   m_ObjectHideFlags: 1
