@@ -19,10 +19,6 @@ public class AbilityController : MonoBehaviour
 
     public void Start()
     {
-        Physics2D.IgnoreLayerCollision(Constants.Layers.ABILITIES, Constants.Layers.ABILITIES);
-        Physics2D.IgnoreLayerCollision(Constants.Layers.ABILITIES, Constants.Layers.UNIT);
-        Physics2D.IgnoreLayerCollision(Constants.Layers.UNIT, Constants.Layers.UNIT);
-
         Instance = this;
 
         LoadPrefabs();

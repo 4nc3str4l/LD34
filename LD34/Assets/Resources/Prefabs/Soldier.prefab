@@ -29,6 +29,7 @@ GameObject:
   - 61: {fileID: 6106982}
   - 50: {fileID: 5017590}
   - 114: {fileID: 11467082}
+  - 114: {fileID: 11479830}
   m_Layer: 0
   m_Name: Deads_18
   m_TagString: Untagged
@@ -206,6 +207,7 @@ GameObject:
   - 114: {fileID: 11474192}
   - 114: {fileID: 11449216}
   - 61: {fileID: 6194812}
+  - 50: {fileID: 5062164}
   m_Layer: 10
   m_Name: Agent
   m_TagString: Untagged
@@ -241,8 +243,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 433464}
   - 61: {fileID: 6100280}
-  - 50: {fileID: 5087596}
   - 114: {fileID: 11492620}
+  - 50: {fileID: 5024176}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -262,6 +264,7 @@ GameObject:
   - 61: {fileID: 6176556}
   - 50: {fileID: 5046968}
   - 114: {fileID: 11449576}
+  - 114: {fileID: 11452384}
   m_Layer: 0
   m_Name: Deads_32
   m_TagString: Untagged
@@ -459,7 +462,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.48148823, y: -3.31741166, z: -5}
+  m_LocalPosition: {x: -3.1400001, y: -3.31741166, z: -5}
   m_LocalScale: {x: .800000012, y: .850000024, z: 1}
   m_Children:
   - {fileID: 495558}
@@ -705,6 +708,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!50 &5024176
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157936}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!50 &5046968
 Rigidbody2D:
   serializedVersion: 2
@@ -737,6 +756,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!50 &5062164
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150744}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 3
 --- !u!50 &5080258
 Rigidbody2D:
   serializedVersion: 2
@@ -760,22 +795,6 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153678}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!50 &5087596
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157936}
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
@@ -1030,7 +1049,7 @@ MonoBehaviour:
   PanicDistance: 4
   HealthThreshold: 10
   AttackDistance: 8
-  AttackRate: 1.75
+  AttackRate: 1.64999998
   StrikeDirection: {x: 1, y: 0}
 --- !u!114 &11449576
 MonoBehaviour:
@@ -1049,6 +1068,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11452384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165202}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
@@ -1121,6 +1151,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+--- !u!114 &11479830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cae36182b99c240866eb754eb7054d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11492620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1134,6 +1175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandleInput: 0
   MaxForce_X: 400
+  MaxForce_Y: 4000
+  MinForce_Y: -2000
   MaxVelocity_X: 6
   InitialForce: {x: 0, y: 0}
 --- !u!114 &11495034

@@ -30,6 +30,7 @@ public class Mob : Entity
     private MobMovement _movement;
     private MonsterFX _monsterFx;
     private Vector2 _panicDirection = Vector2.left;
+    private Vector2 _bulletPosition;
     private float _lastJump;
     private float _lastProximityPanic;
     private float _lastAttack;
@@ -51,6 +52,11 @@ public class Mob : Entity
         _canProximityPanicRun = (Flags & MobFlags.PROXIMITY_PANIC) == MobFlags.PROXIMITY_PANIC;
         _canStrike = (Flags & MobFlags.STRIKE_EVERYONE) == MobFlags.STRIKE_EVERYONE;
         _canAttack = (Flags & MobFlags.ATTACK) == MobFlags.ATTACK;
+
+        if (transform.Find("BulletRef"))
+        {
+            _bulletPosition = transform.Find("BulletRef").position;
+        }
     }
 
     public void Update()
@@ -154,9 +160,15 @@ public class Mob : Entity
                 {
                     _lastAttack = Time.time;
 
-                    Vector2 bulletPosition = transform.Find("BulletRef").position;
-                    GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), bulletPosition, Quaternion.identity);
-                    ThrownDamager.Setup(this, shot, 0.1f, UnityEngine.Random.Range(45, 70), bulletDirection);
+                    bool isNew;
+                    GameObject shot = BulletsPool.Instance.Pop(out isNew);
+
+                    if (isNew)
+                    {
+                        ThrownDamager.Setup(this, shot, 0.1f, UnityEngine.Random.Range(45, 70), bulletDirection);
+                    }
+
+                    shot.transform.position = _bulletPosition;
 
                     if (bulletDirection == Vector2.left)
                     {
@@ -186,8 +198,7 @@ public class Mob : Entity
                 c.enabled = true;
             });
             onDestroy.transform.parent = null;
-            Destroy(onDestroy.gameObject, 10f);
-            
+            Destroy(onDestroy.gameObject, 10f);            
         }
     }
 

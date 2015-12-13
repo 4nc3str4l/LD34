@@ -133,14 +133,16 @@ public class AbilityDamager : MonoBehaviour
     }
 }
 
-class ThrownDamager : MonoBehaviour
+public sealed class ThrownDamager : MonoBehaviour
 {
     public Mob Owner;
     public float Damage;
     public float MadnessDamage;
     public Vector2 MoveDirection = Vector2.zero;
     private float _lastHit;
+    private float _spawnTime;
     private MobMovement Movement;
+    private Collider2D _ownCollider;
 
     public static void Setup(Mob owner, GameObject gameObject, float damage, float madnessDamage, Vector2 moveDirection)
     {
@@ -158,6 +160,16 @@ class ThrownDamager : MonoBehaviour
         Setup(owner, gameObject, damage, madnessDamage, Vector2.zero);
     }
 
+    void Start()
+    {
+        _ownCollider = GetComponent<Collider2D>();
+    }
+
+    void OnEnable()
+    {
+        _spawnTime = Time.time;
+    }
+
     void Update()
     {
         if (MoveDirection == Vector2.right)
@@ -168,6 +180,11 @@ class ThrownDamager : MonoBehaviour
         {
             Movement.MoveLeft();
         }
+
+        if (Time.time - _spawnTime > 5f)
+        {
+            BulletsPool.Instance.Push(gameObject);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -175,21 +192,26 @@ class ThrownDamager : MonoBehaviour
         testTrigger(other);
     }
 
-    public void OnTriggerStay2D(Collider2D other)
-    {
-        testTrigger(other);
-    }
-
     private void testTrigger(Collider2D other)
     {
-        bool madnessTime = AbilityController.Instance.Abilities[AbilityType.MADNESS].IsEnabled;
+        Debug.Log(other.gameObject.name + " " + _ownCollider);
+        if (other.transform.parent && other.transform.parent.gameObject)
+        {
+            Debug.Log("\t" + other.transform.parent.gameObject.name);
+        }
         Mob mob = other.gameObject.GetComponentInChildren<Mob>();
         if (mob)
         {
+            bool madnessTime = AbilityController.Instance.Abilities[AbilityType.MADNESS].IsEnabled;
             if (madnessTime && mob != Owner)
             {
                 mob.DoDamage(MadnessDamage);
-                Destroy(gameObject);
+                BulletsPool.Instance.Push(gameObject);
+            }
+            else
+            {
+                Debug.Log("\t1: Ignoring");
+                Physics2D.IgnoreCollision(_ownCollider, other);
             }
         }
         else
@@ -198,9 +220,13 @@ class ThrownDamager : MonoBehaviour
             if (monster)
             {
                 monster.DoDamage(Damage);
+                BulletsPool.Instance.Push(gameObject);
             }
-
-            Destroy(gameObject);
+            else
+            {
+                Debug.Log("\t2: Ignoring");
+                Physics2D.IgnoreCollision(_ownCollider, other);
+            }
         }
     }
 }

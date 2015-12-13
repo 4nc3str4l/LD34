@@ -18,4 +18,10 @@ public class GameController : MonoBehaviour {
         _numDeads++;
         GUIController.instance.updateDeadCounter();
     }
+
+    public void OnDestroy()
+    {
+        BulletsPool.Instance.Destroy();
+        ExplosionsPool.Instance.Destroy();
+    }
 }

@@ -5,6 +5,8 @@ public class MobMovement : MonoBehaviour
 {
     public bool HandleInput = false;
     public float MaxForce_X = 400.0f;
+    public float MaxForce_Y = 4000.0f;
+    public float MinForce_Y = -2000.0f;
     public float MaxVelocity_X = 6f;
     public Vector2 InitialForce = Vector2.zero;
 
@@ -21,7 +23,7 @@ public class MobMovement : MonoBehaviour
     private MonsterFX _monsterFx;
     private Collider2D _monsterCollider;
 
-    public static readonly float RAYCAST_DOWN_DISTANCE = 0.7f;
+    public static readonly float RAYCAST_DOWN_DISTANCE = 0.6f;
     public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
     public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
     public static readonly float POSITIVE_Y_ACCELERATION = 2000f;
@@ -45,11 +47,11 @@ public class MobMovement : MonoBehaviour
     }
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
     {
         _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
 
-        if (!_hittedGround.collider)
+        if (!_hittedGround.collider && _monsterCollider != null)
         {
             Vector2 position = transform.position;
             position.x += _monsterCollider.bounds.size.x / 2.0f + 0.2f;
@@ -71,7 +73,11 @@ public class MobMovement : MonoBehaviour
         {
             if (_rigidBody.velocity.y <= 0)
             {
-                _monsterCollider.enabled = true;
+                if (_monsterCollider)
+                {
+                    _monsterCollider.enabled = true;
+                }
+
                 _isJumping = false;
                 _savedUpperHit = new RaycastHit2D();
             }
@@ -104,6 +110,14 @@ public class MobMovement : MonoBehaviour
         if (_forces.x > MaxForce_X || _forces.x < -MaxForce_X)
         {
             _forces.x = MaxForce_X * Mathf.Sign(_forces.x);
+        }
+        if (_forces.y > MaxForce_Y)
+        {
+            _forces.y = MaxForce_Y;
+        }
+        else if (_forces.y < MinForce_Y)
+        {
+            _forces.y = MinForce_Y;
         }
 
         if (_rigidBody.velocity.x > MaxVelocity_X)

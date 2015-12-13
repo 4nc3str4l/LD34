@@ -28,6 +28,17 @@ public class ExplosionsPool
         _original = Resources.Load<GameObject>("Prefabs/Abilities/FireExplosion");
     }
 
+    public void Destroy()
+    {
+        foreach (GameObject gameObject in _explosions)
+        {
+            GameObject.Destroy(gameObject);
+        }
+        GameObject.Destroy(_original);
+
+        _instance = null;
+    }
+
     public GameObject Pop()
     {
         GameObject explosion;
@@ -51,8 +62,4 @@ public class ExplosionsPool
         explosion.SetActive(false);
         _explosions.Add(explosion);
     }
-}
-
-static class ListExtension
-{
 }
