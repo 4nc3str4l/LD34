@@ -163,5 +163,6 @@ public class SparkPartyDamager : AbilityDamager
         explosion.transform.position = transform.position;
 
         _explosionGenerated = true;
+        gameObject.SetActive(false);
     }
 }
