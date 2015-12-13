@@ -124,12 +124,13 @@ public class Mob : Entity
             {
                 _monsterFx.setState(MonsterFX.States.ATTACKING);
 
-                if (Time.time - _lastAttack > (1f / AttackRate))
+                if (Time.time - _lastAttack >= (1f / AttackRate))
                 {
                     _lastAttack = Time.time;
 
-                    GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), transform.position, Quaternion.identity);
-                    ThrownDamager.Setup(shot, 10, monsterDirection);
+                    Vector2 bulletPosition = transform.parent.Find("BulletRef").position;
+                    GameObject shot = (GameObject)Instantiate(Resources.Load<GameObject>("Prefabs/Abilities/Shot"), bulletPosition, Quaternion.identity);
+                    ThrownDamager.Setup(shot, 0.1f, monsterDirection);
                 }
             }
             else

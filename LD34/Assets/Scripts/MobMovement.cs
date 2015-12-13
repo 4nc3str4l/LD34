@@ -6,6 +6,7 @@ public class MobMovement : MonoBehaviour
     public bool HandleInput = false;
     public float MaxForce_X = 400.0f;
     public float MaxVelocity_X = 6f;
+    public Vector2 InitialForce = Vector2.zero;
 
     private Rigidbody2D _rigidBody;
     private Vector2 _forces = Vector2.zero;
@@ -34,6 +35,7 @@ public class MobMovement : MonoBehaviour
         _monster = transform.Find("Agent").gameObject;
         _monsterCollider = _monster.GetComponent<Collider2D>();
         _monsterFx = _monster.GetComponent<MonsterFX>();
+        _forces += InitialForce;
     }
 	
 	// Update is called once per frame
@@ -113,6 +115,11 @@ public class MobMovement : MonoBehaviour
             _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
             _forces.x = 0;
             _isStopping = false;
+
+            if (_monsterFx != null)
+            {
+                _monsterFx.setState(MonsterFX.States.IDLE);
+            }
         }
 
         // Apply forces
@@ -149,21 +156,20 @@ public class MobMovement : MonoBehaviour
             {
                 _monsterFx.setState(MonsterFX.States.WALKING);
             }
-            else
-            {
-                _monsterFx.setState(MonsterFX.States.IDLE);
-            }
         }
     }
 
     public void Stop()
     {
-        if (Mathf.Sign(_rigidBody.velocity.x) == Mathf.Sign(_forces.x))
+        if (_rigidBody.velocity.x != 0)
         {
-            _forces.x = -_forces.x;
-        }
+            if (Mathf.Sign(_rigidBody.velocity.x) == Mathf.Sign(_forces.x))
+            {
+                _forces.x = -_forces.x;
+            }
 
-        _isStopping = true;
+            _isStopping = true;
+        }
     }
 
     public void Jump()
