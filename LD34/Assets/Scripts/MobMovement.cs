@@ -75,6 +75,7 @@ public class MobMovement : MonoBehaviour
             {
                 if (_monsterCollider)
                 {
+                    Debug.Log("Disabling");
                     _monsterCollider.enabled = true;
                 }
 
