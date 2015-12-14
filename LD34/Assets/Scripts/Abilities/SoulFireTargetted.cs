@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class SoulFire : Ability
+public class SoulFireTargetted : Ability
 {
     public override float CooldownTime
     {
@@ -50,16 +50,18 @@ public class SoulFire : Ability
     {
         get
         {
-            return AbilityType.SOUL_FIRE;
+            return AbilityType.SOUL_FIRE_TARGETED;
         }
     }
 
     private const int NUMBER_OF_FLAMES = 10;
-    private const float ACCELERATION_FACTOR = 3f;
+    private const float ACCELERATION_FACTOR = 1f;
     private List<GameObject> _flames = new List<GameObject>();
 
-    public SoulFire(AbilityController controller, GameObject owner) : base(controller, owner)
-    { }
+    public SoulFireTargetted(AbilityController controller, GameObject owner) : base(controller, owner)
+    {
+        _prefabs = controller.Prefabs(AbilityType.SOUL_FIRE);
+    }
 
     public override void OnStart()
     {
@@ -67,8 +69,8 @@ public class SoulFire : Ability
         
         for (int i = 0; i < NUMBER_OF_FLAMES; ++i)
         {
-            GameObject flame = GameObject.Instantiate(_prefabs[0]);
-            flame.transform.position = Owner.transform.position;
+            GameObject flame = (GameObject)GameObject.Instantiate(_prefabs[0]);
+            flame.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             float acceleration = MobMovement.POSITIVE_X_ACCELERATION * ACCELERATION_FACTOR;
             acceleration = UnityEngine.Random.Range(-acceleration, acceleration);

@@ -7,7 +7,7 @@ using UnityEngine;
 public enum AbilityType
 {
     SOUL_FIRE,
-    SOUL_FILE_TARGETED,
+    SOUL_FIRE_TARGETED,
     DEATH_STARE,
     RADIOACTIVE_SPARK,
     PROTECTION_FIELD,
