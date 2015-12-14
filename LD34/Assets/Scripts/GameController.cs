@@ -2,7 +2,7 @@
 
 public class GameController : MonoBehaviour {
 
-    public const int NUM_DEADS_TO_WIN = 10;
+    public const int NUM_DEADS_TO_WIN = 200;
 
     int _numDeads = 0;
     public int numDeads {get { return _numDeads; }}
@@ -54,9 +54,9 @@ public class GameController : MonoBehaviour {
         _numDeads++;
         GUIController.instance.updateDeadCounter();
 
-        if (_numDeads % 30 == 0 && GUIController.instance.actualChooseAnimationState == GUIController.ChooseAnimationState.STOPPED)
+        if (_numDeads % 10 == 0 && GUIController.instance.actualChooseAnimationState == GUIController.ChooseAnimationState.STOPPED)
         {
-            GUIController.instance.actualChooseAnimationState = GUIController.ChooseAnimationState.PREPARING;
+            GUIController.instance.showChooseAbilityAnimation();
         }
 
         if (_numDeads > NUM_DEADS_TO_WIN)

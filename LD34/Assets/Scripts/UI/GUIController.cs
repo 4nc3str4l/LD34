@@ -59,6 +59,7 @@ public class GUIController : MonoBehaviour {
         {
             _avaliablePositions.Add(pos.transform.localPosition);
         }
+        showChooseAbilityAnimation();
     }
 
 	void Update () {
@@ -256,7 +257,7 @@ public class GUIController : MonoBehaviour {
 
     void returnToNormalState()
     {
-        _animator.SetInteger("STATE", 0);
+        if(_actualChooseAnimationState == ChooseAnimationState.STOPPED) _animator.SetInteger("STATE", 0);
     }
 
     public void showDeadAnimation()
@@ -278,6 +279,11 @@ public class GUIController : MonoBehaviour {
     public void mainMenuBtn()
     {
         Application.LoadLevel("MainScene");
+    }
+
+    public void showChooseAbilityAnimation()
+    {
+        _actualChooseAnimationState = ChooseAnimationState.PREPARING;
     }
 
 }
