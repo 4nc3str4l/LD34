@@ -25,7 +25,7 @@ public class AbilityController : MonoBehaviour
         LoadAbilities();
 
         BoundAtLeft = _abilities[AbilityType.RADIOACTIVE_PARTY];
-        BoundAtRight = _abilities[AbilityType.MADNESS];
+        BoundAtRight = _abilities[AbilityType.RADIOACTIVE_SPARK];
     }
 
     public List<GameObject> Prefabs(AbilityType type)

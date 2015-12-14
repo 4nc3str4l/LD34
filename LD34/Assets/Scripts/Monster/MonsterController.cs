@@ -16,6 +16,8 @@ public class MonsterController : Entity
 
     private const float LERPING_TIME = 5f;
 
+    protected override bool _preventDestructionOnDeath { get { return true; } }
+
     void Start()
     {
         _healthOverlay = GameObject.Find("GUI/HealthOverlay").GetComponent<Image>();
@@ -51,6 +53,13 @@ public class MonsterController : Entity
         }
 
         return Health;
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+
+
     }
 
     protected override void OnRestored()

@@ -194,14 +194,6 @@ public sealed class ThrownDamager : MonoBehaviour
 
     private void testTrigger(Collider2D other)
     {
-        /*
-        Debug.Log(other.gameObject.name + " " + _ownCollider);
-        if (other.transform.parent && other.transform.parent.gameObject)
-        {
-            Debug.Log("\t" + other.transform.parent.gameObject.name);
-        }
-        */
-
         Mob mob = other.gameObject.GetComponentInChildren<Mob>();
         if (mob)
         {
@@ -213,8 +205,7 @@ public sealed class ThrownDamager : MonoBehaviour
             }
             else
             {
-                //Debug.Log("\t1: Ignoring");
-                Physics2D.IgnoreCollision(_ownCollider, other);
+                Physics2D.IgnoreCollision(_ownCollider, other, true);
             }
         }
         else
@@ -227,8 +218,7 @@ public sealed class ThrownDamager : MonoBehaviour
             }
             else
             {
-                //Debug.Log("\t2: Ignoring");
-                Physics2D.IgnoreCollision(_ownCollider, other);
+                Physics2D.IgnoreCollision(_ownCollider, other, true);
             }
         }
     }

@@ -406,6 +406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandleInput: 1
   MaxForce_X: 400
+  MaxForce_Y: 4000
+  MinForce_Y: -2000
   MaxVelocity_X: 6
   InitialForce: {x: 0, y: 0}
 --- !u!114 &11477496

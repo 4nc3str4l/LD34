@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     public float RecoverInterval = 1f;
     public float RecoverAmount = 2f;
 
+    protected virtual bool _preventDestructionOnDeath { get { return false; } }
     public float Health { get { return _health; } }
     private float _health = 100;
     private float _lastRecover = 0;
@@ -22,8 +23,7 @@ public class Entity : MonoBehaviour
 
         if (_health <= 0)
         {
-            DestroyCallback.ToList().ForEach(f => f(this));
-            Destroy(gameObject.transform.parent.gameObject);
+            OnDeath();
         }
     }
 
@@ -42,5 +42,15 @@ public class Entity : MonoBehaviour
         return newHealth;
     }
 
-    protected virtual void OnRestored() { }
+    protected virtual void OnDeath()
+    {
+        DestroyCallback.ToList().ForEach(f => f(this));
+
+        if (!_preventDestructionOnDeath)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
+        }
+    }
+
+    protected virtual void OnRestored(){ }
 }

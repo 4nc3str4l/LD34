@@ -32,7 +32,7 @@ public class FireExplosion : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - _startTime >= 0.3f)
+        if (_shouldExplode && Time.time - _startTime >= 0.3f)
         {
             _toDestroy.ForEach(entity =>
             {
@@ -48,7 +48,7 @@ public class FireExplosion : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Entity entity = other.gameObject.GetComponentInChildren<Entity>();
-        if (entity)
+        if (entity && entity != GameController.Instance.Monster)
         {
             _toDestroy.Add(entity);
             entity.DestroyCallback.Add(NotifyDeath);

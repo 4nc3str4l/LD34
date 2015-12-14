@@ -24,7 +24,7 @@ public class Skull : MonoBehaviour {
     {
         if(colider.GetComponentInChildren<AbilityController>())
         {
-            GameController.instance.addDead();
+            GameController.Instance.addDead();
             Destroy(gameObject);
         }
     }

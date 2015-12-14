@@ -179,7 +179,7 @@ public class GUIController : MonoBehaviour {
 
     public void updateDeadCounter()
     {
-        _numDeadsText.text = GameController.instance.numDeads.ToString();
+        _numDeadsText.text = GameController.Instance.numDeads.ToString();
         if(_actualChooseAnimationState == ChooseAnimationState.STOPPED)
         {
             _animator.SetInteger("STATE", 1);
