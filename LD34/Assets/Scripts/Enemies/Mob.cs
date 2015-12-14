@@ -122,11 +122,12 @@ public class Mob : Entity
         {
             if (_canJump && Time.time - _lastJump >= JUMP_INTERVAL)
             {
-                if (UnityEngine.Random.Range(0, 100) >= 90)
+                if (UnityEngine.Random.Range(0, 100) >= 70)
                 {
                     _movement.Jump();
-                    _lastJump = Time.time;
                 }
+
+                _lastJump = Time.time;
             }
         }
         else if (_canStrike)

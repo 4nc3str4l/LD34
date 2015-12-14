@@ -180,6 +180,20 @@ public class MobMovement : MonoBehaviour
         }
     }
 
+    public void LateUpdate()
+    {
+        if (transform.position.x > 65)
+        {
+            transform.position = new Vector2(65, transform.position.y);
+            _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
+        }
+        if (transform.position.x < -55)
+        {
+            transform.position = new Vector2(-55, transform.position.y);
+            _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
+        }
+    }
+
     public void Stop()
     {
         if (_rigidBody.velocity.x != 0)
