@@ -12,6 +12,8 @@ public class FireExplosion : MonoBehaviour
     private bool _shouldExplode = false;
     private float _startTime = 0;
 
+    public bool IgnoreMonster = true;
+
     void Start()
     {
         _ownCollider = GetComponent<Collider2D>();
@@ -41,14 +43,22 @@ public class FireExplosion : MonoBehaviour
             });
 
             _shouldExplode = false;
-            ExplosionsPool.Instance.Push(gameObject);
+
+            if (IgnoreMonster)
+            {
+                ExplosionsPool.Instance.Push(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         Entity entity = other.gameObject.GetComponentInChildren<Entity>();
-        if (entity && entity != GameController.Instance.Monster)
+        if (entity && (!IgnoreMonster || entity != GameController.Instance.Monster))
         {
             _toDestroy.Add(entity);
             entity.DestroyCallback.Add(NotifyDeath);

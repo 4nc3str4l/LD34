@@ -46,7 +46,7 @@ GameObject:
   - 114: {fileID: 11412042}
   - 114: {fileID: 11473646}
   - 95: {fileID: 9568262}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.4020004, y: -3.17799997, z: .099609375}
+  m_LocalPosition: {x: -19.4020004, y: -3.32399988, z: .099609375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456150}
@@ -130,9 +130,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: .0185127258, y: -.0962657928}
+  m_Offset: {x: .0237312317, y: -.085829258}
   serializedVersion: 2
-  m_Size: {x: 3.17000008, y: 1.29999995}
+  m_Size: {x: 3.09693909, y: 1.10169542}
 --- !u!95 &9568262
 Animator:
   serializedVersion: 3
@@ -161,9 +161,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb230f27e41a8d478cc3912fb983a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanRecoverHealth: 0
+  RecoverInterval: 1
+  RecoverAmount: 2
   Flags: 8
   PanicDistance: 5
   HealthThreshold: 10
+  AttackDistance: 8
+  AttackRate: .5
+  StrikeDirection: {x: 1, y: 0}
 --- !u!114 &11448800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandleInput: 0
   MaxForce_X: 600
+  MaxForce_Y: 4000
+  MinForce_Y: -2000
   MaxVelocity_X: 9
+  InitialForce: {x: 0, y: 0}
 --- !u!114 &11473646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,7 +217,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

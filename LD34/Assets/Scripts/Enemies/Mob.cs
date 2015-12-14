@@ -46,6 +46,7 @@ public class Mob : Entity
         _monster = GameObject.Find("MonsterContainer").GetComponentInChildren<Entity>();
         _monsterFx = transform.GetComponent<MonsterFX>();
         _movement = transform.parent.GetComponent<MobMovement>();
+        _movement.RaycastExtra = 0.1f;
 
         _canJump = (Flags & MobFlags.CAN_JUMP) == MobFlags.CAN_JUMP;
         _canLowHealthRun = (Flags & MobFlags.LOW_HEALTH_PANIC) == MobFlags.LOW_HEALTH_PANIC;
@@ -208,7 +209,7 @@ public class Mob : Entity
             {
                 HandleStrikeTo(entity.gameObject);
             }
-            else
+            else if (other.transform.parent && other.transform.parent.gameObject)
             {
                 // Protective shield
                 entity = other.transform.parent.gameObject.GetComponentInChildren<Entity>();
@@ -229,6 +230,7 @@ public class Mob : Entity
             explosion.transform.parent = onDestroy.transform;
             explosion.transform.localPosition = new Vector3(0, 0, -0.1f);
             explosion.transform.localScale = onDestroy.localScale;
+            explosion.GetComponent<FireExplosion>().IgnoreMonster = false;
 
             _movement.Stop();
             _canStrike = false;

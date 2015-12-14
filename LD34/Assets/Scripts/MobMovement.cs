@@ -8,6 +8,7 @@ public class MobMovement : MonoBehaviour
     public float MaxForce_Y = 4000.0f;
     public float MinForce_Y = -2000.0f;
     public float MaxVelocity_X = 6f;
+    public float RaycastExtra = 0;
     public Vector2 InitialForce = Vector2.zero;
 
     private Rigidbody2D _rigidBody;
@@ -49,7 +50,7 @@ public class MobMovement : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
     {
-        _hittedGround = Physics2D.Raycast(_monster.transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
+        _hittedGround = Physics2D.Raycast(_monster.transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE + RaycastExtra, Constants.Layers.GROUND_MASK);
 
         if (!_hittedGround.collider && _monsterCollider != null)
         {
