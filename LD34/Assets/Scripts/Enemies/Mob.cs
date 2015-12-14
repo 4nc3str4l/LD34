@@ -203,12 +203,12 @@ public class Mob : Entity
     {
         if (_canStrike)
         {
-            Entity entity = other.gameObject.GetComponentInChildren<Entity>();
+            Entity entity = other.gameObject.GetComponent<Entity>();
             if (entity)
             {
                 HandleStrikeTo(entity.gameObject);
             }
-            else
+            else if (other.transform.parent && other.transform.parent.gameObject)
             {
                 // Protective shield
                 entity = other.transform.parent.gameObject.GetComponentInChildren<Entity>();

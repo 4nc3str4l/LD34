@@ -17,6 +17,7 @@ public class GUIController : MonoBehaviour {
     float _nextSpawn = 0;
 
     public static GUIController instance;
+    public Text deadPannelText;
     private Text _numDeadsText, _chooserText;
 
 
@@ -180,7 +181,8 @@ public class GUIController : MonoBehaviour {
     public void updateDeadCounter()
     {
         _numDeadsText.text = GameController.Instance.numDeads.ToString();
-        if(_actualChooseAnimationState == ChooseAnimationState.STOPPED)
+        deadPannelText.text = GameController.Instance.numDeads.ToString();
+        if (_actualChooseAnimationState == ChooseAnimationState.STOPPED)
         {
             _animator.SetInteger("STATE", 1);
             Invoke("returnToNormalState", 0.35f);
@@ -259,6 +261,21 @@ public class GUIController : MonoBehaviour {
     void returnToNormalState()
     {
         _animator.SetInteger("STATE", 0);
+    }
+
+    public void showDeadAnimation()
+    {
+        _animator.SetInteger("STATE", 3);
+    }
+
+    public void retryBtn()
+    {
+        Application.LoadLevel("C_GameScene");
+    }
+
+    public void mainMenuBtn()
+    {
+        Application.LoadLevel("MainScene");
     }
 
 }
