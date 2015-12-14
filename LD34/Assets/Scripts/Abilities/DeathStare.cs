@@ -161,6 +161,9 @@ public class DeathStare : Ability
             if (hit.collider != null)
             {
                 laser.End = hit.transform.position;
+
+                GameObject explosion = ExplosionsPool.Instance.Pop();
+                explosion.transform.position = laser.End;
             }
         }
 

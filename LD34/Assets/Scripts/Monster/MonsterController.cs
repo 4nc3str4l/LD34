@@ -12,7 +12,7 @@ public class MonsterController : Entity
     private bool _lerping = false;
     private float _lerpingStart = 0;
     private Color _lerpFrom;
-    private Color _lerpTo;
+    private Color _lerpTo = new Color(1, 0, 0, 0.6f);
 
     private const float LERPING_TIME = 5f;
 
@@ -44,8 +44,7 @@ public class MonsterController : Entity
         if (!_abilityController.Abilities[AbilityType.PROTECTION_FIELD].IsEnabled)
         {
             _lerpFrom = _healthOverlay.color;
-            _lerpTo = Color.red;
-            _lerpTo.a = 1 - Health / 100f;
+            _lerpTo.a = (1 - newHealth / 100f) * 0.6f;
             _lerping = true;
             _lerpingStart = Time.time;
 
@@ -65,8 +64,7 @@ public class MonsterController : Entity
     protected override void OnRestored()
     {
         _lerpFrom = _healthOverlay.color;
-        _lerpTo = Color.clear;
-        _lerpTo.a = 1 - Health / 100f;
+        _lerpTo.a = (1 - Health / 100f) * 0.6f;
         _lerping = true;
         _lerpingStart = Time.time;
     }

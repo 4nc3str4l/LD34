@@ -1187,6 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5dcf955b6fe344585a895c0f9c862f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreMonster: 1
 --- !u!95 &227927530
 Animator:
   serializedVersion: 3
@@ -3654,6 +3655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5dcf955b6fe344585a895c0f9c862f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreMonster: 1
 --- !u!95 &589733676
 Animator:
   serializedVersion: 3
@@ -4290,10 +4292,8 @@ MonoBehaviour:
   MaxForce_Y: 4000
   MinForce_Y: -2000
   MaxVelocity_X: 6
+  RaycastExtra: 0
   InitialForce: {x: 0, y: 0}
-  _forces: {x: 0, y: 0}
-  _isStopping: 0
-  _isGrounded: 0
 --- !u!50 &667698851
 Rigidbody2D:
   serializedVersion: 2
@@ -4684,6 +4684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5dcf955b6fe344585a895c0f9c862f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreMonster: 1
 --- !u!95 &788183703
 Animator:
   serializedVersion: 3
@@ -6151,6 +6152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5dcf955b6fe344585a895c0f9c862f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreMonster: 1
 --- !u!95 &990214398
 Animator:
   serializedVersion: 3
@@ -10104,6 +10106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5dcf955b6fe344585a895c0f9c862f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreMonster: 1
 --- !u!95 &1980852146
 Animator:
   serializedVersion: 3
@@ -10217,6 +10220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5dcf955b6fe344585a895c0f9c862f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoreMonster: 1
 --- !u!95 &2007988775
 Animator:
   serializedVersion: 3

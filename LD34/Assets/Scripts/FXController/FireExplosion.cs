@@ -58,7 +58,7 @@ public class FireExplosion : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Entity entity = other.gameObject.GetComponentInChildren<Entity>();
-        if (entity && (!IgnoreMonster || entity != GameController.Instance.Monster))
+        if (entity && (entity != GameController.Instance.Monster || !IgnoreMonster))
         {
             _toDestroy.Add(entity);
             entity.DestroyCallback.Add(NotifyDeath);
