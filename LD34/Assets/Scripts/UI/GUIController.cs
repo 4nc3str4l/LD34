@@ -29,6 +29,8 @@ public class GUIController : MonoBehaviour {
     public GameObject skillChosser;
 
     Animator _animator;
+    AudioSource _audioSource;
+    public AudioClip deadAnimationSound, cluck, welcome, selection;
 
     public Sprite defaultSprite;
 
@@ -55,6 +57,7 @@ public class GUIController : MonoBehaviour {
         _avaliablePositions = new List<Vector3>();
         _actualChooseAnimationState = ChooseAnimationState.STOPPED;
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -105,6 +108,14 @@ public class GUIController : MonoBehaviour {
                 setPositionsToChoose();
                 _chooserText.text = PREPARE;
                 _animator.SetInteger("STATE", 2);
+                if(firstChoose)
+                {
+                    _audioSource.PlayOneShot(welcome);
+                }
+                else
+                {
+                    _audioSource.PlayOneShot(selection);
+                }
                 break;
             case ChooseAnimationState.SHOWING:
                 if (_nextSpawn < Time.time)
@@ -127,6 +138,7 @@ public class GUIController : MonoBehaviour {
                 if (_nextSpawn < Time.time)
                 {
                     choosePosition[popPosition()].transform.GetComponent<Image>().sprite = defaultSprite;
+                    _audioSource.PlayOneShot(cluck, 1f);
                     _nextSpawn = Time.time + SPAWN_RATE;
                     i++;
                     if (i == skills.Count)
@@ -204,6 +216,7 @@ public class GUIController : MonoBehaviour {
     {
         _numDeadsText.text = GameController.Instance.numDeads.ToString();
         deadPannelText.text = GameController.Instance.numDeads.ToString();
+        _audioSource.PlayOneShot(deadAnimationSound);
         if (_actualChooseAnimationState == ChooseAnimationState.STOPPED)
         {
             _animator.SetInteger("STATE", 1);
@@ -291,6 +304,7 @@ public class GUIController : MonoBehaviour {
     public void showDeadAnimation()
     {
         _animator.SetInteger("STATE", 3);
+        
     }
 
     public void showWinAnimation()
