@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour {
     private const int CAR_PROBABILITY = 100;
     private const float SPAWN_CAR_INTERVAL = 15f;
 
+    private float spawnRange = SPAWN_EVERY;
+
     public GameObject Car;
 
     public MonsterController Monster;

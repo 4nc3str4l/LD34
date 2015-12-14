@@ -164,7 +164,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.24936199, y: -3.28813648, z: 0}
+  m_LocalPosition: {x: -52.1500015, y: -3.28813648, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 465640}
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09c6a0c024690641aa54ba66b992133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanRecoverHealth: 0
+  CanRecoverHealth: 1
   RecoverInterval: 1
   RecoverAmount: 2
 --- !u!114 &11461130
@@ -409,6 +409,7 @@ MonoBehaviour:
   MaxForce_Y: 4000
   MinForce_Y: -2000
   MaxVelocity_X: 6
+  RaycastExtra: 0
   InitialForce: {x: 0, y: 0}
 --- !u!114 &11477496
 MonoBehaviour:
