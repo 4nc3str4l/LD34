@@ -26,7 +26,7 @@ public class MobMovement : MonoBehaviour
     public static readonly float RAYCAST_DOWN_DISTANCE = 0.6f;
     public static readonly float POSITIVE_X_ACCELERATION = 100.0f;
     public static readonly float NEGATIVE_X_ACCELERATION = -50.0f;
-    public static readonly float POSITIVE_Y_ACCELERATION = 2000f;
+    public static readonly float POSITIVE_Y_ACCELERATION = 1300f;
     public static readonly float GRAVITY_FORCE = 50f;
     public static readonly float STOP_VELOCITY = 1.0f;
 

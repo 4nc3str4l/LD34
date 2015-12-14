@@ -30,7 +30,7 @@ public class Mob : Entity
     private MobMovement _movement;
     private MonsterFX _monsterFx;
     private Vector2 _panicDirection = Vector2.left;
-    private Vector2 _bulletPosition;
+    private Transform _bulletPosition;
     private float _lastJump;
     private float _lastProximityPanic;
     private float _lastAttack;
@@ -53,10 +53,7 @@ public class Mob : Entity
         _canStrike = (Flags & MobFlags.STRIKE_EVERYONE) == MobFlags.STRIKE_EVERYONE;
         _canAttack = (Flags & MobFlags.ATTACK) == MobFlags.ATTACK;
 
-        if (transform.Find("BulletRef"))
-        {
-            _bulletPosition = transform.Find("BulletRef").position;
-        }
+        _bulletPosition = transform.Find("BulletRef");
     }
 
     public void Update()
@@ -165,10 +162,10 @@ public class Mob : Entity
 
                     if (isNew)
                     {
-                        ThrownDamager.Setup(this, shot, 0.1f, UnityEngine.Random.Range(45, 70), bulletDirection);
+                        ThrownDamager.Setup(this, shot, 0.5f, UnityEngine.Random.Range(45, 70), bulletDirection);
                     }
 
-                    shot.transform.position = _bulletPosition;
+                    shot.transform.position = _bulletPosition.position;
 
                     if (bulletDirection == Vector2.left)
                     {
