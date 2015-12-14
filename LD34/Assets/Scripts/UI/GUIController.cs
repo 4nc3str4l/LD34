@@ -17,7 +17,7 @@ public class GUIController : MonoBehaviour {
     float _nextSpawn = 0;
 
     public static GUIController instance;
-    public Text deadPannelText;
+    public Text deadPannelText, deadPannelTitle;
     private Text _numDeadsText, _chooserText;
 
 
@@ -62,11 +62,6 @@ public class GUIController : MonoBehaviour {
     }
 
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Y) && _actualChooseAnimationState == ChooseAnimationState.STOPPED)
-        {
-            i = 0;
-            _actualChooseAnimationState = ChooseAnimationState.PREPARING;
-        }
         
         if(_actualChooseAnimationState != ChooseAnimationState.STOPPED)
         {
@@ -84,6 +79,7 @@ public class GUIController : MonoBehaviour {
                 _destinationPositions = new List<int>();
                 _avaliablePositions = new List<Vector3>();
                 _nextSpawn = 0;
+                i = 0;
                 foreach (GameObject pos in choosePosition)
                 {
                     pos.SetActive(true);
@@ -265,6 +261,12 @@ public class GUIController : MonoBehaviour {
 
     public void showDeadAnimation()
     {
+        _animator.SetInteger("STATE", 3);
+    }
+
+    public void showWinAnimation()
+    {
+        deadPannelTitle.text = "You are mad!!";
         _animator.SetInteger("STATE", 3);
     }
 

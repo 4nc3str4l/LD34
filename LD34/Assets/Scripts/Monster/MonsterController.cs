@@ -58,8 +58,7 @@ public class MonsterController : Entity
     protected override void OnDeath()
     {
         base.OnDeath();
-
-
+        GUIController.instance.showDeadAnimation();
     }
 
     protected override void OnRestored()
