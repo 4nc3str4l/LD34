@@ -180,8 +180,11 @@ public class GUIController : MonoBehaviour {
     public void updateDeadCounter()
     {
         _numDeadsText.text = GameController.instance.numDeads.ToString();
-        _animator.SetInteger("STATE", 1);
-        Invoke("returnToNormalState", 0.35f);
+        if(_actualChooseAnimationState == ChooseAnimationState.STOPPED)
+        {
+            _animator.SetInteger("STATE", 1);
+            Invoke("returnToNormalState", 0.35f);
+        }
     }
 
     private void setPositionsToChoose()
