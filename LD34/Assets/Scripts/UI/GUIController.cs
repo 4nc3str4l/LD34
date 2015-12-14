@@ -41,6 +41,10 @@ public class GUIController : MonoBehaviour {
     int i = 0;
     int _timesMerged = 0;
 
+    bool firstChoose = true;
+
+    float hideTutorialTime =  0f;
+
     void Awake()
     {
         instance = this;
@@ -64,8 +68,12 @@ public class GUIController : MonoBehaviour {
     }
 
 	void Update () {
-        
-        if(_actualChooseAnimationState != ChooseAnimationState.STOPPED)
+
+        if(_animator.GetInteger("TUTORIAL") == 1 && Time.time > hideTutorialTime)
+        {
+            _animator.SetInteger("TUTORIAL", 0);
+        }
+        if (_actualChooseAnimationState != ChooseAnimationState.STOPPED)
         {
             updateSkillChooser();
         }
@@ -174,8 +182,17 @@ public class GUIController : MonoBehaviour {
                 for(int x = 0; x  < skills.Count; x++)
                 {
                     choosePosition[x].transform.localPosition.Set(_avaliablePositions[x].x, _avaliablePositions[x].y, _avaliablePositions[x].z);
+
                 }
+                if (firstChoose)
+                {
+                    _animator.SetInteger("TUTORIAL", 1);
+                    hideTutorialTime = Time.time + 20f;
+                    firstChoose = false;
+                }
+    
                 _animator.SetInteger("STATE", 0);
+
                 GameController.Instance.Monster.GetComponentInChildren<MonsterFX>().disableAura();
                 break;
             default:

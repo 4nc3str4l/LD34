@@ -1148,7 +1148,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is the brutality bar it will grown as you kill
+  m_Text: This is the brutality bar it will grow as you kill
 --- !u!222 &168492800
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4887,7 +4887,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -493.5, y: 152.799988}
+  m_AnchoredPosition: {x: -509, y: 395}
   m_SizeDelta: {x: 90, y: 22.3999996}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &660633376
