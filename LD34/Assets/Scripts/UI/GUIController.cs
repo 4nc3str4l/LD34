@@ -295,5 +295,4 @@ public class GUIController : MonoBehaviour {
     {
         _actualChooseAnimationState = ChooseAnimationState.PREPARING;
     }
-
 }
