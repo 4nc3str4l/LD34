@@ -248,7 +248,8 @@ public class MobMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED)
+        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED ||
+            PauseMenu.Instance.State != PauseMenu.PauseState.NOT_PAUSED)
         {
             return;
         }
