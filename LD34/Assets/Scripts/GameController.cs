@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour {
     private GameObject _originalHuman;
     private GameObject _originalSoldier;
     private GameObject _originalCar;
-    private float _lastExplored = 0;
-    private float _lastSpawned = 0;
+    private float _lastExplored = float.NegativeInfinity;
+    private float _lastSpawned = float.NegativeInfinity;
     private float _lastCarSpawned = 0;
 
     void Awake()
@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
             }
         }
 
-        if (Time.time - _lastCarSpawned >= SPAWN_CAR_INTERVAL)
+        if (Time.time - _lastCarSpawned >= SPAWN_CAR_INTERVAL && _lastExplored > -30)
         {
             int dice = UnityEngine.Random.Range(0, CAR_PROBABILITY);
             if (dice == 0 || dice == CAR_PROBABILITY - 1)
