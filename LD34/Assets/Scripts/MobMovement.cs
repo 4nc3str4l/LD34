@@ -49,11 +49,11 @@ public class MobMovement : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
     {
-        _hittedGround = Physics2D.Raycast(transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
+        _hittedGround = Physics2D.Raycast(_monster.transform.position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
 
         if (!_hittedGround.collider && _monsterCollider != null)
         {
-            Vector2 position = transform.position;
+            Vector2 position = _monster.transform.position;
             position.x += _monsterCollider.bounds.size.x / 2.0f + 0.2f;
 
             _hittedGround = Physics2D.Raycast(position, Vector2.down, RAYCAST_DOWN_DISTANCE, Constants.Layers.GROUND_MASK);
@@ -69,13 +69,12 @@ public class MobMovement : MonoBehaviour
         bool hasHit = _hittedGround.collider != null;
         _isGrounded = !_isDownJumping && hasHit;
 
-        if (_isJumping && hasHit)
+        if (_isJumping && !hasHit)
         {
             if (_rigidBody.velocity.y <= 0)
             {
                 if (_monsterCollider)
                 {
-                    Debug.Log("Disabling");
                     _monsterCollider.enabled = true;
                 }
 
@@ -89,7 +88,7 @@ public class MobMovement : MonoBehaviour
         {
             _forces += new Vector2(0, -GRAVITY_FORCE);
         }
-        else if (_forces.y <= 0 && _isGrounded)
+        else if (_forces.y <= 0 && _isGrounded && !_isJumping)
         {
             _forces.y = 0;
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
