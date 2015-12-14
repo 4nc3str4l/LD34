@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour {
         _numDeads++;
         GUIController.instance.updateDeadCounter();
 
-        if (_numDeads % 10 == 0 && GUIController.instance.actualChooseAnimationState == GUIController.ChooseAnimationState.STOPPED)
+        if (_numDeads % 30 == 0 && GUIController.instance.actualChooseAnimationState == GUIController.ChooseAnimationState.STOPPED)
         {
             GUIController.instance.showChooseAbilityAnimation();
         }
