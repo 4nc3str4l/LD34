@@ -86,10 +86,12 @@ public class AbilityController : MonoBehaviour
 
     private void HandleUserInput()
     {
-        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED)
+        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED ||
+            PauseMenu.Instance.State != PauseMenu.PauseState.NOT_PAUSED)
         {
             return;
         }
+
         if (Input.GetMouseButtonDown(0))
         {
             BoundAtLeft.TryFire();

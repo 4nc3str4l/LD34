@@ -53,4 +53,16 @@ public class PauseMenu : MonoBehaviour
     {
         _state = PauseState.EXITING;
     }
+
+    public void ToggleState()
+    {
+        if (_state == PauseState.NOT_PAUSED)
+        {
+            _state = PauseState.PAUSING;
+        }
+        else
+        {
+            _state = PauseState.EXITING;
+        }
+    }
 }

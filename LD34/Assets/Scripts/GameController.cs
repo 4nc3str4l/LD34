@@ -38,7 +38,13 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
-        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenu.Instance.ToggleState();
+        }
+
+        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED ||
+            PauseMenu.Instance.State != PauseMenu.PauseState.NOT_PAUSED)
         {
             return;
         }
