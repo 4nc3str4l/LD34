@@ -320,6 +320,7 @@ public class GUIController : MonoBehaviour {
 
     public void mainMenuBtn()
     {
+        Destroy(GameObject.Find("AudioManager").gameObject);
         Application.LoadLevel("MainScene");
     }
 
