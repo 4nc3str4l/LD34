@@ -182,14 +182,14 @@ public class MobMovement : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (transform.position.x > 65)
+        if (transform.position.x > Constants.MAP_MAX_X)
         {
-            transform.position = new Vector2(65, transform.position.y);
+            transform.position = new Vector2(Constants.MAP_MAX_X, transform.position.y);
             _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
         }
-        if (transform.position.x < -55)
+        if (transform.position.x < Constants.MAP_MIN_X)
         {
-            transform.position = new Vector2(-55, transform.position.y);
+            transform.position = new Vector2(Constants.MAP_MIN_X, transform.position.y);
             _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
         }
     }

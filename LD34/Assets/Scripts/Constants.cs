@@ -19,4 +19,7 @@ public static class Constants
         public static readonly int MONSTER = 11;
         public static readonly int MONSTER_MASK = 1 << MONSTER;
     }
+
+    public static readonly int MAP_MIN_X = -55;
+    public static readonly int MAP_MAX_X = 65;
 }

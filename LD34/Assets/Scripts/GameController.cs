@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour {
     private const float SPAWN_CAR_INTERVAL = 15f;
 
     private float spawnRange = SPAWN_EVERY;
+    private int spawnDirection = 1;
 
     public GameObject Car;
 
@@ -43,11 +44,27 @@ public class GameController : MonoBehaviour {
         }
 
         float width = Camera.main.orthographicSize * Screen.width / Screen.height;
-        _lastExplored = Mathf.Max(_lastExplored, Monster.transform.position.x + width / 2);
 
-        if (_lastExplored + SPAWN_EVERY > _lastSpawned + SPAWN_EVERY / 2)
+        if (spawnDirection == 1)
         {
-            _lastSpawned = _lastExplored + SPAWN_EVERY;
+            _lastExplored = Mathf.Max(_lastExplored, Monster.transform.position.x + (width * spawnDirection) / 2);
+        }
+        else
+        {
+            _lastExplored = Mathf.Min(_lastExplored, Monster.transform.position.x + (width * spawnDirection) / 2);
+        }
+
+        if ((spawnDirection == 1 && _lastExplored + spawnRange > Constants.MAP_MAX_X) ||
+            (spawnDirection == -1 && _lastExplored + spawnRange < Constants.MAP_MIN_X))
+        {
+            spawnDirection *= -1;
+            spawnRange *= -1;
+        }
+
+        if ((spawnDirection == 1 && _lastExplored + spawnRange > _lastSpawned + spawnRange / 2) ||
+            (spawnDirection == -1 && _lastExplored + spawnRange < _lastSpawned + spawnRange / 2))
+        {
+            _lastSpawned = _lastExplored + spawnRange;
 
             int numSpawns = (int)(_numDeads * (float)MAX_SPAWN / NUM_DEADS_TO_WIN);
 
@@ -56,11 +73,11 @@ public class GameController : MonoBehaviour {
                 float y = UnityEngine.Random.Range(0.5f, 15);
                 if (UnityEngine.Random.Range(0, 100) > 30)
                 {
-                    GameObject.Instantiate(_originalSoldier, new Vector2(_lastSpawned + i, y), Quaternion.identity);
+                    GameObject.Instantiate(_originalSoldier, new Vector2(_lastSpawned + i * spawnDirection, y), Quaternion.identity);
                 }
                 else
                 {
-                    GameObject.Instantiate(_originalHuman, new Vector2(_lastSpawned + i, y), Quaternion.identity);
+                    GameObject.Instantiate(_originalHuman, new Vector2(_lastSpawned + i * spawnDirection, y), Quaternion.identity);
                 }
             }
         }
@@ -70,10 +87,10 @@ public class GameController : MonoBehaviour {
             int dice = UnityEngine.Random.Range(0, CAR_PROBABILITY);
             if (dice == 0 || dice == CAR_PROBABILITY - 1)
             {
-                float offset = (width + SPAWN_EVERY) * (dice == 0 ? 1.5f : -1.5f);
+                float offset = (width + spawnRange) * (dice == 0 ? 1.5f : -1.5f);
                 Car = (GameObject)GameObject.Instantiate(_originalCar);
                 Car.transform.position = new Vector2(Monster.transform.position.x + offset, 0.1f);
-                Car.GetComponentInChildren<Mob>().StrikeDirection = (dice == 0 ? Vector2.left : Vector2.right);
+                Car.GetComponentInChildren<Mob>().StrikeDirection = (dice == 0 ? Vector2.left : Vector2.right) * spawnDirection;
 
                 _lastCarSpawned = Time.time;
             }
