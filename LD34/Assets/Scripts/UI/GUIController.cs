@@ -22,6 +22,7 @@ public class GUIController : MonoBehaviour {
 
 
     public BtnSkill leftSkill, rightSkill;
+    public BtnSkill leftSkillOverlay, rightSkillOverlay;
     public List<GameObject> skills;
     public List<GameObject> choosePosition;
     public List<Vector3> _avaliablePositions;
@@ -75,6 +76,12 @@ public class GUIController : MonoBehaviour {
         switch (_actualChooseAnimationState)
         {
             case ChooseAnimationState.PREPARING:
+                if (AbilityController.Instance.Abilities[AbilityType.PROTECTION_FIELD].IsEnabled)
+                {
+                    AbilityController.Instance.Abilities[AbilityType.PROTECTION_FIELD].OnEnd();
+                }
+                GameController.Instance.Monster.GetComponentInChildren<MonsterFX>().enableAura();
+
                 skillChosser.SetActive(true);
                 _positions = new List<int>();
                 _destinationPositions = new List<int>();
@@ -169,6 +176,7 @@ public class GUIController : MonoBehaviour {
                     choosePosition[x].transform.localPosition.Set(_avaliablePositions[x].x, _avaliablePositions[x].y, _avaliablePositions[x].z);
                 }
                 _animator.SetInteger("STATE", 0);
+                GameController.Instance.Monster.GetComponentInChildren<MonsterFX>().disableAura();
                 break;
             default:
                 break;
@@ -245,11 +253,13 @@ public class GUIController : MonoBehaviour {
             {
                 AbilityController.Instance.BoundAtLeft = AbilityController.Instance.Abilities[ability];
                 leftSkill.GetComponent<BtnSkill>().setNewInfo(skillInfo);
+                leftSkillOverlay.GetComponent<BtnSkill>().setNewInfo(skillInfo);
             }
             else
             {
                 AbilityController.Instance.BoundAtRight = AbilityController.Instance.Abilities[ability];
                 rightSkill.GetComponent<BtnSkill>().setNewInfo(skillInfo);
+                rightSkillOverlay.GetComponent<BtnSkill>().setNewInfo(skillInfo);
             }
             i++;
         }

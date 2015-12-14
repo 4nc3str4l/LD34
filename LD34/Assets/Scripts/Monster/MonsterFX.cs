@@ -58,4 +58,14 @@ public class MonsterFX : MonoBehaviour {
     {
         aura.SetActive(!aura.activeSelf);
     }
+
+    public void enableAura()
+    {
+        aura.SetActive(true);
+    }
+
+    public void disableAura()
+    {
+        aura.SetActive(false);
+    }
 }

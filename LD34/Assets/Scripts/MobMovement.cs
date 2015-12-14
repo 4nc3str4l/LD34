@@ -248,7 +248,11 @@ public class MobMovement : MonoBehaviour
 
     void HandlePlayerInput()
     {
-        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED) return;
+        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED)
+        {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             MoveRight();

@@ -2111,6 +2111,8 @@ MonoBehaviour:
   deadPannelTitle: {fileID: 421412403}
   leftSkill: {fileID: 1333030252}
   rightSkill: {fileID: 830017748}
+  leftSkillOverlay: {fileID: 420319242}
+  rightSkillOverlay: {fileID: 2108859324}
   skills:
   - {fileID: 1751555816}
   - {fileID: 868412746}
@@ -3484,8 +3486,8 @@ RectTransform:
   m_RootOrder: 20
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: -34, y: 0}
-  m_SizeDelta: {x: 50, y: 406}
+  m_AnchoredPosition: {x: -34, y: -33.1000061}
+  m_SizeDelta: {x: 50, y: 339.799988}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &558012667
 MonoBehaviour:
@@ -7120,8 +7122,8 @@ RectTransform:
   m_RootOrder: 19
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: -34, y: 0}
-  m_SizeDelta: {x: 50, y: 406}
+  m_AnchoredPosition: {x: -34, y: -33.1000061}
+  m_SizeDelta: {x: 50, y: 339.799988}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1134376486
 MonoBehaviour:
@@ -7237,7 +7239,7 @@ MonoBehaviour:
   title: DON'T USE THIS
   description: Who the hell used this skill!!??
   image: {fileID: 21300014, guid: a9332d5c84bb1834383a8e5236f95ef5, type: 3}
-  ability: 3
+  ability: 7
 --- !u!114 &1138837358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8440,7 +8442,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 407458, guid: 98c5ea5479f8c794ebbe42d063a246ce, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -64.8000031
+      value: -62.8199997
       objectReference: {fileID: 0}
     - target: {fileID: 407458, guid: 98c5ea5479f8c794ebbe42d063a246ce, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8468,7 +8470,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 407458, guid: 98c5ea5479f8c794ebbe42d063a246ce, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 127126, guid: 98c5ea5479f8c794ebbe42d063a246ce, type: 2}
       propertyPath: m_Name

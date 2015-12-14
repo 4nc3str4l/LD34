@@ -35,6 +35,11 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
+        if (GUIController.instance.actualChooseAnimationState != GUIController.ChooseAnimationState.STOPPED)
+        {
+            return;
+        }
+
         float width = Camera.main.orthographicSize * Screen.width / Screen.height;
         _lastExplored = Mathf.Max(_lastExplored, Monster.transform.position.x + width / 2);
 
