@@ -17,6 +17,7 @@ public class GUIController : MonoBehaviour {
     float _nextSpawn = 0;
 
     public static GUIController instance;
+    public Text deadPannelText, deadPannelTitle;
     private Text _numDeadsText, _chooserText;
 
 
@@ -58,14 +59,10 @@ public class GUIController : MonoBehaviour {
         {
             _avaliablePositions.Add(pos.transform.localPosition);
         }
+        showChooseAbilityAnimation();
     }
 
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Y) && _actualChooseAnimationState == ChooseAnimationState.STOPPED)
-        {
-            i = 0;
-            _actualChooseAnimationState = ChooseAnimationState.PREPARING;
-        }
         
         if(_actualChooseAnimationState != ChooseAnimationState.STOPPED)
         {
@@ -83,6 +80,7 @@ public class GUIController : MonoBehaviour {
                 _destinationPositions = new List<int>();
                 _avaliablePositions = new List<Vector3>();
                 _nextSpawn = 0;
+                i = 0;
                 foreach (GameObject pos in choosePosition)
                 {
                     pos.SetActive(true);
@@ -180,7 +178,8 @@ public class GUIController : MonoBehaviour {
     public void updateDeadCounter()
     {
         _numDeadsText.text = GameController.Instance.numDeads.ToString();
-        if(_actualChooseAnimationState == ChooseAnimationState.STOPPED)
+        deadPannelText.text = GameController.Instance.numDeads.ToString();
+        if (_actualChooseAnimationState == ChooseAnimationState.STOPPED)
         {
             _animator.SetInteger("STATE", 1);
             Invoke("returnToNormalState", 0.35f);
@@ -258,7 +257,33 @@ public class GUIController : MonoBehaviour {
 
     void returnToNormalState()
     {
-        _animator.SetInteger("STATE", 0);
+        if(_actualChooseAnimationState == ChooseAnimationState.STOPPED) _animator.SetInteger("STATE", 0);
+    }
+
+    public void showDeadAnimation()
+    {
+        _animator.SetInteger("STATE", 3);
+    }
+
+    public void showWinAnimation()
+    {
+        deadPannelTitle.text = "You are mad!!";
+        _animator.SetInteger("STATE", 3);
+    }
+
+    public void retryBtn()
+    {
+        Application.LoadLevel("C_GameScene");
+    }
+
+    public void mainMenuBtn()
+    {
+        Application.LoadLevel("MainScene");
+    }
+
+    public void showChooseAbilityAnimation()
+    {
+        _actualChooseAnimationState = ChooseAnimationState.PREPARING;
     }
 
 }

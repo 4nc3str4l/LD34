@@ -218,7 +218,7 @@ public class Mob : Entity
     {
         if (_canStrike)
         {
-            Entity entity = other.gameObject.GetComponentInChildren<Entity>();
+            Entity entity = other.gameObject.GetComponent<Entity>();
             if (entity)
             {
                 HandleStrikeTo(entity.gameObject);
