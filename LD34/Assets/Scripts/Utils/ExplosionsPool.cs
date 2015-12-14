@@ -22,6 +22,7 @@ public class ExplosionsPool
 
     private GameObject _original;
     private List<GameObject> _explosions = new List<GameObject>();
+    private List<GameObject> _popped = new List<GameObject>();
 
     private ExplosionsPool()
     {
@@ -31,6 +32,11 @@ public class ExplosionsPool
     public void Destroy()
     {
         foreach (GameObject gameObject in _explosions)
+        {
+            GameObject.Destroy(gameObject);
+        }
+
+        foreach (GameObject gameObject in _popped)
         {
             GameObject.Destroy(gameObject);
         }
@@ -52,6 +58,7 @@ public class ExplosionsPool
             explosion = GameObject.Instantiate(_original);
         }
 
+        _popped.Add(explosion);
         explosion.SetActive(true);
         return explosion;
     }
@@ -60,5 +67,6 @@ public class ExplosionsPool
     {
         explosion.SetActive(false);
         _explosions.Add(explosion);
+        _popped.Remove(explosion);
     }
 }
