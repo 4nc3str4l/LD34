@@ -24,8 +24,8 @@ public class AbilityController : MonoBehaviour
         LoadPrefabs();
         LoadAbilities();
 
-        BoundAtLeft = _abilities[AbilityType.SOUL_FIRE];
-        BoundAtRight = _abilities[AbilityType.SOUL_FIRE_TARGETED];
+        BoundAtLeft = _abilities[AbilityType.RADIOACTIVE_PARTY];
+        BoundAtRight = _abilities[AbilityType.RADIOACTIVE_SPARK];
     }
 
     public List<GameObject> Prefabs(AbilityType type)

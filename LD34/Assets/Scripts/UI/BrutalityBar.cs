@@ -12,6 +12,6 @@ public class BrutalityBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        barOverlay.fillAmount = (float)GameController.instance.numDeads / GameController.NUM_DEADS_TO_WIN;
+        barOverlay.fillAmount = (float)GameController.Instance.numDeads / GameController.NUM_DEADS_TO_WIN;
 	}
 }

@@ -7,11 +7,11 @@ public class GameController : MonoBehaviour {
     int _numDeads = 0;
     public int numDeads {get { return _numDeads; }}
 
-    public static GameController instance;
+    public static GameController Instance;
 
     private const float SPAWN_EVERY = 15f;
 
-    private MonsterController _monster;
+    public MonsterController Monster;
     private GameObject _originalHuman;
     private GameObject _originalSoldier;
     private float _lastExplored = 0;
@@ -19,8 +19,8 @@ public class GameController : MonoBehaviour {
 
     void Awake()
     {
-        instance = this;
-        _monster = GameObject.Find("MonsterContainer").GetComponentInChildren<MonsterController>();
+        Instance = this;
+        Monster = GameObject.Find("MonsterContainer").GetComponentInChildren<MonsterController>();
         _originalHuman = Resources.Load<GameObject>("Prefabs/Human");
         _originalSoldier = Resources.Load<GameObject>("Prefabs/Soldier");
     }
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
     void Update()
     {
         float width = Camera.main.orthographicSize * Screen.width / Screen.height;
-        _lastExplored = Mathf.Max(_lastExplored, _monster.transform.position.x + width / 2);
+        _lastExplored = Mathf.Max(_lastExplored, Monster.transform.position.x + width / 2);
 
         if (_lastExplored + SPAWN_EVERY > _lastSpawned + SPAWN_EVERY / 2)
         {
