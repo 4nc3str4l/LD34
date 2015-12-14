@@ -252,8 +252,9 @@ public class GUIController : MonoBehaviour {
         return posToReturn;
     }
 
-    public void chooseSkill(AbilityType ability)
+    public void chooseSkill(AbilityType ability, AudioClip c)
     {
+        GetComponent<AudioSource>().PlayOneShot(c, 1f);   
         if(_actualChooseAnimationState == ChooseAnimationState.CHOOSING)
         {
             BtnSkill skillInfo = null;
