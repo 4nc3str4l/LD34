@@ -197,7 +197,7 @@ MonoBehaviour:
   MaxForce_X: 400
   MaxForce_Y: 4000
   MinForce_Y: -2000
-  MaxVelocity_X: 6
+  MaxVelocity_X: 8
   RaycastExtra: 0
   InitialForce: {x: 0, y: 0}
 --- !u!212 &21255502
@@ -234,7 +234,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: MaxVelocity_X
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 141864}
