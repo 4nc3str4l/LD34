@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 444778}
-  - 114: {fileID: 11448800}
-  - 50: {fileID: 5031074}
   - 61: {fileID: 6186040}
+  - 50: {fileID: 5007120}
+  - 114: {fileID: 11478322}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.4020004, y: -3.32399988, z: .099609375}
+  m_LocalPosition: {x: -19.4020004, y: -3.44899988, z: .099609375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456150}
@@ -91,7 +91,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 444778}
   m_RootOrder: 0
---- !u!50 &5031074
+--- !u!50 &5007120
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &6157168
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -170,23 +170,6 @@ MonoBehaviour:
   AttackDistance: 8
   AttackRate: .5
   StrikeDirection: {x: 1, y: 0}
---- !u!114 &11448800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1932b8d133ffe0c43b8ce23b44647aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandleInput: 0
-  MaxForce_X: 600
-  MaxForce_Y: 4000
-  MinForce_Y: -2000
-  MaxVelocity_X: 9
-  InitialForce: {x: 0, y: 0}
 --- !u!114 &11473646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,6 +182,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+--- !u!114 &11478322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1932b8d133ffe0c43b8ce23b44647aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandleInput: 0
+  MaxForce_X: 400
+  MaxForce_Y: 4000
+  MinForce_Y: -2000
+  MaxVelocity_X: 6
+  RaycastExtra: 0
+  InitialForce: {x: 0, y: 0}
 --- !u!212 &21255502
 SpriteRenderer:
   m_ObjectHideFlags: 1
