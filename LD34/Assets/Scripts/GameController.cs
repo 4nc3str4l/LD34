@@ -9,9 +9,12 @@ public class GameController : MonoBehaviour {
 
     public static GameController Instance;
 
+    private const float MAX_SPAWN = 50f;
     private const float SPAWN_EVERY = 15f;
     private const int CAR_PROBABILITY = 100;
     private const float SPAWN_CAR_INTERVAL = 15f;
+
+    public GameObject Car;
 
     public MonsterController Monster;
     private GameObject _originalHuman;
@@ -39,6 +42,8 @@ public class GameController : MonoBehaviour {
         {
             _lastSpawned = _lastExplored + SPAWN_EVERY;
 
+            int numSpawns = (int)(_numDeads * (float)MAX_SPAWN / NUM_DEADS_TO_WIN);
+
             for (int i = 0; i < 5; ++i)
             {
                 float y = UnityEngine.Random.Range(0.5f, 15);
@@ -58,10 +63,10 @@ public class GameController : MonoBehaviour {
             int dice = UnityEngine.Random.Range(0, CAR_PROBABILITY);
             if (dice == 0 || dice == CAR_PROBABILITY - 1)
             {
-                float offset = (width + SPAWN_EVERY) * (dice == 0 ? 1 : -1);
-                GameObject car = (GameObject)GameObject.Instantiate(_originalCar);
-                car.transform.position = new Vector2(Monster.transform.position.x + offset, 0.1f);
-                car.GetComponentInChildren<Mob>().StrikeDirection = (dice == 0 ? Vector2.left : Vector2.right);
+                float offset = (width + SPAWN_EVERY) * (dice == 0 ? 1.5f : -1.5f);
+                Car = (GameObject)GameObject.Instantiate(_originalCar);
+                Car.transform.position = new Vector2(Monster.transform.position.x + offset, 0.1f);
+                Car.GetComponentInChildren<Mob>().StrikeDirection = (dice == 0 ? Vector2.left : Vector2.right);
 
                 _lastCarSpawned = Time.time;
             }

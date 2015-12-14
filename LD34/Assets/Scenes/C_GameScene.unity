@@ -3512,6 +3512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b13e31efdf82c43a555efceb8abd6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Car: {fileID: 0}
   Monster: {fileID: 0}
 --- !u!4 &604520336
 Transform:

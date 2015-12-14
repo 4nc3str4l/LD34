@@ -55,10 +55,23 @@ public class Mob : Entity
         _canAttack = (Flags & MobFlags.ATTACK) == MobFlags.ATTACK;
 
         _bulletPosition = transform.Find("BulletRef");
+        _lastJump = Time.time;
     }
 
     public void Update()
     {
+        if (GameController.Instance.Car != null && gameObject.transform.parent.gameObject != GameController.Instance.Car)
+        {
+            float distanceToCar = Vector2.Distance(transform.position, GameController.Instance.Car.transform.position);
+            if (distanceToCar < 5f)
+            {
+                if (UnityEngine.Random.Range(0, 100) >= 5)
+                {
+                    _movement.Jump();
+                }
+            }
+        }
+
         float distance = Vector2.Distance(_monster.transform.position, transform.position);
         Vector2 monsterDirection = _monster.transform.position - transform.position;
         monsterDirection = monsterDirection.x > 0 ? Vector2.right : Vector2.left;
@@ -109,7 +122,7 @@ public class Mob : Entity
         {
             if (_canJump && Time.time - _lastJump >= JUMP_INTERVAL)
             {
-                if (UnityEngine.Random.Range(0, 100) >= 80)
+                if (UnityEngine.Random.Range(0, 100) >= 90)
                 {
                     _movement.Jump();
                     _lastJump = Time.time;
@@ -236,6 +249,7 @@ public class Mob : Entity
             _canStrike = false;
         }
 
+        GameController.Instance.Car = null;
         Destroy(transform.parent.gameObject, 0.5f);
     }
 }
