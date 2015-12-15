@@ -18,9 +18,9 @@ public class PauseBtn : MonoBehaviour
         Application.Quit();
     }
 
-    public void ChangeVolume(float value)
+    public void ChangeVolume()
     {
-        AudioListener.volume = value;
+        AudioListener.volume = GameObject.Find("Slider").GetComponent<Slider>().value;
     }
 
     public void ShowPause()
