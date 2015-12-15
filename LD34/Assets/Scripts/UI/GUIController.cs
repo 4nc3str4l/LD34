@@ -27,6 +27,7 @@ public class GUIController : MonoBehaviour {
     public List<GameObject> choosePosition;
     public List<Vector3> _avaliablePositions;
     public GameObject skillChosser;
+    public GameObject pauseMenu;
 
     Animator _animator;
     AudioSource _audioSource;
@@ -110,11 +111,11 @@ public class GUIController : MonoBehaviour {
                 _animator.SetInteger("STATE", 2);
                 if(firstChoose)
                 {
-                    _audioSource.PlayOneShot(welcome);
+                    _audioSource.PlayOneShot(welcome, 0.5f);
                 }
                 else
                 {
-                    _audioSource.PlayOneShot(selection);
+                    _audioSource.PlayOneShot(selection, 0.5f);
                 }
                 break;
             case ChooseAnimationState.SHOWING:
@@ -320,12 +321,18 @@ public class GUIController : MonoBehaviour {
 
     public void mainMenuBtn()
     {
-        Destroy(GameObject.Find("AudioManager").gameObject);
+        GameObject audioManager = GameObject.Find("AudioManager");
+        if(audioManager != null) Destroy(GameObject.Find("AudioManager").gameObject);
         Application.LoadLevel("MainScene");
     }
 
     public void showChooseAbilityAnimation()
     {
         _actualChooseAnimationState = ChooseAnimationState.PREPARING;
+    }
+
+    public void togglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.active);   
     }
 }

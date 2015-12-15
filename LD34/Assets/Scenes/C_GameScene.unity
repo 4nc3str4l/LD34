@@ -1768,7 +1768,7 @@ GameObject:
   - 222: {fileID: 329593928}
   - 114: {fileID: 329593927}
   m_Layer: 5
-  m_Name: ChooserText
+  m_Name: PauseTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2551,6 +2551,7 @@ MonoBehaviour:
   - {fileID: 1781247880}
   _avaliablePositions: []
   skillChosser: {fileID: 934106122}
+  pauseMenu: {fileID: 928307877}
   deadAnimationSound: {fileID: 8300000, guid: 5cc433b468542af44b875f7b273be66e, type: 3}
   cluck: {fileID: 8300000, guid: b0de48bfb462dd844a612dbd5dc4eed6, type: 3}
   welcome: {fileID: 8300000, guid: b39b6ad0a29be854fb39cf71dfa29cf4, type: 3}
@@ -2570,6 +2571,7 @@ MonoBehaviour:
   uiElements:
   - {fileID: 320760481}
   - {fileID: 1299104666}
+  - {fileID: 928307877}
 --- !u!131 &390860363
 GUITexture:
   m_ObjectHideFlags: 0
@@ -5200,10 +5202,10 @@ RectTransform:
   - {fileID: 1785058543}
   m_Father: {fileID: 390860360}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3748, y: 1530}
-  m_SizeDelta: {x: 90, y: 111}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 38.4000015, y: 12}
+  m_SizeDelta: {x: 76.8000031, y: 24}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &660633376
 MonoBehaviour:
@@ -6958,7 +6960,7 @@ RectTransform:
   m_RootOrder: 23
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -2.25, y: 3467}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &928307879
@@ -8671,7 +8673,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52a792ac26f91d9439795f8070d4aa0f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .150000006
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11521,8 +11523,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1766157913}
-        m_MethodName: Exit
+      - m_Target: {fileID: 390860361}
+        m_MethodName: mainMenuBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11907,7 +11909,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pause
+  m_Text: 'Menu
+
+'
 --- !u!222 &1785058545
 CanvasRenderer:
   m_ObjectHideFlags: 0

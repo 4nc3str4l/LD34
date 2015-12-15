@@ -10,6 +10,7 @@ public class PauseBtn : MonoBehaviour
     public void Continue()
     {
         PauseMenu.Instance.ResumeGame();
+        GUIController.instance.togglePauseMenu();
     }
 
     public void Exit()
@@ -25,6 +26,7 @@ public class PauseBtn : MonoBehaviour
     public void ShowPause()
     {
         PauseMenu.Instance.PauseGame();
+        GUIController.instance.togglePauseMenu();
     }
 }
 

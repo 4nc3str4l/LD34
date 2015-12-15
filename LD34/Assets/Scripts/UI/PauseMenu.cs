@@ -64,5 +64,6 @@ public class PauseMenu : MonoBehaviour
         {
             _state = PauseState.EXITING;
         }
+        GUIController.instance.togglePauseMenu();
     }
 }
